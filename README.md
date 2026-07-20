@@ -20,6 +20,13 @@ To ensure 1000% consistency and professional handoff, every niche folder MUST co
 - `DESIGN_LOG.md`: Real-time tracking of decisions (Copy from `.trae/templates/`).
 - `CASE_STUDY.md`: The final portfolio post (Copy from `.trae/templates/`).
 
+## ⚙️ Production Workflow
+To start a new project, follow the [WORKFLOW.md](WORKFLOW.md) guide. It covers:
+1. Next.js & Tailwind Initialization.
+2. Core Library Installation (Framer Motion, Lucide).
+3. The "Blank Canvas" cleanup process.
+4. Strategy-first development.
+
 ## 🚀 The 10 Refined Niches
 1.  **AI-Powered SaaS**: Productivity & automation focus.
 2.  **Luxury Real Estate**: High-end, elegant visual storytelling.
