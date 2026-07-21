@@ -12,16 +12,16 @@ Building a world-class portfolio by creating 10 unique, niche-specific homepages
 3. **Consistency Engine**: Master templates ensure every project looks and feels professional.
 
 ### 2.2 Refined Niches & Value Props
-1. **AI-SaaS**: Focus on productivity metrics and automation "vibe."
-2. **Luxury Real Estate**: Focus on elegance, high-end visuals, and exclusivity.
-3. **FinTech**: Focus on security, trust, and modern dark-mode aesthetics.
-4. **Creative Agency**: Focus on bold typography and boundary-pushing layouts.
-5. **Fashion E-com**: Focus on minimalist, editorial-style product showcasing.
-6. **Wellness**: Focus on organic shapes, calming palettes, and empathy.
-7. **EV/Automotive**: Focus on sleak performance and tech-forward visuals.
-8. **Craft Food/Coffee**: Focus on texture, warmth, and authentic experience.
-9. **Travel**: Focus on immersive imagery and discovery-driven UX.
-10. **No-Code Tool**: Focus on product interactivity and functional clarity.
+1. **🏙️ Luxury Real Estate Developer**: High-value UI, listings, and lead generation.
+2. **🦷 Dental / Cosmetic Clinic**: Trust-focused design and appointment booking.
+3. **🏗️ Construction Company**: Professional corporate portfolios for massive projects.
+4. **⚖️ Law Firm**: Professionalism, credibility, and secure aesthetics.
+5. **💰 Financial / Investment Company**: Clean, authoritative layouts for high-end finance.
+6. **🌸 Luxury Perfume Brand (E-comm)**: Immersive storytelling and premium shopping.
+7. **🎧 Premium Electronics Brand (E-comm)**: High-tech branding and modern product UX.
+8. **👕 Luxury Fashion Brand (E-comm)**: Editorial design and high-end collections.
+9. **💎 Jewelry / Watch Brand (E-comm)**: Elegant visuals and detailed product presentation.
+10. **🤖 AI Startup / SaaS Company**: Technical UI, pricing, and feature showcasing.
 
 ## 3. The 8-Section Case Study Template
 Every "Post 3" must follow this structure for maximum conversion:

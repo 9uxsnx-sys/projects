@@ -10,21 +10,21 @@ Build a high-impact portfolio of **10 strategic homepages** in record time to se
 
 ---
 
-## 🏗️ The 10 Strategic Niches (High-Demand + High-Tech)
-These niches are selected to showcase versatility across everyday high-demand requests and complex technical systems.
+## 🏗️ The 10 Strategic Niches (Agency-First Selection)
+These niches are selected based on high market value and frequent agency service requests.
 
-| # | Niche | Focus | Why it's High Demand in Oman |
-|---|---|---|---|
-| 1 | **Aether AI (SaaS)** | AI Automation | Shows elite "Silicon Valley" level technical capability. |
-| 2 | **Luxury E-commerce** | Fashion & Retail | High volume demand for premium, bilingual online stores. |
-| 3 | **Smart F&B / Restaurant** | Food Tech | Constant demand for online ordering & management systems. |
-| 4 | **FinTech / E-Invoicing** | Compliance | Mandatory due to Oman's "Fawtara" tax regulations. |
-| 5 | **Real Estate / PropTech** | Property Sales | High-ticket projects in new urban development areas. |
-| 6 | **EdTech / Training** | Education | Growing demand for private schooling & corporate upskilling. |
-| 7 | **Smart Logistics / Fleet** | Industrial IoT | Backbone of Oman's logistics hubs (Sohar/Duqm/Salalah). |
-| 8 | **Health & Wellness** | Private Healthcare | High demand for clinic management & aesthetic brand sites. |
-| 9 | **Heritage Tourism** | Cultural UX | National priority for Oman Vision 2040 hospitality. |
-| 10 | **The "Agency Partner" Hub** | **OUR HUB** | Explains the 15% referral model and collaboration workflow. |
+| # | Niche | Why it's valuable |
+|---|---|---|
+| 1 | **🏙️ Luxury Real Estate Developer** | Highest-value niche. Shows premium UI, listings, maps, and lead generation. |
+| 2 | **🦷 Dental / Cosmetic Clinic** | High demand, appointment booking, trust-focused design. |
+| 3 | **🏗️ Construction Company** | Strong corporate websites with massive project portfolios. |
+| 4 | **⚖️ Law Firm** | Demonstrates extreme professionalism, credibility, and security. |
+| 5 | **💰 Financial / Investment Company** | Premium corporate aesthetic with clean, authoritative layouts. |
+| 6 | **🌸 Luxury Perfume Brand (E-comm)** | Beautiful product storytelling and immersive shopping experience. |
+| 7 | **🎧 Premium Electronics Brand (E-comm)** | Modern product pages and high-tech premium branding. |
+| 8 | **👕 Luxury Fashion Brand (E-comm)** | **(STARTING HERE)** Catalog, collections, and editorial design. |
+| 9 | **💎 Jewelry / Watch Brand (E-comm)** | Elegant visuals and high-end, detailed product presentation. |
+| 10 | **🤖 AI Startup / SaaS Company** | Modern landing page with pricing, features, and technical UI. |
 
 ---
 
