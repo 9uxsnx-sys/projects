@@ -1,28 +1,24 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
 
 export default function HeroMobile() {
   return (
-    <section className="relative min-h-[100dvh] bg-white overflow-hidden flex flex-col items-center justify-center p-6 text-center">
-      {/* Mobile-specific layout for VANTAGE */}
-      <motion.h1 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        className="text-black text-5xl font-light tracking-[0.2em] uppercase mb-4"
+    <section className="relative min-h-[100dvh] w-full overflow-hidden bg-black">
+      {/* Cinematic Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        Vantage
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.8 }}
-        className="text-zinc-500 text-[10px] tracking-[0.4em] uppercase italic"
-      >
-        Mobile Edition — Compact Luxury
-      </motion.p>
+        <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Subtle Overlay for Luxury Aesthetic */}
+      <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
     </section>
   );
 }
