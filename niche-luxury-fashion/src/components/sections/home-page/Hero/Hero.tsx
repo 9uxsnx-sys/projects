@@ -18,7 +18,7 @@ export default function Hero() {
   }, []);
 
   // Avoid hydration mismatch by returning null until client-side check is done
-  if (isMobile === null) return <div className="min-h-screen bg-white" />;
+  if (isMobile === null) return <div className="min-h-screen bg-black" />;
 
   return isMobile ? <HeroMobile /> : <HeroDesktop />;
 }
