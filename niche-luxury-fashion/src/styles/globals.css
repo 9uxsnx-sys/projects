@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --font-quilon: "Quilon", serif;
-  --font-rowan: "Rowan", sans-serif;
+  --font-khand: "Khand", sans-serif;
+  --font-switzer: "Switzer", sans-serif;
 }
 
 @font-face {
-  font-family: "Quilon";
-  src: url("/assets/fonts/quilon/Quilon-Semibold.woff2") format("woff2"),
-       url("/assets/fonts/quilon/Quilon-Semibold.woff") format("woff");
+  font-family: "Khand";
+  src: url("/assets/fonts/khand/Khand-SemiBold.woff2") format("woff2"),
+       url("/assets/fonts/khand/Khand-SemiBold.woff") format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Rowan";
-  src: url("/assets/fonts/rowan/Rowan-Regular.woff2") format("woff2"),
-       url("/assets/fonts/rowan/Rowan-Regular.woff") format("woff");
+  font-family: "Switzer";
+  src: url("/assets/fonts/switzer/Switzer-Regular.woff2") format("woff2"),
+       url("/assets/fonts/switzer/Switzer-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Rowan";
-  src: url("/assets/fonts/rowan/Rowan-Medium.woff2") format("woff2"),
-       url("/assets/fonts/rowan/Rowan-Medium.woff") format("woff");
+  font-family: "Switzer";
+  src: url("/assets/fonts/switzer/Switzer-Medium.woff2") format("woff2"),
+       url("/assets/fonts/switzer/Switzer-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
