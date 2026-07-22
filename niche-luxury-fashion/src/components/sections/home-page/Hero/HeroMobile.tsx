@@ -19,6 +19,13 @@ export default function HeroMobile() {
 
       {/* Subtle Overlay for Luxury Aesthetic */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
+
+      {/* Brand Title - Bottom Left */}
+      <div className="absolute bottom-8 left-6 z-20">
+        <h1 className="text-white text-[25vw] leading-none font-khand font-bold tracking-[12px] select-none">
+          SNOW
+        </h1>
+      </div>
     </section>
   );
 }

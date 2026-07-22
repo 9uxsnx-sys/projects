@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import NavbarDesktop from "./NavbarDesktop";
+import NavbarMobile from "./NavbarMobile";
 
 export default function Navbar() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -18,5 +19,5 @@ export default function Navbar() {
 
   if (isMobile === null) return null;
 
-  return isMobile ? null : <NavbarDesktop />;
+  return isMobile ? <NavbarMobile /> : <NavbarDesktop />;
 }

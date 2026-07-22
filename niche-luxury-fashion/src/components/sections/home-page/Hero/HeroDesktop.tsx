@@ -20,9 +20,11 @@ export default function HeroDesktop() {
       {/* Subtle Overlay for Luxury Aesthetic */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
 
-      {/* Placeholder for future Title/Content - Currently Ignored */}
-      <div className="relative z-20 flex items-center justify-center w-full h-full">
-        {/* Title will be added here later */}
+      {/* Brand Title - Bottom Left */}
+      <div className="absolute bottom-12 left-20 z-20">
+        <h1 className="text-white text-[12vw] leading-none font-khand font-bold tracking-[20px] select-none">
+          SNOW
+        </h1>
       </div>
     </section>
   );

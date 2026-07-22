@@ -15,6 +15,15 @@
 }
 
 @font-face {
+  font-family: "Khand";
+  src: url("/assets/fonts/khand/Khand-Bold.woff2") format("woff2"),
+       url("/assets/fonts/khand/Khand-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Switzer";
   src: url("/assets/fonts/switzer/Switzer-Regular.woff2") format("woff2"),
        url("/assets/fonts/switzer/Switzer-Regular.woff") format("woff");
