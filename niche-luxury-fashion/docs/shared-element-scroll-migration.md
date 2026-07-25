@@ -1,3 +1,9 @@
+> **⚠️ SUPERSEDED — This approach was not implemented.**
+>
+> The Navbar was built using a different pattern: **auto-hide/show on scroll direction** instead of a shared-element logo migration.
+> See [CONTEXT.md](../CONTEXT.md#5-navbar-features-implemented) for the actual Navbar implementation.
+> See [Navbar.tsx](../src/components/layout/Navbar/Navbar.tsx), [NavbarDesktop.tsx](../src/components/layout/Navbar/NavbarDesktop.tsx), [NavbarMobile.tsx](../src/components/layout/Navbar/NavbarMobile.tsx) for the live code.
+
 # Shared Element Scroll Migration — "VANTAGE" Hero to Navbar
 
 ## Overview
@@ -147,4 +153,4 @@ The animated logo starts below the navbar (`z-30`) but migrates upward into it v
 
 ---
 
-*Document created 2026-07-22. To be implemented when Navbar and Hero scroll animation development begins.*
+*Document created 2026-07-22. Superseded 2026-07-25 — replaced by auto-hide Navbar implementation.*

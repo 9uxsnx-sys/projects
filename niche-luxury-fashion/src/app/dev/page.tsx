@@ -8,7 +8,8 @@ export default function DevPage() {
       <Navbar />
       <Hero />
 
-      {/* Future sections will be added here during development */}
+      {/* Spacer to enable scroll testing for Navbar mode switching */}
+      <div className="min-h-[200vh] bg-white" />
     </main>
   );
 }
