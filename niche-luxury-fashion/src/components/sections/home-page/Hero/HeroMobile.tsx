@@ -22,7 +22,7 @@ export default function HeroMobile() {
 
       {/* Brand Title - Bottom Left */}
       <div className="absolute bottom-1 left-2 z-20">
-        <h1 className="text-white text-[20vw] leading-none font-switzer font-bold tracking-[20px] select-none">
+        <h1 className="text-white text-[20vw] leading-none font-switzer font-bold tracking-[16px] select-none">
           SNOW
         </h1>
       </div>

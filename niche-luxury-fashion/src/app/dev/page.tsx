@@ -3,6 +3,10 @@ import Hero from "@/components/sections/home-page/Hero/Hero";
 import SeasonEdit from "@/components/sections/home-page/SeasonEdit/SeasonEdit";
 import Collections from "@/components/sections/home-page/Collections/Collections";
 import About from "@/components/sections/home-page/About/About";
+import Brand from "@/components/sections/home-page/Brand/Brand";
+import Philosophy from "@/components/sections/home-page/Philosophy/Philosophy";
+import Categories from "@/components/sections/home-page/Categories/Categories";
+import Footer from "@/components/sections/home-page/Footer/Footer";
 
 export default function DevPage() {
   return (
@@ -13,6 +17,10 @@ export default function DevPage() {
       <SeasonEdit />
       <Collections />
       <About />
+      <Brand />
+      <Philosophy />
+      <Categories />
+      <Footer />
     </main>
   );
 }

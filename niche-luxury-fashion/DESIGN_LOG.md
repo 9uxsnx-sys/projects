@@ -16,6 +16,11 @@
 - [x] Collections Section — 3 category cards (Men, Women, Accessories), full-width grid
 - [x] CategoryCard Component — 3:4 image, 10% black overlay, label bottom-left
 - [x] About Section — twin 3:4 blocks (image + video), zero gap, custom assets
+- [x] Brand Section — full-width 4:3/3:4 autoplay video with centered "SNOW" in Plein Bold
+- [x] Philosophy Section — editorial paragraph with Switzer light, large pull-quote
+- [x] Categories Section — 1 big + 2 small 1:1 images per row, 2 rows
+- [x] Footer Section — 4-column grid with subscribe form + "STAY IN THE LOOP" + massive Plein SNOW
+- [x] Plein Font Registration — Bold (700) + Regular (400) self-hosted via @font-face
 - [ ] Mobile responsive audit
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
@@ -84,6 +89,36 @@
 - **Choice:** Switzer Bold, bottom-left positioning (`bottom-1 left-2`), desktop `text-[14vw]` with `tracking-[22px]`, mobile `text-[20vw]` with `tracking-[20px]`.
 - **Rationale:** Switzer Bold provides a cleaner, more editorial look than Khand Bold. Bottom-left positioning maximizes screen real estate and follows luxury editorial conventions. Slightly tighter tracking on mobile (`20px` vs `22px`) accounts for the smaller viewport.
 
+### Decision: Plein Font Addition
+- **Context:** The Brand and Footer sections needed a heavier, more monolithic "SNOW" brand block distinct from the Hero's Switzer Bold treatment.
+- **Choice:** Added Plein Bold (700) + Regular (400) via self-hosted `@font-face` in globals.css, under `--font-plein: "Plein", sans-serif;` in `@theme`.
+- **Rationale:** Plein offers a heavier, more blocky sans-serif that creates visual contrast against Switzer. The massive `text-[30vw]` SNOW in the Footer (and `text-[20vw]` in Brand) demands a weightier typeface to feel like a structural brand element rather than a headline.
+
+### Decision: Brand Section Layout
+- **Context:** Needed a brand-focused section that feels distinct from the Hero while maintaining the video + SNOW motif.
+- **Choice:** Autoplay MP4 video with 4:3 aspect ratio (desktop) / 3:4 (mobile), 30% black overlay, centered "SNOW" in Plein Bold at `text-[20vw]`.
+- **Rationale:** The 30% overlay is heavier than Hero's 20% to ensure readability on varied video content. Centered positioning distinguishes it from Hero's bottom-left. The aspect ratio switch (4:3→3:4) follows the project's responsive pattern.
+
+### Decision: Philosophy Section Typography
+- **Context:** Needed an editorial section that communicates brand ethos through text alone, no images.
+- **Choice:** Single centered paragraph in Switzer light, large opening quote (`text-7xl`), "–" line breaks between key statements, **VANTAGE/SNOW** italicized.
+- **Rationale:** Pure typography creates a sophisticated editorial feel. The large pull-quote opening draws attention. Line breaks create rhythmic pacing. Italicized brand name adds emphasis without visual clutter.
+
+### Decision: Categories Section Layout (1 Big + 2 Small)
+- **Context:** The original plan was a horizontal scroll ("CollectionReveal"), but a static grid felt more editorial and performant.
+- **Choice:** 2 rows, each row: 1 large 1:1 image (left, `col-span-1`) + 2 small 1:1 images stacked in a column (right, `col-span-1`), `grid grid-cols-2 gap-1`. Mobile: same pattern stacked.
+- **Rationale:** The 1-big-2-small creates visual hierarchy within each category row — the large image anchors the row while the two smaller images provide variety. Static grid avoids the complexity and mobile UX issues of horizontal scroll.
+
+### Decision: Footer Subscribe Component
+- **Context:** The footer's newsletter column needed a more compelling subscribe experience than a simple "Think" heading + basic email input.
+- **Choice:** Integrated an adapted version of the subscribe component from olafhussein.com: "STAY IN THE LOOP" heading (`text-2xl font-semibold`), editorial paragraph, email input with `placeholder="Email address"`, and a white Subscribe button that hovers to black.
+- **Rationale:** The olafhussein.com pattern is proven for luxury fashion newsletters — the editorial heading and descriptive paragraph create more engagement than a minimal input. White button on black provides clear visual hierarchy. Font adapted from PP Mori to Switzer for brand consistency.
+
+### Decision: Footer Link Column Spacing
+- **Context:** The expanded subscribe column needed more visual space, requiring the link columns (Collections, Customer, Follow) to shift right for balanced proportion.
+- **Choice:** `pl-10` (padding-left: 2.5rem) on each link column within the 4-column grid.
+- **Rationale:** The padding creates intentional asymmetry — the subscribe column gets room to breathe while the link columns feel anchored right. The `gap-1` grid spacing keeps the overall layout tight.
+
 ---
 
 ## Technical Notes
@@ -111,10 +146,17 @@
 ### Assets Directory Structure
 - **public/assets/images/categories/** — men.jpg, women.jpg, accessories.jpg
 - **public/assets/images/about/** — about-us.jpg
-- **public/assets/videos/** — hero-bg.mp4, about-us.mp4
+- **public/assets/videos/** — hero-bg.mp4, about-us.mp4, brand-bg.mp4
+- **public/assets/fonts/plein/** — Plein-Bold.woff2, Plein-Bold.woff, Plein-Regular.woff2, Plein-Regular.woff
 
-### Switzer Bold Font Registration
-- **Location:** Added to `globals.css` alongside Switzer Regular (400) and Medium (500)
-- **Weight:** 700 (`font-bold`), referencing `Switzer-Bold.woff2` and `Switzer-Bold.woff`
-- **File:** `public/assets/fonts/switzer/Switzer-Bold.woff2` + `.woff` (already existed in font pack)
-- **Note:** All Switzer weights (Regular, Medium, Bold) are now registered. Bold was added on demand when SNOW switched from Khand to Switzer.
+### Component Architecture: Section Wrapper Pattern
+- **Wrapper** (e.g., `Brand.tsx`, `Philosophy.tsx`): Handles responsive detection (`< 1024px`), renders Desktop or Mobile variant. Returns null during SSR to prevent hydration mismatch.
+- **Desktop variant** (e.g., `BrandDesktop.tsx`): Full layout for screens ≥ 1024px.
+- **Mobile variant** (e.g., `BrandMobile.tsx`): Adapted layout for screens < 1024px.
+- All variants are stateless presentational components.
+
+### Plein Font Registration
+- **Location:** Added to `globals.css` in two `@font-face` blocks: Bold (700) and Regular (400)
+- **Theme entry:** `--font-plein: "Plein", sans-serif;` in `@theme`
+- **Files:** `public/assets/fonts/plein/Plein-Bold.woff2` + `.woff`, `Plein-Regular.woff2` + `.woff`
+- **Usage:** `font-plein font-bold` for massive brand blocks (Brand section SNOW at `text-[20vw]`, Footer SNOW at `text-[30vw]`)

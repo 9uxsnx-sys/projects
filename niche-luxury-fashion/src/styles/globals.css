@@ -3,6 +3,7 @@
 @theme {
   --font-khand: "Khand", sans-serif;
   --font-switzer: "Switzer", sans-serif;
+  --font-plein: "Plein", sans-serif;
 }
 
 @font-face {
@@ -46,6 +47,24 @@
   src: url("/assets/fonts/switzer/Switzer-Bold.woff2") format("woff2"),
        url("/assets/fonts/switzer/Switzer-Bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plein";
+  src: url("/assets/fonts/plein/Plein-Bold.woff2") format("woff2"),
+       url("/assets/fonts/plein/Plein-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plein";
+  src: url("/assets/fonts/plein/Plein-Regular.woff2") format("woff2"),
+       url("/assets/fonts/plein/Plein-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
