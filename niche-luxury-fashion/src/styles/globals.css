@@ -41,6 +41,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Switzer";
+  src: url("/assets/fonts/switzer/Switzer-Bold.woff2") format("woff2"),
+       url("/assets/fonts/switzer/Switzer-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #000000;
   --foreground: #ffffff;

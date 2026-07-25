@@ -40,8 +40,8 @@
 
 ### Decision: Font Selection
 - **Context:** The original CONTEXT.md specified Didot/Bodoni for headlines and Inter/Satoshi for UI.
-- **Choice:** **Khand** (SemiBold, Bold) for brand titles/headlines — **Switzer** (Regular, Medium) for navigation & UI text.
-- **Rationale:** Khand provides a bold, contemporary, slightly geometric sans-serif that suits avant-garde streetwear. Switzer is a clean, versatile sans-serif with excellent legibility at small sizes. Both are self-hosted via `@font-face` in globals.css.
+- **Choice:** **Switzer** (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. Khand Bold was evaluated via a side-by-side comparison but Switzer Bold was selected for its cleaner, more editorial look that better suits the avant-garde aesthetic.
+- **Rationale:** Switzer provides a clean, versatile sans-serif with excellent legibility across all sizes. Using a single font family (Switzer) across headlines, titles, and UI creates visual consistency. Switzer Bold offers enough weight for a hero title while maintaining elegance. Both Switzer and Khand are self-hosted via `@font-face` in globals.css.
 
 ### Decision: Hero Media Type
 - **Context:** CONTEXT.md originally called for a "massive high-res image" for the Hero.
@@ -73,10 +73,16 @@
 - **Choice:** Two 3:4 blocks in a `grid grid-cols-2` with zero gap between them. Left: custom image with dual text (ABOUT US + DISCOVER), 20% overlay. Right: custom autoplay video with 10% overlay. Same `px-1` edge padding as other sections.
 - **Rationale:** Zero gap creates a cohesive visual where the two blocks feel like a single composition. The different overlay percentages (20% image vs 10% video) account for the inherent brightness difference between a still image and a moving video.
 
-### Decision: Section CTA Pattern ("DISCOVER MORE")
+### Decision: Section CTA Pattern ("DISCOVER / DISCOVER MORE")
 - **Context:** Section title rows across SeasonEdit, Collections, and About needed a consistent editorial CTA.
-- **Choice:** "DISCOVER MORE" right-aligned on the same row as the section title, Switzer medium, `tracking-[0.15em]` uppercase, with `pr-10` right padding for breathing room from edge.
-- **Rationale:** Having the CTA in the title row creates a clean, editorial header without requiring a separate row or button. The right-aligned position signals forward action. Consistent across all content sections.
+- **Choice (initial):** "DISCOVER MORE" right-aligned on the same row as the section title, Switzer medium, `tracking-[0.15em]` uppercase, with `pr-10` right padding for breathing room from edge.
+- **Reversal:** "DISCOVER MORE" was later removed from SeasonEdit and Collections to keep the layout cleaner and let the visual content speak for itself. Only the About section retains "DISCOVER" as a subtle editorial prompt within the image block.
+- **Rationale:** Removing the CTA from product/category grids reduces visual clutter and lets the editorial photography drive engagement. The About section's "DISCOVER" remains as it functions as a brand storytelling cue rather than a commercial call-to-action.
+
+### Decision: SNOW Hero Title Design
+- **Context:** The Hero section needed a brand title that's impactful at large sizes while staying elegant. Initially used Khand Bold, then compared Switzer Bold side-by-side.
+- **Choice:** Switzer Bold, bottom-left positioning (`bottom-1 left-2`), desktop `text-[14vw]` with `tracking-[22px]`, mobile `text-[20vw]` with `tracking-[20px]`.
+- **Rationale:** Switzer Bold provides a cleaner, more editorial look than Khand Bold. Bottom-left positioning maximizes screen real estate and follows luxury editorial conventions. Slightly tighter tracking on mobile (`20px` vs `22px`) accounts for the smaller viewport.
 
 ---
 
@@ -106,3 +112,9 @@
 - **public/assets/images/categories/** — men.jpg, women.jpg, accessories.jpg
 - **public/assets/images/about/** — about-us.jpg
 - **public/assets/videos/** — hero-bg.mp4, about-us.mp4
+
+### Switzer Bold Font Registration
+- **Location:** Added to `globals.css` alongside Switzer Regular (400) and Medium (500)
+- **Weight:** 700 (`font-bold`), referencing `Switzer-Bold.woff2` and `Switzer-Bold.woff`
+- **File:** `public/assets/fonts/switzer/Switzer-Bold.woff2` + `.woff` (already existed in font pack)
+- **Note:** All Switzer weights (Regular, Medium, Bold) are now registered. Bold was added on demand when SNOW switched from Khand to Switzer.

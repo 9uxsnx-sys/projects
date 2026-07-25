@@ -58,13 +58,10 @@ export default function SeasonEditMobile() {
   return (
     <section className="w-full bg-white pt-16 pb-6 px-1">
       {/* Section Title */}
-      <div className="flex items-center justify-between mb-8 px-1 pr-10">
+      <div className="mb-8">
         <h2 className="text-[clamp(2.5rem,12vw,4rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
           SELECTION
         </h2>
-        <span className="text-xs font-switzer font-medium text-black tracking-[0.15em] uppercase select-none">
-          DISCOVER MORE
-        </span>
       </div>
 
       {/* Product List — single column */}

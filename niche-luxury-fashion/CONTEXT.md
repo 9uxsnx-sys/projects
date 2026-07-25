@@ -12,7 +12,7 @@
 - **Our Solution:** An editorial-first homepage that blends high-end typography with lightning-fast Next.js performance and subtle "scroll-triggered" storytelling.
 
 ## 3. Visual Direction
-- **Typeface:** *Khand* (SemiBold, Bold) for brand headlines — *Switzer* (Regular, Medium) for navigation & UI text.
+- **Typeface:** *Switzer* (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. Khand Bold was evaluated but Switzer Bold was selected for its cleaner, more editorial look.
 - **Color Palette:** Monochrome — Pure Black (`#000000`) background, White (`#ffffff`) foreground. Mode switching on scroll.
 - **Layout:** Asymmetric grids, large whitespace, fullscreen video hero, and editorial-first presentation.
 
@@ -22,8 +22,8 @@
 |---|---------|--------|
 | 1 | **The Editorial Hero** — Fullscreen video background with massive "SNOW" title overlay | ✅ Complete |
 | 2 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→black text), centered logo | ✅ Complete |
-| 3 | **The Selection Edit** — "SELECTION" title + "DISCOVER MORE" CTA right-aligned. 8 products in full-width 2x4 grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
-| 4 | **Collections** — "COLLECTIONS" title + "DISCOVER MORE" CTA right-aligned. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left | ✅ Complete |
+| 3 | **The Selection Edit** — "SELECTION" title. 8 products in full-width 2x4 grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
+| 4 | **Collections** — "COLLECTIONS" title. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left | ✅ Complete |
 | 5 | **About** — Two 3:4 blocks side by side (desktop) / stacked (mobile). Left: image with "ABOUT US" top-left + "DISCOVER" top-right, 20% overlay. Right: auto-playing video with 10% overlay. Zero gap between blocks | ✅ Complete |
 | 6 | **"The Collection" Reveal** — Smooth horizontal scroll or grid showing featured pieces with hover effects | 🔜 Planned |
 | 7 | **The "Philosophy" Section** — Large, bold typography explaining the brand's sustainable/luxury ethos | 🔜 Planned |
@@ -31,6 +31,11 @@
 | 9 | **The Instagram/Social Grid** — Minimalist feed integration | 🔜 Planned |
 
 ## 5. Implemented Features
+
+### Hero Section
+- **Fullscreen video background** — Auto-playing, muted, looping MP4 (`hero-bg.mp4`) with `bg-black/20` overlay for readability
+- **"SNOW" title** — Switzer Bold, positioned bottom-left (`bottom-1 left-2`), desktop `text-[14vw]` with `tracking-[22px]`, mobile `text-[20vw]` with `tracking-[20px]`
+- **Responsive:** Desktop uses `h-screen`, mobile uses `min-h-[100dvh]` for proper viewport handling
 
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport
@@ -41,14 +46,12 @@
 
 ### SeasonEdit Section
 - **Title:** "SELECTION" in Switzer medium, large clamp-based sizing, tight letter-spacing (`0.01em`)
-- **CTA:** "DISCOVER MORE" right-aligned in same row, Switzer medium, loose tracking
 - **Desktop layout:** Full-width 4-column grid, 2 rows of 4 products, `gap-1` (4px) between columns and matching edge padding (`px-1`)
 - **Mobile layout:** Single-column vertical stack, `gap-8` between products, same edge padding (`px-1`)
 - **Spacing between rows:** `gap-y-12` (48px) for clear row separation on desktop
 
 ### Collections Section
 - **Title:** "COLLECTIONS" in Switzer medium, same sizing + tracking as SeasonEdit
-- **CTA:** "DISCOVER MORE" right-aligned in same row, Switzer medium, loose tracking
 - **Desktop layout:** Full-width 3-column grid, `gap-1` between cards, matching `px-1` edge padding
 - **Mobile layout:** Single-column vertical stack, `gap-4` between cards
 - **Category cards:** 3:4 ratio, custom images (men.jpg, women.jpg, accessories.jpg), 10% black overlay, category name bottom-left in white Switzer
