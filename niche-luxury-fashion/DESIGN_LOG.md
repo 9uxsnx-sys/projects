@@ -11,6 +11,8 @@
 ### [Phase 2: Development]
 - [x] Hero Section — fullscreen video background with "SNOW" title
 - [x] Responsive Navbar — auto-hide/show, scroll-based mode switching
+- [x] SeasonEdit Section — "SELECTION" title + product grid (desktop 2x4, mobile single column)
+- [x] ProductCard Component — 3:4 image, heart save icon, name + price
 - [ ] Mobile responsive audit
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
@@ -43,6 +45,21 @@
 - **Choice:** Replaced with a fullscreen MP4 video background (`hero-bg.mp4`) with a subtle black overlay (`bg-black/20`).
 - **Rationale:** Video creates a more immersive, editorial, luxury feel. The overlay ensures text readability regardless of video content. MP4 is self-hosted for performance control.
 
+### Decision: Product Card Design
+- **Context:** The SeasonEdit section needed product cards that feel editorial and luxury, not commercial.
+- **Choice:** 3:4 portrait aspect ratio (`pt-[133.33%]`), image with subtle hover zoom (`scale-105` later replaced by heart save), heart icon (lucide `Heart`) appears on hover with opacity + scale transition, info below image with name (Switzer normal) + price (Switzer light) flush at zero gap.
+- **Rationale:** 3:4 is the industry standard for luxury fashion e-commerce (SSENSE, Farfetch). The heart icon on hover follows luxury site conventions for save/wishlist. Flush name + price creates a clean, editorial block.
+
+### Decision: Section Layout (Full-Width Grid)
+- **Context:** The SeasonEdit products should feel immersive and full-bleed, not constrained in a container.
+- **Choice:** No `max-width` container. `grid grid-cols-4 gap-1` with matching `px-1` on the section, so edge padding equals the gap between products. Row gap at `gap-y-12` for clear separation.
+- **Rationale:** The 4px equal spacing creates a tight, cohesive grid where products feel connected but distinct. Full-width layout matches the avant-garde, editorial aesthetic.
+
+### Decision: Mobile Single-Column Pattern
+- **Context:** The mobile layout for SeasonEdit needed to maintain the same edge gap as desktop while adapting to smaller screens.
+- **Choice:** Single column (`flex flex-col gap-8`) with same `px-1` edge padding. Title uses `clamp(2.5rem,12vw,4rem)` for responsive sizing.
+- **Rationale:** Single column is the standard mobile pattern for product listings. The 32px gap between products provides clear breathing room. Matching edge padding ensures consistency across breakpoints.
+
 ---
 
 ## Technical Notes
@@ -52,3 +69,10 @@
 - **Desktop variant** (`NavbarDesktop.tsx`): Full nav links (Men, Women, Accessories, Collections, Account, Saved, Cart), underline hover effects.
 - **Mobile variant** (`NavbarMobile.tsx`): Compact layout (SNOW, Menu, Cart).
 - Both variants are stateless presentational components — all state lives in the wrapper.
+
+### ProductCard Component Architecture
+- **Location:** `src/components/ui/ProductCard/ProductCard.tsx` — reusable, can be used across sections
+- **Props:** Accepts `Product` type (`id`, `name`, `price`, `imageUrl`)
+- **Image:** 3:4 ratio via padding trick, `object-cover` for consistent fill, neutral-900 background fallback
+- **Save state:** Local `useState` toggle on heart click, `stopPropagation` to prevent accidental navigation
+- **Hover:** Heart appears with `opacity-0 → opacity-100` + `scale-75 → scale-100`, `duration-300`
