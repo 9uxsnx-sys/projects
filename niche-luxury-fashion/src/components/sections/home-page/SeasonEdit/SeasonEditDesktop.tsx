@@ -61,9 +61,14 @@ export default function SeasonEditDesktop() {
   return (
     <section className="w-full bg-white pt-24 pb-6 px-1">
       {/* Section Title */}
-      <h2 className="text-[clamp(3rem,8vw,8rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] mb-12 select-none">
-        SELECTION
-      </h2>
+      <div className="flex items-center justify-between mb-12 pr-10">
+        <h2 className="text-[clamp(3rem,8vw,8rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+          SELECTION
+        </h2>
+        <span className="text-xs md:text-sm font-switzer font-medium text-black tracking-[0.15em] uppercase select-none">
+          DISCOVER MORE
+        </span>
+      </div>
 
       {/* Product Grid — 2 rows of 4, full width */}
       <div className="grid grid-cols-4 gap-x-1 gap-y-12">
