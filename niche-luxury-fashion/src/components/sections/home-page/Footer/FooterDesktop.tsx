@@ -30,7 +30,7 @@ export default function FooterDesktop() {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-xs font-switzer font-normal leading-none duration-150 pt-4 pb-3 px-6 border border-solid border-white hover:bg-transparent hover:text-white"
+                  className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-xs font-switzer font-normal leading-none duration-150 pt-4 pb-3 px-6 border border-solid border-white hover:bg-[#0d1b2a] hover:text-white"
                 >
                   Subscribe
                 </button>
@@ -38,8 +38,8 @@ export default function FooterDesktop() {
             </form>
           </div>
 
-          {/* Link shortcuts - 40% width, pushed right */}
-          <div className="ml-auto w-2/5 grid grid-cols-3 gap-1">
+          {/* Link shortcuts - 60% width, pushed right */}
+          <div className="ml-auto w-1/2 grid grid-cols-4 gap-1">
             {/* Collections */}
             <div className="flex flex-col gap-4">
               <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
@@ -81,6 +81,23 @@ export default function FooterDesktop() {
               </h3>
               <div className="flex flex-col gap-2">
                 {["Instagram", "Pinterest", "YouTube", "TikTok"].map((item) => (
+                  <span
+                    key={item}
+                    className="text-white/80 text-sm font-switzer font-light tracking-[0.05em] cursor-pointer hover:text-white transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Policies */}
+            <div className="flex flex-col gap-4">
+              <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
+                Policies
+              </h3>
+              <div className="flex flex-col gap-2">
+                {["Terms of Service", "Privacy Policy", "Cookie Policy", "Warranty"].map((item) => (
                   <span
                     key={item}
                     className="text-white/80 text-sm font-switzer font-light tracking-[0.05em] cursor-pointer hover:text-white transition-colors"

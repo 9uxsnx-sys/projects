@@ -16,10 +16,10 @@
 - [x] Collections Section — 3 category cards (Men, Women, Accessories), full-width grid
 - [x] CategoryCard Component — 3:4 image, 10% black overlay, label bottom-left
 - [x] About Section — twin 3:4 blocks (image + video), zero gap, custom assets
-- [x] Brand Section — full-width 4:3/3:4 autoplay video with centered "SNOW" in Plein Bold
+- [x] Brand Section — full-width 4:3/3:4 autoplay video with centered "SNOW" in Switzer Bold
 - [x] Philosophy Section — editorial paragraph with Switzer light, large pull-quote
 - [x] Categories Section — 1 big + 2 small 1:1 images per row, 2 rows
-- [x] Footer Section — 4-column grid with subscribe form + "STAY IN THE LOOP" + massive Plein SNOW
+- [x] Footer Section — navy bg (#0d1b2a), NEVER MISS A DROP subscribe, 4 link columns (added Policies), desktop flex + mobile 2x2 stack, half-clipped SNOW
 - [x] Plein Font Registration — Bold (700) + Regular (400) self-hosted via @font-face
 - [ ] Mobile responsive audit
 - [ ] Custom animations & micro-interactions (Framer Motion)
@@ -30,7 +30,7 @@
 
 ### Decision: Navbar Mode Switching (Scroll-Based)
 - **Context:** The Navbar needs two visual modes — transparent over the dark Hero section, solid white when scrolled past it.
-- **Choice:** Track `scrollY >= window.innerHeight` and toggle `bg-transparent`/`bg-white` + `text-white`/`text-black` with `transition-colors duration-300`.
+- **Choice:** Track `scrollY >= window.innerHeight` and toggle `bg-transparent`/`bg-white` + `text-white`/`text-[#0d1b2a]` (navy) with `transition-colors duration-300`.
 - **Rationale:** Threshold at exactly 1 viewport height ensures the switch happens precisely when the Hero fully exits the viewport. No premature or delayed transition.
 
 ### Decision: Navbar Auto-Hide/Show on Scroll
@@ -92,12 +92,12 @@
 ### Decision: Plein Font Addition
 - **Context:** The Brand and Footer sections needed a heavier, more monolithic "SNOW" brand block distinct from the Hero's Switzer Bold treatment.
 - **Choice:** Added Plein Bold (700) + Regular (400) via self-hosted `@font-face` in globals.css, under `--font-plein: "Plein", sans-serif;` in `@theme`.
-- **Rationale:** Plein offers a heavier, more blocky sans-serif that creates visual contrast against Switzer. The massive `text-[30vw]` SNOW in the Footer (and `text-[20vw]` in Brand) demands a weightier typeface to feel like a structural brand element rather than a headline.
+- **Rationale:** Plein offers a heavier, more blocky sans-serif that creates visual contrast against Switzer. The massive `text-[30vw]` SNOW in the Footer demands a weightier typeface to feel like a structural brand element rather than a headline. Brand section SNOW uses Switzer Bold for visual consistency with Hero's typeface weight.
 
 ### Decision: Brand Section Layout
 - **Context:** Needed a brand-focused section that feels distinct from the Hero while maintaining the video + SNOW motif.
-- **Choice:** Autoplay MP4 video with 4:3 aspect ratio (desktop) / 3:4 (mobile), 30% black overlay, centered "SNOW" in Plein Bold at `text-[20vw]`.
-- **Rationale:** The 30% overlay is heavier than Hero's 20% to ensure readability on varied video content. Centered positioning distinguishes it from Hero's bottom-left. The aspect ratio switch (4:3→3:4) follows the project's responsive pattern.
+- **Choice:** Autoplay MP4 video with 4:3 aspect ratio (desktop) / 3:4 (mobile), 30% black overlay, centered "SNOW" in Switzer Bold at `text-[clamp(4rem,16vw,16rem)]`.
+- **Rationale:** Switzer Bold was ultimately used for Brand (matching the Hero's typeface weight) for visual consistency across the full-page experience. The 30% overlay is heavier than Hero's 20% to ensure readability on varied video content. Centered positioning distinguishes it from Hero's bottom-left. The aspect ratio switch (4:3→3:4) follows the project's responsive pattern. Plein was reserved exclusively for the Footer's massive half-clipped brand block.
 
 ### Decision: Philosophy Section Typography
 - **Context:** Needed an editorial section that communicates brand ethos through text alone, no images.
@@ -111,13 +111,33 @@
 
 ### Decision: Footer Subscribe Component
 - **Context:** The footer's newsletter column needed a more compelling subscribe experience than a simple "Think" heading + basic email input.
-- **Choice:** Integrated an adapted version of the subscribe component from olafhussein.com: "STAY IN THE LOOP" heading (`text-2xl font-semibold`), editorial paragraph, email input with `placeholder="Email address"`, and a white Subscribe button that hovers to black.
-- **Rationale:** The olafhussein.com pattern is proven for luxury fashion newsletters — the editorial heading and descriptive paragraph create more engagement than a minimal input. White button on black provides clear visual hierarchy. Font adapted from PP Mori to Switzer for brand consistency.
+- **Choice:** Integrated an adapted version of the subscribe component from olafhussein.com with the heading changed to "NEVER MISS A DROP" (brand-native, fashion "drop" language). Desktop: `24px` Switzer medium, `tracking-[0.05em]`. Mobile: `14px` compact. Subscribe button: white bg, black text, `tracking-[0.1em]`.
+- **Rationale:** "NEVER MISS A DROP" uses fashion-industry language ("drop" = new collection release) that resonates with the target audience. The olafhussein.com pattern is proven for luxury fashion newsletters. Button letter-spacing matches the editorial typography system.
 
-### Decision: Footer Link Column Spacing
-- **Context:** The expanded subscribe column needed more visual space, requiring the link columns (Collections, Customer, Follow) to shift right for balanced proportion.
-- **Choice:** `pl-10` (padding-left: 2.5rem) on each link column within the 4-column grid.
-- **Rationale:** The padding creates intentional asymmetry — the subscribe column gets room to breathe while the link columns feel anchored right. The `gap-1` grid spacing keeps the overall layout tight.
+### Decision: Footer Navy Background
+- **Context:** The all-black footer felt heavy against the primarily black site. An accent color was needed to distinguish the footer as its own visual zone.
+- **Choice:** Deep navy `#0d1b2a` — dark enough to read near-black, but with a subtle blue undertone that feels richer and more luxurious.
+- **Rationale:** Navy is a staple of luxury fashion branding (think Saint Laurent, Celine). It differentiates the footer from the purely monochrome sections above without breaking the overall dark aesthetic. The same navy is used for the Navbar's scroll-state typography for subtle brand-wide accent continuity.
+
+### Decision: Footer Desktop Layout Restructure
+- **Context:** The original 4-column grid forced equal-width columns, making the subscribe form cramped and the link columns stretched.
+- **Choice:** Changed from `grid grid-cols-4` to a flex layout: subscribe block has fixed `max-w-lg` with `ml-20` left spacing; 4 link columns sit in a `ml-auto w-1/2` container with `grid-cols-4` sub-grid.
+- **Rationale:** Flex layout gives the subscribe section a defined maximum width (512px) so the form doesn't stretch awkwardly. The link columns take exactly 50% of the remaining width and are pushed to the right edge. This creates intentional editorial asymmetry.
+
+### Decision: Footer Mobile Restructure
+- **Context:** The mobile footer needed to work on small screens without overcrowding.
+- **Choice:** Three stacked zones: compact subscribe (14px heading, small input/button), 4 link columns in a 2x2 grid (Row 1: Collections + Customer, Row 2: Follow + Policies), and the half-clipped SNOW at the bottom. Columns sized to content with `w-fit` so they don't stretch.
+- **Rationale:** Stacking the subscribe and links creates a natural reading flow. The 2x2 grid keeps link columns readable without horizontal scrolling. `w-fit` ensures each column only takes the width of its longest word, creating a clean, intentionally compact layout.
+
+### Decision: Footer Link Columns — Policies Added
+- **Context:** The original 3 link columns had a 4th gap available in the flex container, and legal links (Terms, Privacy, etc.) were missing.
+- **Choice:** Added a "Policies" column with Terms of Service, Privacy Policy, Cookie Policy, and Warranty. All 4 columns now have 4 items each, sorted by word length (longest first) for visual rhythm.
+- **Rationale:** 4 columns of 4 items creates perfect visual symmetry. Sorting longest-to-shortest words aligns the column widths more consistently and prevents the eye from jumping between uneven line lengths. Legal links are essential for any e-commerce site.
+
+### Decision: Navbar Navy Scroll Text
+- **Context:** When scrolling past the Hero, the Navbar text turned pure black. With the introduction of navy as a brand accent, the scroll-state text felt like a natural integration point.
+- **Choice:** Changed `text-black` to `text-[#0d1b2a]` for both NavbarDesktop and NavbarMobile scroll-state, and `before:bg-[#0d1b2a]` for the underline hover.
+- **Rationale:** Navy text on white Navbar is more refined than pure black — it creates a quiet brand cue that aligns with the footer's navy background. The change is subtle enough that most users won't notice consciously, but it builds brand coherence across the full page experience.
 
 ---
 

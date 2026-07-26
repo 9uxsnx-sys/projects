@@ -12,8 +12,8 @@
 - **Our Solution:** An editorial-first homepage that blends high-end typography with lightning-fast Next.js performance and subtle "scroll-triggered" storytelling.
 
 ## 3. Visual Direction
-- **Typeface:** *Switzer* (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. *Plein* (Bold, Regular) for the massive "SNOW" brand block in Brand and Footer sections. Khand Bold was evaluated but Switzer Bold was selected for its cleaner, more editorial look. Plein Bold added for the heavy, monolithic brand statement.
-- **Color Palette:** Monochrome — Pure Black (`#000000`) background, White (`#ffffff`) foreground. Mode switching on scroll.
+- **Typeface:** *Switzer* (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. *Plein* (Bold, Regular) for the massive "SNOW" brand block in the Footer section (text-[30vw], half-clipped). Brand section SNOW uses Switzer Bold (centered, text-[clamp(4rem,16vw,16rem)]). Khand Bold was evaluated but Switzer Bold was selected for its cleaner, more editorial look. Plein Bold added for the heavy, monolithic footer statement.
+- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Deep Navy (`#0d1b2a`) for footer background and navbar scroll-state typography. Mode switching on scroll.
 - **Layout:** Asymmetric grids, large whitespace, fullscreen video hero, and editorial-first presentation.
 
 ## 4. Sections & Current Status
@@ -21,14 +21,14 @@
 | # | Section | Status |
 |---|---------|--------|
 | 1 | **The Editorial Hero** — Fullscreen video background with massive "SNOW" title overlay (Switzer Bold) | ✅ Complete |
-| 2 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→black text), centered logo | ✅ Complete |
+| 2 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→navy text), centered logo | ✅ Complete |
 | 3 | **The Selection Edit** — "SELECTION" title. 8 products in full-width 2x4 grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
 | 4 | **Collections** — "COLLECTIONS" title. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left | ✅ Complete |
 | 5 | **About** — Two 3:4 blocks side by side (desktop) / stacked (mobile). Left: image with "ABOUT US" top-left + "DISCOVER" top-right, 20% overlay. Right: auto-playing video with 10% overlay. Zero gap between blocks | ✅ Complete |
-| 6 | **Brand** — Full-width 4:3 (desktop) / 3:4 (mobile) autoplay video with centered "SNOW" in Plein Bold, 30% black overlay for readability | ✅ Complete |
+| 6 | **Brand** — Full-width 4:3 (desktop) / 3:4 (mobile) autoplay video with centered "SNOW" in Switzer Bold, 30% black overlay for readability | ✅ Complete |
 | 7 | **Philosophy** — Editorial paragraph with Switzer light, large pull-quote opening, "–" line breaks, italicized brand name **VANTAGE/SNOW** | ✅ Complete |
 | 8 | **Categories** — 1 big 1:1 image left + 1 column of 2 small 1:1 images right per row (desktop 2 rows, mobile 2 rows stacked). Category titles overlay. "CATEGORIES" header | ✅ Complete |
-| 9 | **Footer** — 4-column grid. Column 1: "STAY IN THE LOOP" subscribe form (email + white Subscribe button with hover-to-black). Columns 2-4: Collections, Customer, Follow links. Massive "SNOW" in Plein Bold clipped at bottom | ✅ Complete |
+| 9 | **Footer** — Navy bg (`#0d1b2a`). Desktop: Subscribe ("NEVER MISS A DROP" + email + white Subscribe button with navy hover) left-aligned with fixed width. 4 link columns (Collections, Customer, Follow, Policies) pushed right. Mobile: Compact subscribe + stacked 2x2 link grid + half-clipped SNOW. Massive "SNOW" in Plein Bold clipped at bottom | ✅ Complete |
 
 ## 5. Implemented Features
 
@@ -39,7 +39,7 @@
 
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport
-- **Scroll-based mode switching:** Transparent background + white text over Hero → White background + black text past Hero (switches precisely at `scrollY >= window.innerHeight`)
+- **Scroll-based mode switching:** Transparent background + white text over Hero → White background + navy (`#0d1b2a`) text past Hero (switches precisely at `scrollY >= window.innerHeight`)
 - **Auto-hide/show:** Navbar slides up out of view on scroll down, slides back into view on scroll up (tracked via scroll direction)
 - **Fixed height:** Desktop `h-12` (48px), Mobile `h-10` (40px) — with flex-centered SNOW logo
 - **Smooth transitions:** All color and position changes use `transition-all duration-300`
@@ -63,10 +63,10 @@
 - **Video block (right):** Custom video (about-us.mp4), auto-play muted loop, 10% black overlay
 
 ### Brand Section
-- **Desktop layout:** Full-width 4:3 aspect ratio video (`aspect-video`), centered "SNOW" in Plein Bold `text-[20vw]`, 30% black overlay (`bg-black/30`) for readability
+- **Desktop layout:** Full-width 4:3 aspect ratio video (`aspect-video`), centered "SNOW" in Switzer Bold `text-[clamp(4rem,16vw,16rem)]`, 30% black overlay (`bg-black/30`) for readability
 - **Mobile layout:** 3:4 aspect ratio video (`aspect-[3/4]`), same centered SNOW + overlay
 - **Video:** Custom MP4 (`brand-bg.mp4`), auto-play muted loop
-- **Font:** Plein Bold for the heavy, monolithic "SNOW" brand statement — distinct from Hero's Switzer Bold
+- **Font:** Switzer Bold for the centered "SNOW" brand statement — consistent weight with Hero title, but visually distinct via centering + aspect ratio difference
 
 ### Philosophy Section
 - **Desktop layout:** Max-width container (`max-w-4xl`), centered editorial paragraph with large pull-quote opening
@@ -82,11 +82,12 @@
 - **Edge padding:** `px-1` consistent with other sections
 
 ### Footer Section
-- **Desktop layout:** 4-column `grid grid-cols-4 gap-1`, link columns pushed right with `pl-10` for balanced spacing
-- **Column 1 — Subscribe:** "STAY IN THE LOOP" heading (`text-2xl font-semibold`), editorial paragraph, email input (`placeholder="Email address"`) + Subscribe button (white bg, `hover:bg-black hover:text-white`)
-- **Columns 2-4:** Collections (Men, Women, Accessories, The Archive), Customer (Contact, Shipping, Returns, FAQ), Follow (Instagram, X, Pinterest) — each with uppercase label + link list
-- **SNOW brand block:** Massive `text-[30vw]` in Plein Bold, half-clipped bottom with `-mb-[20vh]`, pointer-events-none
-- **Background:** Full black (`bg-black`)
+- **Desktop layout:** Flex layout — subscribe block (fixed width `max-w-lg`, left-spaced with `ml-20`), 4 link columns pushed right (`ml-auto w-1/2`)
+- **Subscribe:** "NEVER MISS A DROP" heading (`24px`, Switzer medium, `tracking-[0.05em]`), editorial paragraph, email input (`placeholder="Email address"`) + Subscribe button (white bg, black text, `tracking-[0.1em]`, `hover:bg-[#0d1b2a]` navy fill)
+- **Link columns (4):** Collections (Accessories, The Archive, Women, Men), Customer (Shipping, Contact, Returns, FAQ), Follow (Instagram, Pinterest, YouTube, TikTok), Policies (Terms of Service, Privacy Policy, Cookie Policy, Warranty) — all sorted longest word first, uppercase label + link list
+- **Mobile layout:** Compact subscribe block at top, 4 columns in 2x2 stacked grid (row 1: Collections + Customer, row 2: Follow + Policies), sized to content (`w-fit`), left-aligned. SNOW at bottom with `-mb-[6vh]` clip
+- **SNOW brand block:** Massive `text-[30vw]` (desktop) / `text-[28vw]` (mobile) in Plein Bold, half-clipped bottom with `-mb-[20vh]` (desktop) / `-mb-[6vh]` (mobile), `overflow-hidden`
+- **Background:** Deep navy (`bg-[#0d1b2a]`)
 
 ### ProductCard Component
 - **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick
