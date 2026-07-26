@@ -25,13 +25,13 @@ export default function NavbarDesktop({
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-12 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`fixed top-0 left-0 right-0 z-50 h-14 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="flex items-center justify-between px-12 max-w-[1920px] mx-auto w-full">
         {/* Logo - Left */}
         <a
           href="/"
-          className={`${textColor} text-2xl tracking-[0.4em] uppercase font-khand select-none transition-colors duration-300`}
+          className={`${textColor} text-[28px] tracking-[0.4em] uppercase font-khand select-none transition-colors duration-300`}
         >
           SNOW
         </a>
@@ -42,7 +42,7 @@ export default function NavbarDesktop({
             <li key={link.label}>
               <a
                 href={link.href}
-                className={`relative ${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
+                className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
               >
                 {link.label}
               </a>
@@ -53,7 +53,7 @@ export default function NavbarDesktop({
           <li>
             <a
               href="#"
-              className={`relative ${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
+              className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
             >
               Saved ({savedCount})
             </a>
@@ -63,7 +63,7 @@ export default function NavbarDesktop({
           <li>
             <a
               href="#"
-              className={`relative ${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
+              className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
             >
               Cart ({cartCount})
             </a>
