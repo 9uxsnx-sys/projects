@@ -2,35 +2,61 @@
 
 import React from "react";
 
-const IMAGE_BASE =
-  "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=square_hd&prompt=";
+const BASE = "/assets/images/categories-new/";
 
 const categories = [
   {
-    id: "men",
-    name: "Men",
-    bigImage: `${IMAGE_BASE}${encodeURIComponent("luxury menswear editorial fashion photography avant-garde minimalist, solid background")}`,
+    id: "women-outerwear",
+    name: "Women's Outerwear & Blazers",
+    bigImage: `${BASE}women-outerwear-big.png`,
     smallImages: [
-      `${IMAGE_BASE}${encodeURIComponent("luxury tailored suit jacket mens fashion editorial minimalist, solid background")}`,
-      `${IMAGE_BASE}${encodeURIComponent("luxury men streetwear look fashion editorial minimalist, solid background")}`,
+      `${BASE}women-outerwear-small-1.png`,
+      `${BASE}women-outerwear-small-2.png`,
     ],
   },
   {
-    id: "women",
-    name: "Women",
-    bigImage: `${IMAGE_BASE}${encodeURIComponent("luxury womenswear editorial fashion photography avant-garde minimalist, solid background")}`,
+    id: "blouses-tops",
+    name: "Blouses & Tops",
+    bigImage: `${BASE}blouses-tops-big.png`,
     smallImages: [
-      `${IMAGE_BASE}${encodeURIComponent("luxury women evening gown fashion editorial minimalist, solid background")}`,
-      `${IMAGE_BASE}${encodeURIComponent("luxury women streetwear look fashion editorial minimalist, solid background")}`,
+      `${BASE}blouses-tops-small-1.png`,
+      `${BASE}blouses-tops-small-2.png`,
     ],
   },
   {
-    id: "accessories",
-    name: "Accessories",
-    bigImage: `${IMAGE_BASE}${encodeURIComponent("luxury accessories editorial fashion photography avant-garde minimalist, solid background")}`,
+    id: "skirts-matching",
+    name: "Skirts & Matching Sets",
+    bigImage: `${BASE}skirts-matching-big.png`,
     smallImages: [
-      `${IMAGE_BASE}${encodeURIComponent("luxury leather bag fashion editorial minimalist, solid background")}`,
-      `${IMAGE_BASE}${encodeURIComponent("luxury sunglasses fashion editorial minimalist, solid background")}`,
+      `${BASE}skirts-matching-small-1.png`,
+      `${BASE}skirts-matching-small-2.png`,
+    ],
+  },
+  {
+    id: "dresses-gowns",
+    name: "Dresses & Gowns",
+    bigImage: `${BASE}dresses-gowns-big.png`,
+    smallImages: [
+      `${BASE}dresses-gowns-small-1.png`,
+      `${BASE}dresses-gowns-small-2.png`,
+    ],
+  },
+  {
+    id: "evening-leisure",
+    name: "Evening & Leisure Wear",
+    bigImage: `${BASE}evening-leisure-big.png`,
+    smallImages: [
+      `${BASE}evening-leisure-small-1.png`,
+      `${BASE}evening-leisure-small-2.png`,
+    ],
+  },
+  {
+    id: "men-outerwear",
+    name: "Men's Outerwear & Coats",
+    bigImage: `${BASE}men-outerwear-big.png`,
+    smallImages: [
+      `${BASE}men-outerwear-small-1.png`,
+      `${BASE}men-outerwear-small-2.png`,
     ],
   },
 ];
@@ -45,43 +71,53 @@ export default function CategoriesDesktop() {
         </h2>
       </div>
 
-      {/* Category Rows */}
+      {/* Category Rows — alternating pattern */}
       <div className="flex flex-col gap-1">
-        {categories.map((category) => (
-          <div key={category.id} className="grid grid-cols-2 gap-1">
-            {/* Left: Big 1:1 image */}
+        {categories.map((category, index) => {
+          const bigLeft = index % 2 === 0;
+          const big = (
             <div className="relative aspect-square overflow-hidden bg-neutral-900 group">
               <img
                 src={category.bigImage}
                 alt={category.name}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
-              <div className="absolute bottom-4 left-4 z-10">
-                <span className="text-white text-lg font-switzer font-medium tracking-[0.15em] uppercase">
+            </div>
+          );
+          const small = (
+            <div className="flex flex-col gap-1">
+              <div className="grid grid-cols-2 gap-1">
+                {category.smallImages.map((url, i) => (
+                  <div
+                    key={i}
+                    className="relative aspect-square overflow-hidden bg-neutral-900 group"
+                  >
+                    <img
+                      src={url}
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+              {/* Category title below small images */}
+              <div className="flex flex-col items-start px-2 py-4">
+                <span className="text-black text-[clamp(2rem,3.5vw,4rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
                   {category.name}
                 </span>
               </div>
             </div>
-
-            {/* Right: Row of 2 small 1:1 images */}
-            <div className="grid grid-cols-2 gap-1">
-              {category.smallImages.map((url, i) => (
-                <div
-                  key={i}
-                  className="relative aspect-square overflow-hidden bg-neutral-900 group"
-                >
-                  <img
-                    src={url}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
-                </div>
-              ))}
+          );
+          return (
+            <div key={category.id} className="grid grid-cols-2 gap-1">
+              {bigLeft ? (
+                <>{big}{small}</>
+              ) : (
+                <>{small}{big}</>
+              )}
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
