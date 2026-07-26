@@ -21,11 +21,11 @@ export default function NavbarMobile({
         {/* Logo - Left — hidden over hero, visible past hero */}
         <a
           href="/"
-          className={`${textColor} text-lg tracking-[0.35em] uppercase font-khand select-none transition-all duration-300 ${
+          className={`${textColor} text-lg font-synonym font-bold select-none transition-all duration-300 ${
             !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          SNOW
+          snow
         </a>
 
         {/* Right: Menu + Cart */}

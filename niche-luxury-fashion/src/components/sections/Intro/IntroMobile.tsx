@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-export default function IntroDesktop({
+export default function IntroMobile({
   onComplete,
 }: {
   onComplete: () => void;
@@ -12,13 +12,8 @@ export default function IntroDesktop({
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    // Fade logo in after a short pause
     const logoTimeout = setTimeout(() => setLogoVisible(true), 400);
-
-    // Slide the curtain up after ~2.5s
     const slideTimeout = setTimeout(() => setSlideUp(true), 2500);
-
-    // Unmount after slide completes (1000ms slide + buffer)
     const unmountTimeout = setTimeout(() => {
       setDone(true);
       onComplete();
@@ -39,7 +34,6 @@ export default function IntroDesktop({
         slideUp ? "translate-y-[-100%]" : "translate-y-0"
       }`}
     >
-      {/* Video Background */}
       <video
         autoPlay
         muted
@@ -50,13 +44,11 @@ export default function IntroDesktop({
         <source src="/assets/videos/intro-bg.mp4" type="video/mp4" />
       </video>
 
-      {/* Subtle overlay for readability */}
       <div className="absolute inset-0 bg-black/20 z-10" />
 
-      {/* Centered SNOW logo — Plein Bold, same as Footer */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         <h1
-          className={`text-white text-[clamp(6rem,22vw,20rem)] leading-[0.85] font-synonym font-bold tracking-[0.02em] select-none transition-opacity duration-[600ms] ${
+          className={`text-white text-[clamp(6rem,26vw,16rem)] leading-[0.85] font-synonym font-bold tracking-[0.02em] select-none transition-opacity duration-[600ms] ${
             logoVisible ? "opacity-100" : "opacity-0"
           }`}
         >

@@ -31,11 +31,11 @@ export default function NavbarDesktop({
         {/* Logo - Left — hidden over hero, visible past hero */}
         <a
           href="/"
-          className={`${textColor} text-[28px] tracking-[0.4em] uppercase font-khand select-none transition-all duration-300 ${
+          className={`${textColor} text-[28px] font-synonym font-bold select-none transition-all duration-300 ${
             !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          SNOW
+          snow
         </a>
 
         {/* Navigation Links */}

@@ -21,9 +21,9 @@ export default function HeroDesktop() {
       <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
 
       {/* Brand Title - Bottom Left */}
-      <div className="absolute bottom-1 left-2 z-20">
-        <h1 className="text-white text-[14vw] leading-none font-switzer font-bold tracking-[22px] select-none">
-          SNOW
+      <div className="absolute bottom-6 left-6 z-20">
+        <h1 className="text-white text-[14vw] leading-[0.85] font-synonym font-bold tracking-[0px] select-none">
+          snow
         </h1>
       </div>
     </section>

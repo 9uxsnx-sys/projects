@@ -22,9 +22,14 @@ export default function CategoryCard({ category }: { category: Category }) {
       {/* 10% Black Overlay */}
       <div className="absolute top-0 left-0 w-full h-full bg-black/10" />
 
+      {/* DISCOVER — bottom-right */}
+       <span className="absolute bottom-4 right-4 z-10 text-white text-[clamp(0.75rem,1.5vw,1.25rem)] font-switzer font-light tracking-[0.15em] uppercase select-none">
+        DISCOVER
+      </span>
+
       {/* Category name — bottom-left */}
       <div className="absolute bottom-4 left-4 z-10">
-        <h3 className="text-white text-[clamp(1.5rem,3vw,2.5rem)] font-switzer font-medium leading-none tracking-[0.01em] uppercase select-none">
+        <h3 className="text-white text-[clamp(1.8rem,4vw,3.5rem)] font-switzer font-medium leading-none tracking-[0.01em] uppercase select-none">
           {category.name}
         </h3>
       </div>
