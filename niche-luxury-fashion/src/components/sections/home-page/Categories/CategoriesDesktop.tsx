@@ -72,44 +72,44 @@ export default function CategoriesDesktop() {
       </div>
 
       {/* Category Rows — alternating pattern */}
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col">
         {categories.map((category, index) => {
           const bigLeft = index % 2 === 0;
           const big = (
-            <div className="relative aspect-square overflow-hidden bg-neutral-900 group">
+            <div className="relative aspect-square overflow-hidden bg-white group">
               <img
                 src={category.bigImage}
                 alt={category.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover border border-white"
               />
             </div>
           );
           const small = (
-            <div className="flex flex-col gap-1">
-              <div className="grid grid-cols-2 gap-1">
+            <div className="flex flex-col">
+              <div className="grid grid-cols-2">
                 {category.smallImages.map((url, i) => (
                   <div
                     key={i}
-                    className="relative aspect-square overflow-hidden bg-neutral-900 group"
+                    className="relative aspect-square overflow-hidden bg-white group"
                   >
                     <img
                       src={url}
                       alt=""
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="absolute inset-0 w-full h-full object-cover border border-white"
                     />
                   </div>
                 ))}
               </div>
               {/* Category title below small images */}
               <div className="flex flex-col items-start px-2 py-4">
-                <span className="text-black text-[clamp(2rem,3.5vw,4rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
+                <span className="text-black text-[clamp(2.5rem,4.5vw,5rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
                   {category.name}
                 </span>
               </div>
             </div>
           );
           return (
-            <div key={category.id} className="grid grid-cols-2 gap-1">
+            <div key={category.id} className="grid grid-cols-2">
               {bigLeft ? (
                 <>{big}{small}</>
               ) : (

@@ -22,7 +22,7 @@ export default function BrandMobile() {
 
       {/* Centered Brand Title */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <h2 className="text-white text-[clamp(4rem,16vw,16rem)] leading-[0.85] font-synonym font-bold tracking-[clamp(8px,2vw,30px)] select-none">
+        <h2 className="text-white text-[clamp(4rem,20vw,20rem)] leading-[0.85] font-synonym font-bold tracking-[clamp(8px,2vw,30px)] select-none">
           snow
         </h2>
       </div>

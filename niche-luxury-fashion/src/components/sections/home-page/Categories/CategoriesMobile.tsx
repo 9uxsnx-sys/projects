@@ -74,27 +74,27 @@ export default function CategoriesMobile() {
       {/* Category Rows — stacked */}
       <div className="flex flex-col gap-8">
         {categories.map((category) => (
-          <div key={category.id} className="flex flex-col gap-1">
+          <div key={category.id} className="flex flex-col">
             {/* Big image */}
-            <div className="relative aspect-square overflow-hidden bg-neutral-900">
+            <div className="relative aspect-square overflow-hidden bg-white">
               <img
                 src={category.bigImage}
                 alt={category.name}
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover border border-white"
               />
             </div>
 
             {/* Row of 2 small images */}
-            <div className="grid grid-cols-2 gap-1">
+            <div className="grid grid-cols-2">
               {category.smallImages.map((url, i) => (
                 <div
                   key={i}
-                  className="relative aspect-square overflow-hidden bg-neutral-900"
+                  className="relative aspect-square overflow-hidden bg-white"
                 >
                   <img
                     src={url}
                     alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover border border-white"
                   />
                 </div>
               ))}
@@ -102,7 +102,7 @@ export default function CategoriesMobile() {
 
             {/* Category title below */}
             <div className="px-2 pt-3">
-              <span className="text-black text-[clamp(1.5rem,6vw,2.5rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
+              <span className="text-black text-[clamp(1.8rem,7vw,3rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
                 {category.name}
               </span>
             </div>
