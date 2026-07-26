@@ -28,10 +28,12 @@ export default function NavbarDesktop({
       className={`fixed top-0 left-0 right-0 z-50 h-14 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="flex items-center justify-between px-12 max-w-[1920px] mx-auto w-full">
-        {/* Logo - Left */}
+        {/* Logo - Left — hidden over hero, visible past hero */}
         <a
           href="/"
-          className={`${textColor} text-[28px] tracking-[0.4em] uppercase font-khand select-none transition-colors duration-300`}
+          className={`${textColor} text-[28px] tracking-[0.4em] uppercase font-khand select-none transition-all duration-300 ${
+            !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}
         >
           SNOW
         </a>
