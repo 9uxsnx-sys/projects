@@ -28,30 +28,6 @@ const products = [
     price: "$890",
     imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury cashmere rollneck sweater minimalist fashion editorial photography, solid background")}`,
   },
-  {
-    id: 5,
-    name: "Wide Leg Denim",
-    price: "$520",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("wide leg denim jeans luxury streetwear fashion editorial minimalist, solid background")}`,
-  },
-  {
-    id: 6,
-    name: "Structured Blazer",
-    price: "$1,650",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury structured blazer avant-garde fashion editorial photography minimalist, solid background")}`,
-  },
-  {
-    id: 7,
-    name: "Silk Shirt",
-    price: "$680",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury silk shirt minimalist fashion editorial high-end, solid background")}`,
-  },
-  {
-    id: 8,
-    name: "Technical Parka",
-    price: "$1,440",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury technical parka jacket high-end streetwear fashion editorial minimalist, solid background")}`,
-  },
 ];
 
 export default function SeasonEditMobile() {
@@ -60,7 +36,7 @@ export default function SeasonEditMobile() {
       {/* Section Title */}
       <div className="mb-8">
         <h2 className="text-[clamp(2.5rem,12vw,4rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
-          SELECTION
+          Featured
         </h2>
       </div>
 
