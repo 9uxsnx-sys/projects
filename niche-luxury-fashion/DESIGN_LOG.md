@@ -5,13 +5,13 @@
 ### [Phase 1: Setup] ✅
 - [x] Initialize project structure (Next.js 16 + Tailwind v4 + TypeScript)
 - [x] Configure Tailwind v4 with `@theme` CSS-first config
-- [x] Set up custom fonts: Khand (headlines) + Switzer (UI)
+- [x] Set up custom fonts: Khand (headlines) + Switzer (UI) + Plein (bold blocks) + Synonym (intro overlay)
 - [x] Set up globals.css with monochrome color system
 
 ### [Phase 2: Development]
 - [x] Hero Section — fullscreen video background with "SNOW" title
 - [x] Responsive Navbar — auto-hide/show, scroll-based mode switching
-- [x] SeasonEdit Section — "SELECTION" title + product grid (desktop 2x4, mobile single column)
+- [x] SeasonEdit Section — "Featured" title + product grid (desktop 2x4, mobile single column)
 - [x] ProductCard Component — 3:4 image, heart save icon, name + price
 - [x] Collections Section — 3 category cards (Men, Women, Accessories), full-width grid
 - [x] CategoryCard Component — 3:4 image, 10% black overlay, label bottom-left
@@ -139,6 +139,26 @@
 - **Choice:** Changed `text-black` to `text-[#0d1b2a]` for both NavbarDesktop and NavbarMobile scroll-state, and `before:bg-[#0d1b2a]` for the underline hover.
 - **Rationale:** Navy text on white Navbar is more refined than pure black — it creates a quiet brand cue that aligns with the footer's navy background. The change is subtle enough that most users won't notice consciously, but it builds brand coherence across the full page experience.
 
+### Decision: Navbar Logo Visibility Over Hero
+- **Context:** The "SNOW" logo in the Navbar was always fully visible, creating visual conflict with the Hero's massive "SNOW" title — two "SNOW" texts on screen simultaneously.
+- **Choice:** Logo is `opacity-0` while the viewport is within the Hero section (scrollY < window.innerHeight), and `opacity-100` once scrolled past it. Same scroll threshold as the mode-switching logic.
+- **Rationale:** Eliminates duplicate brand text in the Hero viewport. The logo reappears as soon as the Hero exits, serving as a navigational anchor. Using the same `isPastHero` state avoids adding extra scroll listeners.
+
+### Decision: Intro Section — Curtain Reveal Overlay
+- **Context:** Needed a brand introduction that feels cinematic and editorial before revealing the main Hero. A fullscreen video overlay with a centered "snow" title that slides up to reveal the page.
+- **Choice:** Fullscreen video (`intro-bg.mp4`) with `bg-black/20` overlay for readability. "snow" title in Synonym Bold (lowercase, centered, `text-[clamp(6rem,18vw,20rem)]`). After 2.5s, the entire overlay slides up (`translateY(-100%)`) with a 1000ms `cubic-bezier(0.22,1,0.36,1)` ease. Logo fades in after 400ms.
+- **Rationale:** Synonym Bold was chosen for its editorial lowercase aesthetic — feels like a magazine cover line rather than a brand logo. The curtain reveal creates a theatrical, memorable entry. The 2.5s delay gives users time to read the text before the page reveals. Repeat on every visit (no sessionStorage) reinforces brand identity on each page load.
+
+### Decision: Synonym Font Registration
+- **Context:** The Intro section's "snow" title needed a typeface distinct from Switzer — more editorial and lowercase-friendly for the overlay treatment.
+- **Choice:** Added Synonym (Bold, Medium, Regular, Light) via self-hosted `@font-face` in globals.css. Bold (700) loaded as `.woff2` / `.ttf`, all other weights as `.woff2`. Theme entry: `--font-synonym: "Synonym", sans-serif;`.
+- **Rationale:** Synonym offers a refined, editorial character ideal for the lowercase "snow" treatment. Its weight range (Light through Bold) provides flexibility for future editorial use. Self-hosted for performance control with `font-display: swap`.
+
+### Decision: SeasonEdit Title Change ("SELECTION" → "Featured")
+- **Context:** Initially designed with "SELECTION" as the section header for the product grid, but the term felt overly generic and commercial for an editorial-first luxury site.
+- **Choice:** Changed to "Featured" — less aggressive, more editorial, implying curation rather than a hard sell.
+- **Rationale:** "Featured" aligns with the project's editorial-first philosophy. It suggests the products are hand-picked (curated) rather than simply displayed as a "selection." The softer tone matches the avant-garde, minimalist aesthetic.
+
 ---
 
 ## Technical Notes
@@ -166,8 +186,11 @@
 ### Assets Directory Structure
 - **public/assets/images/categories/** — men.jpg, women.jpg, accessories.jpg
 - **public/assets/images/about/** — about-us.jpg
-- **public/assets/videos/** — hero-bg.mp4, about-us.mp4, brand-bg.mp4
+- **public/assets/videos/** — hero-bg.mp4, about-us.mp4, brand-bg.mp4, intro-bg.mp4
+- **public/assets/fonts/synonym/** — Synonym-Bold.woff2, Synonym-Bold.ttf, Synonym-Medium.woff2, Synonym-Regular.woff2, Synonym-Light.woff2
+- **public/assets/fonts/switzer/** — Switzer-Bold.woff2, Switzer-Bold.woff, Switzer-Medium.woff2, Switzer-Medium.woff, Switzer-Regular.woff2, Switzer-Regular.woff
 - **public/assets/fonts/plein/** — Plein-Bold.woff2, Plein-Bold.woff, Plein-Regular.woff2, Plein-Regular.woff
+- **public/assets/fonts/khand/** — Khand-SemiBold.woff2, Khand-SemiBold.woff, Khand-Bold.woff2, Khand-Bold.woff
 
 ### Component Architecture: Section Wrapper Pattern
 - **Wrapper** (e.g., `Brand.tsx`, `Philosophy.tsx`): Handles responsive detection (`< 1024px`), renders Desktop or Mobile variant. Returns null during SSR to prevent hydration mismatch.
@@ -179,4 +202,4 @@
 - **Location:** Added to `globals.css` in two `@font-face` blocks: Bold (700) and Regular (400)
 - **Theme entry:** `--font-plein: "Plein", sans-serif;` in `@theme`
 - **Files:** `public/assets/fonts/plein/Plein-Bold.woff2` + `.woff`, `Plein-Regular.woff2` + `.woff`
-- **Usage:** `font-plein font-bold` for massive brand blocks (Brand section SNOW at `text-[20vw]`, Footer SNOW at `text-[30vw]`)
+- **Usage:** `font-plein font-bold` exclusively for the Footer's massive half-clipped SNOW brand block at `text-[30vw]`. Brand section SNOW uses Switzer Bold at `text-[clamp(4rem,16vw,16rem)]` — not Plein.

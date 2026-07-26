@@ -12,7 +12,7 @@
 - **Our Solution:** An editorial-first homepage that blends high-end typography with lightning-fast Next.js performance and subtle "scroll-triggered" storytelling.
 
 ## 3. Visual Direction
-- **Typeface:** *Switzer* (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. *Plein* (Bold, Regular) for the massive "SNOW" brand block in the Footer section (text-[30vw], half-clipped). Brand section SNOW uses Switzer Bold (centered, text-[clamp(4rem,16vw,16rem)]). Khand Bold was evaluated but Switzer Bold was selected for its cleaner, more editorial look. Plein Bold added for the heavy, monolithic footer statement.
+- **Typeface:** *Switzer* (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. *Plein* (Bold, Regular) for the massive "SNOW" brand block in the Footer section (text-[30vw], half-clipped). *Synonym* (Bold) for the intro overlay "snow" title (lowercase, centered). Brand section SNOW uses Switzer Bold (centered, text-[clamp(4rem,16vw,16rem)]). Khand Bold was evaluated but Switzer Bold was selected for its cleaner, more editorial look. Plein Bold added for the heavy, monolithic footer statement. Synonym Bold added for the intro's editorial lowercase brand statement.
 - **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Deep Navy (`#0d1b2a`) for footer background and navbar scroll-state typography. Mode switching on scroll.
 - **Layout:** Asymmetric grids, large whitespace, fullscreen video hero, and editorial-first presentation.
 
@@ -20,17 +20,27 @@
 
 | # | Section | Status |
 |---|---------|--------|
-| 1 | **The Editorial Hero** — Fullscreen video background with massive "SNOW" title overlay (Switzer Bold) | ✅ Complete |
-| 2 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→navy text), centered logo | ✅ Complete |
-| 3 | **The Selection Edit** — "SELECTION" title. 8 products in full-width 2x4 grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
-| 4 | **Collections** — "COLLECTIONS" title. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left | ✅ Complete |
-| 5 | **About** — Two 3:4 blocks side by side (desktop) / stacked (mobile). Left: image with "ABOUT US" top-left + "DISCOVER" top-right, 20% overlay. Right: auto-playing video with 10% overlay. Zero gap between blocks | ✅ Complete |
-| 6 | **Brand** — Full-width 4:3 (desktop) / 3:4 (mobile) autoplay video with centered "SNOW" in Switzer Bold, 30% black overlay for readability | ✅ Complete |
-| 7 | **Philosophy** — Editorial paragraph with Switzer light, large pull-quote opening, "–" line breaks, italicized brand name **VANTAGE/SNOW** | ✅ Complete |
-| 8 | **Categories** — 1 big 1:1 image left + 1 column of 2 small 1:1 images right per row (desktop 2 rows, mobile 2 rows stacked). Category titles overlay. "CATEGORIES" header | ✅ Complete |
-| 9 | **Footer** — Navy bg (`#0d1b2a`). Desktop: Subscribe ("NEVER MISS A DROP" + email + white Subscribe button with navy hover) left-aligned with fixed width. 4 link columns (Collections, Customer, Follow, Policies) pushed right. Mobile: Compact subscribe + stacked 2x2 link grid + half-clipped SNOW. Massive "SNOW" in Plein Bold clipped at bottom | ✅ Complete |
+| 1 | **Intro Overlay** — Fullscreen video overlay with centered "snow" in Synonym Bold (lowercase). Plays on every visit. Slides upward (curtain reveal) after ~2.5s | ✅ Complete |
+| 2 | **The Editorial Hero** — Fullscreen video background with massive "SNOW" title overlay (Switzer Bold) | ✅ Complete |
+| 3 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→navy text), logo hidden over hero | ✅ Complete |
+| 4 | **The Selection Edit** — "Featured" title. 4 products in full-width single-row grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
+| 5 | **Collections** — "COLLECTIONS" title. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left | ✅ Complete |
+| 6 | **About** — Two 3:4 blocks side by side (desktop) / stacked (mobile). Left: image with "ABOUT US" top-left + "DISCOVER" top-right, 20% overlay. Right: auto-playing video with 10% overlay. Zero gap between blocks | ✅ Complete |
+| 7 | **Brand** — Full-width 4:3 (desktop) / 3:4 (mobile) autoplay video with centered "SNOW" in Switzer Bold, 30% black overlay for readability | ✅ Complete |
+| 8 | **Philosophy** — Editorial pull-quote with Switzer medium, centered single paragraph, large opening quotation mark | ✅ Complete |
+| 9 | **Categories** — 1 big 1:1 image left + 1 column of 2 small 1:1 images right per row (desktop 2 rows, mobile 2 rows stacked). Category titles overlay. "CATEGORIES" header | ✅ Complete |
+| 10 | **Footer** — Navy bg (`#0d1b2a`). Desktop: Subscribe ("NEVER MISS A DROP" + email + white Subscribe button with navy hover) left-aligned with fixed width. 4 link columns (Collections, Customer, Follow, Policies) pushed right. Mobile: Compact subscribe + stacked 2x2 link grid + half-clipped SNOW. Massive "SNOW" in Plein Bold clipped at bottom | ✅ Complete |
 
 ## 5. Implemented Features
+
+### Intro Overlay Section
+- **Fullscreen video background** — Auto-playing, muted, looping MP4 (`intro-bg.mp4`) with `bg-black/20` overlay for readability
+- **"snow" title** — Synonym Bold, centered, lowercase, `text-[clamp(6rem,18vw,20rem)]`, `tracking-[0.02em]`, `leading-[0.85]`
+- **Logo fade-in** — Appears after 400ms, 600ms opacity transition
+- **Curtain slide-up** — Entire overlay slides up (`translateY(-100%)`) after 2.5s, 1000ms duration, `cubic-bezier(0.22,1,0.36,1)` easing
+- **Repeat behavior:** Plays on every page visit (no sessionStorage restriction)
+- **Z-index:** `z-[9999]` — highest layer, above all page content
+- **Architecture:** `Intro.tsx` (wrapper) → `IntroDesktop.tsx` (overlay). Desktop-only, mobile not implemented yet.
 
 ### Hero Section
 - **Fullscreen video background** — Auto-playing, muted, looping MP4 (`hero-bg.mp4`) with `bg-black/20` overlay for readability
@@ -41,14 +51,13 @@
 - **Fixed positioning** — Always visible at top of viewport
 - **Scroll-based mode switching:** Transparent background + white text over Hero → White background + navy (`#0d1b2a`) text past Hero (switches precisely at `scrollY >= window.innerHeight`)
 - **Auto-hide/show:** Navbar slides up out of view on scroll down, slides back into view on scroll up (tracked via scroll direction)
-- **Fixed height:** Desktop `h-12` (48px), Mobile `h-10` (40px) — with flex-centered SNOW logo
+- **Fixed height:** Desktop `h-14` (56px), Mobile `h-10` (40px) — with flex-centered SNOW logo. Logo hidden over hero (`opacity-0`), visible past hero (`opacity-100`).
 - **Smooth transitions:** All color and position changes use `transition-all duration-300`
 
 ### SeasonEdit Section
-- **Title:** "SELECTION" in Switzer medium, large clamp-based sizing, tight letter-spacing (`0.01em`)
-- **Desktop layout:** Full-width 4-column grid, 2 rows of 4 products, `gap-1` (4px) between columns and matching edge padding (`px-1`)
+- **Title:** "Featured" in Switzer medium, large clamp-based sizing, tight letter-spacing (`0.01em`)
+- **Desktop layout:** Full-width 4-column grid, 1 row of 4 products, `gap-x-1` (4px) between columns and matching edge padding (`px-1`)
 - **Mobile layout:** Single-column vertical stack, `gap-8` between products, same edge padding (`px-1`)
-- **Spacing between rows:** `gap-y-12` (48px) for clear row separation on desktop
 
 ### Collections Section
 - **Title:** "COLLECTIONS" in Switzer medium, same sizing + tracking as SeasonEdit
@@ -69,10 +78,10 @@
 - **Font:** Switzer Bold for the centered "SNOW" brand statement — consistent weight with Hero title, but visually distinct via centering + aspect ratio difference
 
 ### Philosophy Section
-- **Desktop layout:** Max-width container (`max-w-4xl`), centered editorial paragraph with large pull-quote opening
-- **Mobile layout:** Same paragraph style, responsive padding
-- **Typography:** Switzer light, large opening quote (`text-7xl`), "–" line breaks between key statements
-- **Brand name:** **VANTAGE/SNOW** italicized for emphasis
+- **Desktop layout:** Max-width container (`max-w-[90%]`), centered single editorial pull-quote with large opening quotation mark
+- **Mobile layout:** Same paragraph style, responsive padding, slightly larger text for mobile readability
+- **Typography:** Switzer medium, large clamp-based opening quote (`text-[clamp(3rem,10vw,10rem)]` desktop / `text-[clamp(3rem,12vw,6rem)]` mobile), single centered paragraph
+- **Background:** White background (`bg-white`), black text
 
 ### Categories Section
 - **Title:** "CATEGORIES" in Switzer medium, same sizing + tracking as other section headers

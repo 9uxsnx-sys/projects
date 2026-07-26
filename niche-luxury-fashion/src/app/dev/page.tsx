@@ -7,20 +7,23 @@ import Brand from "@/components/sections/home-page/Brand/Brand";
 import Philosophy from "@/components/sections/home-page/Philosophy/Philosophy";
 import Categories from "@/components/sections/home-page/Categories/Categories";
 import Footer from "@/components/sections/home-page/Footer/Footer";
+import Intro from "@/components/sections/Intro/Intro";
 
 export default function DevPage() {
   return (
-    <main>
-      {/* Dev Page: Use this for building and testing sections in isolation */}
-      <Navbar />
-      <Hero />
-      <SeasonEdit />
-      <Collections />
-      <About />
-      <Brand />
-      <Philosophy />
-      <Categories />
-      <Footer />
-    </main>
+    <Intro>
+      <main>
+        {/* Dev Page: Use this for building and testing sections in isolation */}
+        <Navbar />
+        <Hero />
+        <SeasonEdit />
+        <Collections />
+        <About />
+        <Brand />
+        <Philosophy />
+        <Categories />
+        <Footer />
+      </main>
+    </Intro>
   );
 }
