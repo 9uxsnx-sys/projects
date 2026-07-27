@@ -4,7 +4,7 @@ import React from "react";
 
 export default function FooterDesktop() {
   return (
-    <section className="w-full bg-[#0d1b2a] relative overflow-hidden">
+    <section className="w-full bg-[#284468] relative overflow-hidden">
       {/* Main Content */}
       <div className="px-1 pt-20 pb-0">
         {/* Top Grid — Subscribe (fixed width) + link shortcuts */}
@@ -30,7 +30,7 @@ export default function FooterDesktop() {
                 />
                 <button
                   type="submit"
-                  className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-xs font-switzer font-normal leading-none duration-150 pt-4 pb-3 px-6 border border-solid border-white hover:bg-[#0d1b2a] hover:text-white"
+                  className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-xs font-switzer font-normal leading-none duration-150 pt-4 pb-3 px-6 border border-solid border-white hover:bg-[#284468] hover:text-white"
                 >
                   Subscribe
                 </button>

@@ -75,3 +75,19 @@ body {
   color: var(--foreground);
   font-family: Inter, system-ui, -apple-system, sans-serif;
 }
+
+/* ─── Accordion smooth open/close ─── */
+details.accordion-item[open] > :not(summary) {
+  animation: accordionOpen 0.35s ease-out forwards;
+}
+
+@keyframes accordionOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

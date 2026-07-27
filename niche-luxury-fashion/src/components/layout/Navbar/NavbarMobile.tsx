@@ -11,7 +11,7 @@ export default function NavbarMobile({
 }) {
   const [cartCount] = useState(0);
   const textColor = "text-white";
-  const bgColor = isPastHero ? "bg-[#0d1b2a]" : "bg-transparent";
+  const bgColor = isPastHero ? "bg-[#284468]" : "bg-transparent";
 
   return (
     <header

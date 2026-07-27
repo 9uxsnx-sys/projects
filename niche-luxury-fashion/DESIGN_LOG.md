@@ -19,10 +19,14 @@
 - [x] Brand Section — full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`
 - [x] Philosophy Section — 60/40 image + text layout, Switzer Light body copy
 - [x] Categories Section — 6 category rows with alternating big-left/big-right 1:1 pattern, category titles below small images
-- [x] Footer Section — navy bg (#0d1b2a), massive "SNOW" logotype (Synonym Bold), 3 nav columns, copyright + legal links
+- [x] Footer Section — navy bg (#284468), massive "SNOW" logotype (Synonym Bold), 3 nav columns, copyright + legal links
 - [x] Intro Overlay — fullscreen black overlay with centered "snow" in Synonym Bold, click-to-dismiss
 - [x] Font Cleanup Audit — removed Khand, Plein, and ~70 unused Switzer variant files (~100 files total). Only Switzer and Synonym remain.
 - [x] Desktop Visual Description — comprehensive screen-reader-accessible document (DESKTOP_VISUAL_DESCRIPTION.md)
+- [x] Product Detail Desktop — sticky 50/50 layout, stacked 3:4 images left, sticky info right, 5-section accordion
+- [x] Dynamic Product Routing — /products/[slug] dynamic route, shared product data in src/data/products.ts
+- [x] SuggestedProducts Section — "You May Also Like" below product detail, 4-card grid
+- [x] Navy Unification — switched all interactive navy from #0d1b2a → #284468 (navbar, footer, size buttons, Add to Cart)
 - [ ] Mobile responsive audit
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
@@ -130,6 +134,36 @@
 - **Choice:** Navbar → Hero → Brand → Featured → Collections → Categories → Philosophy → About → Footer
 - **Rationale:** Brand statement right after Hero establishes visual identity immediately. Featured (products) follows as the first commercial section. Collections and Categories provide navigation structure. Philosophy and About offer brand depth as editorial closer-content before the Footer.
 
+### Decision: Price Display — text-2xl font-medium
+- **Context:** The product detail page price started at `text-lg font-light` (18px, thin), which felt underweight compared to the product name (up to 40px).
+- **Choice:** Bumped to `text-2xl font-medium text-neutral-600` (24px, medium weight).
+- **Rationale:** Luxury stores state prices with presence, not apology. The 24px medium weight pairs confidently with the product name's clamp. Neutral-600 keeps it from competing with the name (black).
+
+### Decision: Accordion Icon — +/× Rotation Instead of ↓ Arrow
+- **Context:** The initial accordion used a `↓` arrow with `group-open:rotate-180`. User requested a cleaner icon system.
+- **Choice:** Replaced the `↓` arrow with a `+` character that rotates 45° on open to form `×`. Uses `group-open:rotate-45 transition-transform duration-300 select-none`.
+- **Rationale:** The +/× pattern is more widely recognized in luxury e-commerce (matches Net-a-Porter, Ssense). The 45° rotation is subtle and clean — no character swap, just a CSS transform.
+
+### Decision: Accordion Smooth Open Animation
+- **Context:** Native `<details>` elements open/close instantly without transition, which felt abrupt for a luxury site.
+- **Choice:** Added CSS `@keyframes` animation via globals.css — content fades in (`opacity: 0→1`) and slides down (`translateY(-6px→0)`) over 0.35s `ease-out`. Applied to `details.accordion-item[open] > :not(summary)`.
+- **Rationale:** Close animation is instant (CSS can't animate `open` attribute removal), but the open animation provides a polished entrance. The ease-out curve gives a natural deceleration feel.
+
+### Decision: Color Swatch Self-Matching Border
+- **Context:** Selected color swatches used a navy `#284468` border, which looked wrong when a non-navy color was selected (e.g., Sage with navy border).
+- **Choice:** When selected, each swatch's border matches its own hex color. Applied via inline `style={{ borderColor: color.hex }}` to avoid Tailwind JIT dynamic class issues.
+- **Rationale:** A self-matching border reinforces the color identity. This is the standard on luxury sites where the swatch is both the button and the preview.
+
+### Decision: Navy Unification — Switched from #0d1b2a to #284468
+- **Context:** The site had two navy shades — `#0d1b2a` (navbar, footer, ProductCard heart) and `#284468` (size buttons, Add to Cart). User finalized `#284468` after testing 5+ shades.
+- **Choice:** Updated all 6 instances: NavbarDesktop bg, NavbarMobile bg, FooterDesktop bg + subscribe hover, FooterMobile bg + subscribe hover.
+- **Rationale:** A single navy creates visual consistency. `#284468` reads as clearly navy (not near-black) at all screen sizes. The heart icon retains `#0d1b2a` as a standalone accent.
+
+### Decision: Product Detail Dynamic Routing
+- **Context:** Initially built product-3 detail page as a static route. Needed to support all 4 products.
+- **Choice:** Created dynamic route `/products/[slug]` with a shared `src/data/products.ts` file containing all product details. ProductDetailDesktop refactored to accept a `product` prop. SeasonEdit cards link to their respective slugs.
+- **Rationale:** Dynamic routing follows Next.js conventions and eliminates duplication. The data layer separates content from presentation, making it easy to add new products without creating new components.
+
 ---
 
 ## Technical Notes
@@ -142,10 +176,11 @@
 
 ### ProductCard Component Architecture
 - **Location:** `src/components/ui/ProductCard/ProductCard.tsx`
-- **Props:** Accepts `Product` type (`id`, `name`, `price`, `imageUrl`)
+- **Props:** Accepts `Product` type (`id`, `name`, `price`, `imageUrl`, `href?`)
 - **Image:** 3:4 ratio via padding trick, `object-cover` for consistent fill, neutral-900 background fallback
 - **Save state:** Local `useState` toggle on heart click, `stopPropagation` to prevent accidental navigation
 - **Hover:** Heart appears with `opacity-0 → opacity-100` + `scale-75 → scale-100`, `duration-300`
+- **Link support:** When `href` is provided, card wraps in `<Link>` for client-side navigation to product detail pages
 
 ### CategoryCard Component Architecture
 - **Location:** `src/components/ui/CategoryCard/CategoryCard.tsx`
@@ -159,9 +194,28 @@
 - **public/assets/images/categories/** — men.jpg, women.jpg (Accessories removed)
 - **public/assets/images/about/** — about-us.jpg
 - **public/assets/images/season-edit/** — product-1.jpg through product-4.jpg
+- **public/assets/images/product-detail/** — Cover + 4 gallery images per product (products 1-4)
 - **public/assets/videos/** — hero-bg.mp4
 - **public/assets/fonts/synonym/** — Synonym-Bold.woff2, Synonym-Bold.ttf, Synonym-Medium.woff2, Synonym-Regular.woff2, Synonym-Light.woff2
 - **public/assets/fonts/switzer/** — Switzer-Bold.woff2, Switzer-Bold.woff, Switzer-Medium.woff2, Switzer-Medium.woff, Switzer-Regular.woff2, Switzer-Regular.woff
+
+### ProductDetailDesktop Component Architecture
+- **Location:** `src/components/sections/product-detail/ProductDetailDesktop.tsx`
+- **Props:** Accepts `ProductDetail` type (from `@/data/products`)
+- **Layout:** 50/50 flex split. Left: stacked 3:4 images. Right: `sticky top-0 min-h-screen` info panel
+- **State:** Local `useState` for selectedSize, selectedColor, quantity
+- **Accordion:** 5 native `<details>` items with `accordion-item` CSS class for smooth open animation. +/× icon via `group-open:rotate-45`
+- **Color swatches:** Self-matching border via inline `style={{ borderColor: color.hex }}`
+
+### SuggestedProducts Component Architecture
+- **Location:** `src/components/sections/product-detail/SuggestedProducts.tsx`
+- **Layout:** Same as SeasonEdit — `bg-white pt-24 pb-16 px-1`, 4 ProductCards in `grid-cols-4 gap-x-1`
+- **Data:** Local hardcoded array with 4 different products (Blouse, Trousers, Tote, Boots)
+
+### Shared Product Data
+- **File:** `src/data/products.ts`
+- **Exports:** `ProductDetail` type, `products` array (4 products), `getProductBySlug()`, `getProductBySeasonEditId()`
+- **Fields per product:** id, slug, name, price, description, details (string[]), sizeFit, material, care, shipping, images (string[]), colors ({name, hex}[]), sizes (string[])
 
 ### Component Architecture: Section Wrapper Pattern
 - **Wrapper** (e.g., `Brand.tsx`, `Philosophy.tsx`): Handles responsive detection (`< 1024px`), renders Desktop or Mobile variant. Returns null during SSR to prevent hydration mismatch.

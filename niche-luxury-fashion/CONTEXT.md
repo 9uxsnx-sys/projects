@@ -13,7 +13,7 @@
 
 ## 3. Visual Direction
 - **Typeface:** *Synonym* (Bold) for all "snow" branding across every section — Intro overlay, Hero (lowercase, bottom-left), Navbar logo (lowercase), Brand statement (lowercase), and Footer brand block (uppercase "SNOW"). *Switzer* (Bold, Medium, Regular, Light) for all section titles (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY), UI/navigation text, product cards, Philosophy copy, and "SEE MORE/MORE" links. *Khand* and *Plein* were evaluated and removed during a cleanup audit as neither was used in production code.
-- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Deep Navy (`#0d1b2a`) for footer background and navbar scroll-state background. Mode switching on scroll (transparent → navy bg with white text).
+- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Navy (`#284468`) for navbar background, footer background, size buttons, Add to Cart, and interactive accent elements. Original navy `#0d1b2a` replaced with `#284468` across all components. Mode switching on scroll (transparent → navy bg with white text). Color swatch borders match their own hex when selected. Heart icon stroke+fill uses `#0d1b2a`.
 - **Layout:** Full-width grids with 4px gaps, large typography using `clamp()`, alternating big-left/big-right pattern for Categories rows, and consistent edge padding (`px-1`).
 
 ## 4. Sections & Current Status
@@ -29,7 +29,10 @@
 | 7 | **Categories** — "CATEGORIES" title + "SEE MORE". 6 category rows with alternating big-left/big-right 1:1 image pattern. Category titles below small images. All images use 1px white outline-offset to mask dark edges. | ✅ Complete |
 | 8 | **Philosophy** — "PHILOSOPHY" title + "SEE MORE". Two-column layout: 60% image (16:9) left, 40% text right. Switzer Light body copy. | ✅ Complete |
 | 9 | **About Us** — 3-column grid (image + text + image). Left/right panels: 3:4 ratio images with 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right. Center panel: brand copy with divider line. | ✅ Complete |
-| 10 | **Footer** — Navy `#0d1b2a` bg. Left: massive "SNOW" in Synonym Bold `clamp(4rem,20vw,20rem)` with `leading-[0.8]`. Right: 3 nav columns (Collections, Support, Connect). Bottom: copyright + legal links. | ✅ Complete |
+| 10 | **Footer** — Navy `#284468` bg. Left: massive "SNOW" in Synonym Bold `clamp(4rem,20vw,20rem)` with `leading-[0.8]`. Right: 3 nav columns (Collections, Support, Connect). Bottom: copyright + legal links. | ✅ Complete |
+| 11 | **Product Detail Desktop** — Sticky 50/50 layout. Left: stacked 3:4 images scroll normally. Right: sticky product info (name, price, color/size selectors, Add to Cart) + 5-section accordion (Description, Details, Size & Fit, Material & Care, Shipping & Returns). Accordion uses +/× icon with smooth open animation. Color swatch borders match own color when selected. | ✅ Complete |
+| 12 | **Suggested Products** — "You May Also Like" section below product detail, 4 ProductCards in a row, same grid style as SeasonEdit. | ✅ Complete |
+| 13 | **Dynamic Product Routing** — `/products/[slug]` dynamic route handles all product detail pages. Shared product data in `src/data/products.ts`. All 4 SeasonEdit products link to their respective detail pages. | ✅ Complete |
 
 ## 5. Implemented Features
 
@@ -98,6 +101,21 @@
 - **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick, `bg-neutral-900` fallback
 - **Save heart:** Lucide `Heart` icon, navy `#0d1b2a` stroke + fill, appears on hover (`opacity-0→100`, `scale-75→100`, 300ms), positioned top-right
 - **Info:** Name (Switzer Regular, neutral-900, `tracking-wide`) + Price (Switzer Light, neutral-600) — flush zero gap, left-aligned to image edge
+- **Link support:** Accepts optional `href` prop. When present, card wraps in `<Link>` for client-side navigation. Used in SeasonEdit (all 4 products link to their detail pages).
+
+### ProductDetailDesktop Component
+- **Location:** `src/components/sections/product-detail/ProductDetailDesktop.tsx`
+- **Props:** Accepts `ProductDetail` type (from `@/data/products`)
+- **Layout:** 50/50 flex split. Left: 5 stacked 3:4 images with `outline-offset-[-1px]` to mask dark edges. Right: sticky info panel (`sticky top-0 min-h-screen`)
+- **Top section (fixed, never shrinks):** Product name (clamp 1.5-2.5rem, font-medium, black), price (text-2xl, font-medium, neutral-600), tax note, divider, color selector (swatches with self-matching border on select), size selector (navy `#284468` on select, navy hover border on unselected), quantity + Add to Cart button
+- **Fixed spacer:** 80px (`h-20`) gap between Add to Cart and accordion section
+- **Accordion section:** 5 items using native `<details>` elements — Description, Details (bullet list), Size & Fit, Material & Care, Shipping & Returns. Custom +/× icon with group-open:rotate-45 transition. CSS keyframe animation for smooth open (opacity + translateY).
+- **Data:** Product content lives in `src/data/products.ts` with all 4 products
+
+### SuggestedProducts Component
+- **Location:** `src/components/sections/product-detail/SuggestedProducts.tsx`
+- **Layout:** Same grid style as SeasonEdit — `grid-cols-4 gap-x-1`, 4 ProductCards
+- **Title:** "You May Also Like" in clamp(2.5rem,6vw,6rem), Switzer Medium, `mb-12` spacing
 
 ### CategoryCard Component
 - **Image:** 3:4 portrait aspect ratio, `object-cover`, `bg-neutral-900`

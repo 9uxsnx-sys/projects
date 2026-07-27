@@ -4,7 +4,7 @@ import React from "react";
 
 export default function FooterMobile() {
   return (
-    <section className="w-full bg-[#0d1b2a] relative overflow-hidden">
+    <section className="w-full bg-[#284468] relative overflow-hidden">
       <div className="px-5 pt-16 pb-0">
         {/* Subscribe — compact for mobile */}
         <div className="flex flex-col gap-2 mb-12">
@@ -27,7 +27,7 @@ export default function FooterMobile() {
               />
               <button
                 type="submit"
-                className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-[10px] font-switzer font-normal leading-none duration-150 pt-2 pb-2 px-4 border border-solid border-white hover:bg-[#0d1b2a] hover:text-white"
+                className="bg-white text-black uppercase tracking-[0.1em] cursor-pointer text-[10px] font-switzer font-normal leading-none duration-150 pt-2 pb-2 px-4 border border-solid border-white hover:bg-[#284468] hover:text-white"
               >
                 Subscribe
               </button>

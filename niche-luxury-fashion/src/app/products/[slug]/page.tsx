@@ -1,14 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useParams } from "next/navigation";
 import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
 import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
 import Footer from "@/components/sections/home-page/Footer/Footer";
 import ProductDetailDesktop from "@/components/sections/product-detail/ProductDetailDesktop";
 import SuggestedProducts from "@/components/sections/product-detail/SuggestedProducts";
-import { products } from "@/data/products";
+import { getProductBySlug } from "@/data/products";
 
-export default function DevPage() {
+export default function ProductPage() {
+  const params = useParams();
+  const slug = params.slug as string;
+  const product = getProductBySlug(slug);
+
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const prevScrollY = useRef(0);
@@ -38,6 +43,14 @@ export default function DevPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  if (!product) {
+    return (
+      <main className="min-h-screen flex items-center justify-center bg-white">
+        <p className="font-switzer text-neutral-500">Product not found.</p>
+      </main>
+    );
+  }
+
   return (
     <main>
       {isMobile ? (
@@ -45,7 +58,7 @@ export default function DevPage() {
       ) : (
         <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
-      <ProductDetailDesktop product={products[2]} />
+      <ProductDetailDesktop product={product} />
       <SuggestedProducts />
       <Footer />
     </main>

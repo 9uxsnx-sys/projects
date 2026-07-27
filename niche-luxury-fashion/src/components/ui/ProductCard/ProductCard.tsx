@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Heart } from "lucide-react";
 
 export type Product = {
@@ -8,16 +9,16 @@ export type Product = {
   name: string;
   price: string;
   imageUrl: string;
+  href?: string;
 };
 
 export default function ProductCard({ product }: { product: Product }) {
   const [saved, setSaved] = useState(false);
 
-  return (
-    <div className="group cursor-pointer">
+  const card = (
+    <>
       {/* Image container — 3:4 aspect ratio */}
       <div className="relative w-full pt-[133.33%] bg-neutral-900 overflow-hidden">
-        {/* Generated product image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={product.imageUrl}
@@ -51,6 +52,16 @@ export default function ProductCard({ product }: { product: Product }) {
           {product.price}
         </p>
       </div>
-    </div>
+    </>
   );
+
+  if (product.href) {
+    return (
+      <Link href={product.href} className="group cursor-pointer block">
+        {card}
+      </Link>
+    );
+  }
+
+  return <div className="group cursor-pointer">{card}</div>;
 }
