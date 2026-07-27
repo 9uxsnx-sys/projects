@@ -1,28 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-khand: "Khand", sans-serif;
   --font-switzer: "Switzer", sans-serif;
-  --font-plein: "Plein", sans-serif;
   --font-synonym: "Synonym", sans-serif;
-}
-
-@font-face {
-  font-family: "Khand";
-  src: url("/assets/fonts/khand/Khand-SemiBold.woff2") format("woff2"),
-       url("/assets/fonts/khand/Khand-SemiBold.woff") format("woff");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Khand";
-  src: url("/assets/fonts/khand/Khand-Bold.woff2") format("woff2"),
-       url("/assets/fonts/khand/Khand-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
@@ -53,26 +33,9 @@
 }
 
 @font-face {
-  font-family: "Plein";
-  src: url("/assets/fonts/plein/Plein-Bold.woff2") format("woff2"),
-       url("/assets/fonts/plein/Plein-Bold.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Plein";
-  src: url("/assets/fonts/plein/Plein-Regular.woff2") format("woff2"),
-       url("/assets/fonts/plein/Plein-Regular.woff") format("woff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Synonym";
-  src: url("/assets/fonts/synonym/Synonym-Bold.ttf") format("truetype");
+  src: url("/assets/fonts/synonym/Synonym-Bold.ttf") format("truetype"),
+       url("/assets/fonts/synonym/Synonym-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

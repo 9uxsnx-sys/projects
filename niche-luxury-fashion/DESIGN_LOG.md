@@ -203,3 +203,4 @@
 - **Theme entry:** `--font-plein: "Plein", sans-serif;` in `@theme`
 - **Files:** `public/assets/fonts/plein/Plein-Bold.woff2` + `.woff`, `Plein-Regular.woff2` + `.woff`
 - **Usage:** `font-plein font-bold` exclusively for the Footer's massive half-clipped SNOW brand block at `text-[30vw]`. Brand section SNOW uses Switzer Bold at `text-[clamp(4rem,16vw,16rem)]` — not Plein.
+- **Removed:** Cleanup audit on 2026-07-27 — Plein was unused in production code (Footer was already changed to Synonym). Khand was also unused. ~100 font files and 2 orphaned images deleted. globals.css cleaned up. Synonym-Bold.woff2 added to Bold @font-face for better browser support.

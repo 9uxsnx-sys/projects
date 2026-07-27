@@ -36,8 +36,8 @@ export default function ProductCard({ product }: { product: Product }) {
           <Heart
             size={20}
             strokeWidth={1.5}
-            className="text-black"
-            fill={saved ? "black" : "none"}
+            className="text-[#0d1b2a]"
+            fill={saved ? "#0d1b2a" : "none"}
           />
         </button>
       </div>

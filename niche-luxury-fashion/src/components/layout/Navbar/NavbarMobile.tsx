@@ -10,8 +10,8 @@ export default function NavbarMobile({
   isVisible: boolean;
 }) {
   const [cartCount] = useState(0);
-  const textColor = isPastHero ? "text-[#0d1b2a]" : "text-white";
-  const bgColor = isPastHero ? "bg-white" : "bg-transparent";
+  const textColor = "text-white";
+  const bgColor = isPastHero ? "bg-[#0d1b2a]" : "bg-transparent";
 
   return (
     <header

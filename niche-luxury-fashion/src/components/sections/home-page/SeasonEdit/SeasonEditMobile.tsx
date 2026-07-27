@@ -6,27 +6,27 @@ import ProductCard from "@/components/ui/ProductCard/ProductCard";
 const products = [
   {
     id: 1,
-    name: "Oversized Wool Coat",
-    price: "$1,290",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury oversized wool coat minimalist fashion editorial photography high-end streetwear, solid background")}`,
+    name: "Whispering Petals Wrap Midi Dress",
+    price: "$68.00",
+    imageUrl: "/assets/images/season-edit/product-1.jpg",
   },
   {
     id: 2,
-    name: "Slim Fit Trousers",
-    price: "$450",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("slim fit tailored trousers luxury fashion editorial photography minimalist, solid background")}`,
+    name: "Meadow Sweetheart Smocked Dress",
+    price: "$74.50",
+    imageUrl: "/assets/images/season-edit/product-2.jpg",
   },
   {
     id: 3,
-    name: "Leather Bomber Jacket",
-    price: "$2,100",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury leather bomber jacket high-end streetwear fashion editorial minimalist, solid background")}`,
+    name: "Countryside Blossom Tiered Sundress",
+    price: "$62.00",
+    imageUrl: "/assets/images/season-edit/product-3.jpg",
   },
   {
     id: 4,
-    name: "Cashmere Rollneck",
-    price: "$890",
-    imageUrl: `https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=${encodeURIComponent("luxury cashmere rollneck sweater minimalist fashion editorial photography, solid background")}`,
+    name: "Sun-Kissed Linen Tie-Front Mini",
+    price: "$56.00",
+    imageUrl: "/assets/images/season-edit/product-4.jpg",
   },
 ];
 
@@ -34,10 +34,13 @@ export default function SeasonEditMobile() {
   return (
     <section className="w-full bg-white pt-16 pb-6 px-1">
       {/* Section Title */}
-      <div className="mb-8">
-        <h2 className="text-[clamp(2.5rem,12vw,4rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+      <div className="mb-8 flex justify-between items-center">
+        <h2 className="text-[clamp(2rem,10vw,3.5rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
           Featured
         </h2>
+        <span className="text-black/60 text-[clamp(0.7rem,3vw,1rem)] font-switzer font-medium tracking-[0.15em] uppercase select-none leading-none underline underline-offset-4 decoration-[1px]">
+          MORE
+        </span>
       </div>
 
       {/* Product List — single column */}

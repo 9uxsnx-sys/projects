@@ -3,33 +3,30 @@
 import React from "react";
 import ProductCard, { Product } from "@/components/ui/ProductCard/ProductCard";
 
-const IMAGE_BASE =
-  "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?image_size=portrait_4_3&prompt=";
-
 const products: Product[] = [
   {
     id: 1,
-    name: "Oversized Wool Coat",
-    price: "$1,290",
-    imageUrl: `${IMAGE_BASE}${encodeURIComponent("luxury oversized wool coat minimalist fashion editorial photography high-end streetwear, solid background")}`,
+    name: "Whispering Petals Wrap Midi Dress",
+    price: "$68.00",
+    imageUrl: "/assets/images/season-edit/product-1.jpg",
   },
   {
     id: 2,
-    name: "Slim Fit Trousers",
-    price: "$450",
-    imageUrl: `${IMAGE_BASE}${encodeURIComponent("slim fit tailored trousers luxury fashion editorial photography minimalist, solid background")}`,
+    name: "Meadow Sweetheart Smocked Dress",
+    price: "$74.50",
+    imageUrl: "/assets/images/season-edit/product-2.jpg",
   },
   {
     id: 3,
-    name: "Leather Bomber Jacket",
-    price: "$2,100",
-    imageUrl: `${IMAGE_BASE}${encodeURIComponent("luxury leather bomber jacket high-end streetwear fashion editorial minimalist, solid background")}`,
+    name: "Countryside Blossom Tiered Sundress",
+    price: "$62.00",
+    imageUrl: "/assets/images/season-edit/product-3.jpg",
   },
   {
     id: 4,
-    name: "Cashmere Rollneck",
-    price: "$890",
-    imageUrl: `${IMAGE_BASE}${encodeURIComponent("luxury cashmere rollneck sweater minimalist fashion editorial photography, solid background")}`,
+    name: "Sun-Kissed Linen Tie-Front Mini",
+    price: "$56.00",
+    imageUrl: "/assets/images/season-edit/product-4.jpg",
   },
 ];
 
@@ -37,10 +34,13 @@ export default function SeasonEditDesktop() {
   return (
     <section className="w-full bg-white pt-24 pb-6 px-1">
       {/* Section Title */}
-      <div className="mb-12">
-        <h2 className="text-[clamp(3rem,8vw,8rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+      <div className="mb-12 flex justify-between items-center">
+        <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
           Featured
         </h2>
+        <span className="text-black/60 text-[clamp(0.7rem,1.2vw,1rem)] font-switzer font-semibold tracking-[0.15em] uppercase select-none leading-none mr-8 underline underline-offset-4 decoration-[1px]">
+          SEE MORE
+        </span>
       </div>
 
       {/* Product Grid — single row of 4, full width */}

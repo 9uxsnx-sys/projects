@@ -19,9 +19,9 @@ export default function NavbarDesktop({
 }) {
   const [savedCount] = useState(0);
   const [cartCount] = useState(0);
-  const textColor = isPastHero ? "text-[#0d1b2a]" : "text-white";
-  const underlineColor = isPastHero ? "before:bg-[#0d1b2a]" : "before:bg-white";
-  const bgColor = isPastHero ? "bg-white" : "bg-transparent";
+  const textColor = "text-white";
+  const underlineColor = "before:bg-white";
+  const bgColor = isPastHero ? "bg-[#0d1b2a]" : "bg-transparent";
 
   return (
     <header

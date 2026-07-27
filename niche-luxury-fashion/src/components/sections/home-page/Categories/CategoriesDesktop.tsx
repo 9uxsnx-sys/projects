@@ -65,10 +65,13 @@ export default function CategoriesDesktop() {
   return (
     <section className="w-full bg-white pt-16 pb-6 px-1">
       {/* Section Title */}
-      <div className="mb-12">
-        <h2 className="text-[clamp(2.5rem,8vw,8rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+      <div className="mb-12 flex justify-between items-center">
+        <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
           CATEGORIES
         </h2>
+        <span className="text-black/60 text-[clamp(0.7rem,1.2vw,1rem)] font-switzer font-semibold tracking-[0.15em] uppercase select-none leading-none mr-8 underline underline-offset-4 decoration-[1px]">
+          SEE MORE
+        </span>
       </div>
 
       {/* Category Rows — alternating pattern */}
@@ -76,11 +79,11 @@ export default function CategoriesDesktop() {
         {categories.map((category, index) => {
           const bigLeft = index % 2 === 0;
           const big = (
-            <div className="relative aspect-square overflow-hidden bg-white group">
+            <div className="relative aspect-square overflow-hidden bg-neutral-900 group">
               <img
                 src={category.bigImage}
                 alt={category.name}
-                className="absolute inset-0 w-full h-full object-cover border border-white"
+                className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
               />
             </div>
           );
@@ -90,19 +93,19 @@ export default function CategoriesDesktop() {
                 {category.smallImages.map((url, i) => (
                   <div
                     key={i}
-                    className="relative aspect-square overflow-hidden bg-white group"
+                    className="relative aspect-square overflow-hidden bg-neutral-900 group"
                   >
                     <img
                       src={url}
                       alt=""
-                      className="absolute inset-0 w-full h-full object-cover border border-white"
+                      className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
                     />
                   </div>
                 ))}
               </div>
               {/* Category title below small images */}
               <div className="flex flex-col items-start px-2 py-4">
-                <span className="text-black text-[clamp(2.5rem,4.5vw,5rem)] font-switzer font-medium leading-none tracking-[0.01em] select-none">
+                <span className="text-black text-[clamp(3rem,7vw,7rem)] font-switzer font-medium leading-[1]">
                   {category.name}
                 </span>
               </div>
