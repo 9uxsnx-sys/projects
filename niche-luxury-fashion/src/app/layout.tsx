@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
+import CartWrapper from "@/components/cart/CartWrapper";
 
 export const metadata: Metadata = {
   title: "VANTAGE | Luxury Fashion & Editorial Design",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <CartWrapper>{children}</CartWrapper>
+      </body>
     </html>
   );
 }

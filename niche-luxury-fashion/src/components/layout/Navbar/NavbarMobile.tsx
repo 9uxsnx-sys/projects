@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useCart } from "@/contexts/CartContext";
 
 export default function NavbarMobile({
   isPastHero,
@@ -9,7 +10,7 @@ export default function NavbarMobile({
   isPastHero: boolean;
   isVisible: boolean;
 }) {
-  const [cartCount] = useState(0);
+  const { itemCount, setCartOpen } = useCart();
   const textColor = "text-white";
   const bgColor = isPastHero ? "bg-[#284468]" : "bg-transparent";
 
@@ -36,12 +37,12 @@ export default function NavbarMobile({
           >
             Menu
           </a>
-          <a
-            href="#"
+          <button
+            onClick={() => setCartOpen(true)}
             className={`${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium transition-colors duration-300`}
           >
-            Cart ({cartCount})
-          </a>
+            Cart ({itemCount})
+          </button>
         </div>
       </nav>
     </header>

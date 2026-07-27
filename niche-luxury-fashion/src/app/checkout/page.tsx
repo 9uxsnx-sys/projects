@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
 import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
-import Footer from "@/components/sections/home-page/Footer/Footer";
-import ProductListingDesktop from "@/components/sections/product-listing/ProductListingDesktop";
+import CheckoutDesktop from "@/components/checkout/CheckoutDesktop";
 
-export default function DevPage() {
+export default function CheckoutPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const prevScrollY = useRef(0);
@@ -43,8 +42,7 @@ export default function DevPage() {
       ) : (
         <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
-      <ProductListingDesktop />
-      <Footer />
+      <CheckoutDesktop />
     </main>
   );
 }

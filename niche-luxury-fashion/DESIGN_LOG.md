@@ -27,7 +27,10 @@
 - [x] Dynamic Product Routing — /products/[slug] dynamic route, shared product data in src/data/products.ts
 - [x] SuggestedProducts Section — "You May Also Like" below product detail, 4-card grid
 - [x] Navy Unification — switched all interactive navy from #0d1b2a → #284468 (navbar, footer, size buttons, Add to Cart)
-- [ ] Mobile responsive audit
+- [x] Mobile responsive audit
+- [x] Product Listing Page — SSENSE-inspired filter drawer + sort dropdown + 4-col grid
+- [x] Cart System — CartContext + right slide-in drawer + live navbar count
+- [x] Checkout Page — single-page checkout with Contact/Shipping/Payment form + order summary
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
 ---
@@ -164,6 +167,26 @@
 - **Choice:** Created dynamic route `/products/[slug]` with a shared `src/data/products.ts` file containing all product details. ProductDetailDesktop refactored to accept a `product` prop. SeasonEdit cards link to their respective slugs.
 - **Rationale:** Dynamic routing follows Next.js conventions and eliminates duplication. The data layer separates content from presentation, making it easy to add new products without creating new components.
 
+### Decision: Product Listing Layout — SSENSE-Inspired
+- **Context:** Needed a product listing/collection page. Had to decide between minimal (Celine-style, no filters) or feature-rich (Farfetch-style, sidebar). VANTAGE is a small collection (4 products) but needed to look credible.
+- **Choice:** SSENSE-inspired balanced approach — clean top bar with "Dresses" title + Filter + Sort buttons, 4-column grid. Filters in a left slide-in drawer (Size pills, Color swatches, Price Range). Sort as a dropdown in the header. No persistent sidebar.
+- **Rationale:** The drawer keeps the grid clean while providing full filtering when needed. Matches the editorial feel without being feature-heavy. The 4-column grid matches SeasonEdit for visual consistency.
+
+### Decision: Cart State Management — React Context
+- **Context:** Needed cart state that persists across page navigations and is accessible from Navbar (count), ProductDetailDesktop (add), CartDrawer (display), and Checkout (read).
+- **Choice:** React Context (`CartContext`) wrapping the entire app. Global state with `CartItem[]`, computed `itemCount` and `subtotal`, and action functions (`addItem`, `removeItem`, `updateQuantity`).
+- **Rationale:** Simple enough for a static test site with 4 products. No need for Zustand/Redux. Context provides sufficient reactivity without external dependencies. The `isCartOpen`/`setCartOpen` pattern lets any component open the drawer (e.g., Add to Cart button opens it after adding).
+
+### Decision: Cart Drawer — Right Slide-In (SSENSE-Style)
+- **Context:** Luxury e-commerce sites use either a right-side drawer (SSENSE, Farfetch) or a full-page cart (Net-a-Porter). Needed to match the minimalist aesthetic.
+- **Choice:** Right slide-in drawer, 420px wide, clean white, overlay behind. Items show 80×100px image + name/size/color + −/+/qty + price. Sticky footer with Subtotal + Checkout button (links to `/checkout`).
+- **Rationale:** The right drawer is the standard for luxury e-commerce and doesn't disrupt the browsing flow. 420px is the sweet spot — wide enough for readable item rows, narrow enough to see context behind.
+
+### Decision: Checkout Layout — Single-Page Form + Summary
+- **Context:** Had to choose between multi-step (Net-a-Porter) or single-page (SSENSE). VANTAGE is a static test site with no real payment processing.
+- **Choice:** SSENSE-style single-page checkout. 60/40 split: form left (Contact → Shipping → Payment sections with thin underline dividers), order summary right (sticky, pure white). Place Order button shows success state with checkmark + "Continue Shopping" link.
+- **Rationale:** Single-page is cleaner for a small collection. The underline-style inputs and custom country dropdown match the editorial aesthetic. The success state avoids needing a full thank-you page.
+
 ---
 
 ## Technical Notes
@@ -228,3 +251,40 @@
 - **Removed images:** accessories.jpg, women-outerwear-big.jpg (orphaned)
 - **globals.css:** Cleaned @font-face blocks — only Switzer (400/500/700) and Synonym (300/400/500/700) remain. Added Synonym-Bold.woff2 alongside existing .ttf for better browser coverage.
 - **Savings:** ~100 files, ~11-14 MB total
+
+### ProductListingDesktop Component Architecture
+- **Location:** `src/components/sections/product-listing/ProductListingDesktop.tsx`
+- **Layout:** Full-width section, title "Dresses" (`clamp`), Filter + Sort in top bar, 4 ProductCards in `grid-cols-4 gap-x-1 gap-y-14`, `pb-24` bottom spacing
+- **Filter Drawer:** `fixed top-0 left-0 w-80` with `-translate-x-full`/`translate-x-0` toggle. Overlay (`bg-black/30`) when open. Three filter groups: Size (pills), Color (swatches), Price Range (radio). "Clear all filters" button. Body scroll locked via `overflow: hidden`
+- **Sort Dropdown:** Absolute positioned, 3 options (Newest, Price Low-High, Price High-Low), `useRef` for outside-click detection
+- **Data source:** `products` from `@/data/products` mapped to `Product[]` format
+
+### Cart System Architecture
+- **Context:** `src/contexts/CartContext.tsx`
+- **Provider:** `CartProvider` wraps entire app via `CartWrapper` in root layout (`src/components/cart/CartWrapper.tsx`)
+- **CartItem type:** `{ id, slug, name, price, priceValue: number, imageUrl, size, color, quantity }`
+- **Deduplication:** `addItem()` checks for existing item by composite key `${id}-${size}-${color}` — increments quantity if found, pushes new item if not
+- **Computed values:** `itemCount` (sum of all quantities), `subtotal` (computed as `$X.XX` from `priceValue * quantity`)
+
+### CartDrawer Component Architecture
+- **Location:** `src/components/cart/CartDrawer.tsx`
+- **Layout:** Right slide-in drawer (`w-[420px]`, `translate-x-full`/`translate-x-0`), fixed overlay behind
+- **Header:** "Bag (N)" title + X close button
+- **Item row:** 80×100px `<Link>` image, name (links to product), size/color line, −/+/quantity controls (Minus/Plus icons), line price, X remove button. `border-b` separators between items
+- **Empty state:** Centered ShoppingBag icon + "Your bag is empty" + "Continue Shopping" button (closes drawer)
+- **Footer (sticky, non-empty):** Subtotal + "Checkout" `<Link>` (navigates to `/checkout`, closes drawer) + "Free shipping" note
+- **Dependencies:** Uses `useCart()` for all state and actions
+
+### CheckoutDesktop Component Architecture
+- **Location:** `src/components/checkout/CheckoutDesktop.tsx`
+- **Route:** `src/app/checkout/page.tsx` (client component, renders NavbarDesktop with scroll detection + CheckoutDesktop + Footer)
+- **Layout:** 60/40 flex split. Left: form. Right: order summary (pure white `bg-white`, `border-l border-neutral-100` separator)
+- **Form inputs:** Underline-style (`border-b border-neutral-200`, focus → `border-neutral-900`), labels above in `text-xs uppercase tracking-[0.05em] text-neutral-500`
+- **Country dropdown:** Custom button-based trigger + absolute dropdown panel with 19 countries. Closes via fixed overlay. Thin custom scrollbar (`custom-scrollbar` CSS class in globals.css — 3px, `#d4d4d4` thumb, transparent track)
+- **Payment section:** Radio button row (Credit Card, PayPal, Apple Pay), card number + expiry + CVC fields, accepted cards badges (Visa, Mastercard, Amex)
+- **Place Order:** Sets `placed` state → renders success screen (green checkmark SVG in circle, "Order placed", "Continue Shopping" link)
+- **Dependencies:** Uses `useCart()` for items, itemCount, subtotal
+
+### Navbar Update (Cart Integration)
+- **NavbarDesktop:** Cart `<a>` replaced with `<button>` calling `useCart().setCartOpen(true)`. Live `itemCount` from context instead of local `useState(0)`. Removed local `cartCount` and `savedCount` state.
+- **NavbarMobile:** Same — cart `<a>` replaced with `<button>`, live count from context.

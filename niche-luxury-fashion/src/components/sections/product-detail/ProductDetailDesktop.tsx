@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import type { ProductDetail } from "@/data/products";
+import { useCart } from "@/contexts/CartContext";
 
 export default function ProductDetailDesktop({
   product,
@@ -11,6 +12,7 @@ export default function ProductDetailDesktop({
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>("Ivory");
   const [quantity, setQuantity] = useState(1);
+  const { addItem, setCartOpen } = useCart();
 
   const sizeColors: Record<string, string> = {
     XS: "#284468",
@@ -162,6 +164,20 @@ export default function ProductDetailDesktop({
 
                 {/* Add to Cart */}
                 <button
+                  onClick={() => {
+                    if (!selectedSize) return;
+                    addItem({
+                      id: product.id,
+                      slug: product.slug,
+                      name: product.name,
+                      price: product.price,
+                      priceValue: parseFloat(product.price.replace("$", "")),
+                      imageUrl: product.images[0],
+                      size: selectedSize,
+                      color: selectedColor,
+                    });
+                    setCartOpen(true);
+                  }}
                   className={`flex-1 py-2.5 text-sm font-switzer font-medium tracking-[0.1em] uppercase transition-all duration-300 ${
                     selectedSize
                       ? ""

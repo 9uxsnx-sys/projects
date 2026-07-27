@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useCart } from "@/contexts/CartContext";
 
 const navLinks = [
   { label: "Men", href: "#" },
@@ -17,8 +18,7 @@ export default function NavbarDesktop({
   isPastHero: boolean;
   isVisible: boolean;
 }) {
-  const [savedCount] = useState(0);
-  const [cartCount] = useState(0);
+  const { itemCount, setCartOpen } = useCart();
   const textColor = "text-white";
   const underlineColor = "before:bg-white";
   const bgColor = isPastHero ? "bg-[#284468]" : "bg-transparent";
@@ -51,24 +51,24 @@ export default function NavbarDesktop({
             </li>
           ))}
 
-          {/* Saved with count */}
+          {/* Saved */}
           <li>
             <a
               href="#"
               className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
             >
-              Saved ({savedCount})
+              Saved
             </a>
           </li>
 
-          {/* Cart with count */}
+          {/* Cart with live count */}
           <li>
-            <a
-              href="#"
+            <button
+              onClick={() => setCartOpen(true)}
               className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-1 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
             >
-              Cart ({cartCount})
-            </a>
+              Cart ({itemCount})
+            </button>
           </li>
         </ul>
       </nav>

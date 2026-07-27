@@ -33,6 +33,9 @@
 | 11 | **Product Detail Desktop** — Sticky 50/50 layout. Left: stacked 3:4 images scroll normally. Right: sticky product info (name, price, color/size selectors, Add to Cart) + 5-section accordion (Description, Details, Size & Fit, Material & Care, Shipping & Returns). Accordion uses +/× icon with smooth open animation. Color swatch borders match own color when selected. | ✅ Complete |
 | 12 | **Suggested Products** — "You May Also Like" section below product detail, 4 ProductCards in a row, same grid style as SeasonEdit. | ✅ Complete |
 | 13 | **Dynamic Product Routing** — `/products/[slug]` dynamic route handles all product detail pages. Shared product data in `src/data/products.ts`. All 4 SeasonEdit products link to their respective detail pages. | ✅ Complete |
+| 14 | **Product Listing Page** — SSENSE-inspired layout with Filter drawer and Sort dropdown. 4-column grid of ProductCards with category title bar, product count, and bottom spacing. | ✅ Complete |
+| 15 | **Cart System** — React Context cart state with global `useCart()` hook. Right slide-in drawer with item list, quantity controls, subtotal + Checkout. Live cart count in navbar. | ✅ Complete |
+| 16 | **Checkout Page** — Single-page checkout at `/checkout`. Form left (Contact, Shipping, Payment), order summary right (sticky). Underline-style inputs, custom country dropdown, place order flow. | ✅ Complete |
 
 ## 5. Implemented Features
 
@@ -51,8 +54,9 @@
 
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport (`z-40`)
-- **Scroll-based mode switching:** Transparent background + white text over Hero → Navy (`#0d1b2a`) background + white text past Hero (switches precisely at `scrollY >= window.innerHeight`)
-- **Layout:** Flexbox row with `px-6 py-4`. Left: lowercase "snow" logo (Synonym Bold, 24px). Right: 5 nav links (ready to wear, accessories, collections, editorial, journal) with hover underline animation (300ms).
+- **Scroll-based mode switching:** Transparent background + white text over Hero → Navy (`#284468`) background + white text past Hero (switches precisely at `scrollY >= window.innerHeight`)
+- **Layout:** Flexbox row with `px-6 py-4`. Left: lowercase "snow" logo (Synonym Bold, 24px). Right: nav links (Men, Women, Accessories, Collections, Account, Saved, Cart) with hover underline animation (300ms).
+- **Cart button:** Opens right slide-in drawer. Live count from `CartContext` — updates instantly when items are added/removed.
 - **Smooth transitions:** All color changes use `transition-all duration-300`
 
 ### Brand Statement Section
@@ -123,6 +127,39 @@
 - **Label:** Category name bottom-left, white Switzer Medium, `clamp(1.8rem,4vw,3.5rem)`
 - **DISCOVER:** "DISCOVER" bottom-right, white Switzer Light, `tracking-[0.15em]`, uppercase
 - **Location:** `src/components/ui/CategoryCard/`
+
+### ProductListingDesktop Component
+- **Location:** `src/components/sections/product-listing/ProductListingDesktop.tsx`
+- **Layout:** Full-width section with category title ("Dresses"), Filter button, Sort dropdown (Newest, Price Low-High, Price High-Low), product count line, 4-column grid of ProductCards, `pb-24` bottom spacing
+- **Filter drawer:** Left slide-in (`fixed`, `w-80`), overlay backdrop. Contains Size pills (XS-XL, navy fill on select), Color swatches (self-matching border), Price Range radio buttons. Clear all filters at bottom.
+- **Sort dropdown:** Absolute positioned below Sort by button, 3 options, closes on outside click via `useRef` + `mousedown` listener
+- **Data:** Maps `products` from `@/data/products` into `Product[]` format (cover image + slug href)
+- **Body scroll lock:** `document.body.style.overflow = "hidden"` when filter drawer is open
+
+### Cart System (CartContext + CartDrawer)
+- **Context:** `src/contexts/CartContext.tsx`
+- **Provider:** `CartProvider` wraps entire app via `CartWrapper` in root layout
+- **State:** `items: CartItem[]` where each item has id, slug, name, price, priceValue (number), imageUrl, size, color, quantity
+- **Derived:** `itemCount` (total quantity), `subtotal` (computed string)
+- **Actions:** `addItem()` (merges duplicates by id+size+color key), `removeItem()`, `updateQuantity()`, `clearCart()`
+- **Drawer open/close:** `isCartOpen` / `setCartOpen()` — exposed globally
+- **CartDrawer:** `src/components/cart/CartDrawer.tsx`
+- **Layout:** Fixed right slide-in (`w-[420px]`), overlay backdrop. Header with "Bag (N)" + X close.
+- **Item row:** 80×100px image (links to product), name, size/color, −/+/qty controls, line price, remove X button
+- **Empty state:** ShoppingBag icon + "Your bag is empty" + "Continue Shopping" link
+- **Footer (non-empty):** Subtotal + "Checkout" Link (navigates to `/checkout`, closes drawer) + "Free shipping" note
+- **Body scroll lock** applied when open
+
+### CheckoutDesktop Component
+- **Location:** `src/components/checkout/CheckoutDesktop.tsx`
+- **Route:** `/checkout` — `src/app/checkout/page.tsx` (client component with NavbarDesktop + scroll detection)
+- **Layout:** 60/40 flex split. Left: form. Right: order summary (sticky, pure white, `border-l` separator).
+- **Form sections (left):** Contact (email + newsletter checkbox), Shipping (first/last name, address, apt, city, ZIP, country), Payment (Credit Card/PayPal/Apple Pay radio, card number, expiry, CVC, accepted cards badges)
+- **Inputs:** Underline-style (`border-b` only, no box), labels above in uppercase, focus transitions from `neutral-200` → `neutral-900`
+- **Country dropdown:** Custom button-based dropdown (not native `<select>`) with 19 countries, ChevronDown icon rotates on open, closes on outside click via fixed overlay, thin scrollbar styling
+- **Order summary (right):** Item list (image, name, size/color, qty, price), Subtotal, Shipping ("Free" in green), Total
+- **Place Order:** Click → success state with checkmark + "Order placed" message + "Continue Shopping" link
+- **Empty state:** "Your bag is empty" with Continue Shopping link (same pattern as CartDrawer)
 
 ## 6. Technical Goals
 - 100% Mobile Responsive (Critical for Fashion).
