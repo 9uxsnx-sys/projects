@@ -5,22 +5,24 @@
 ### [Phase 1: Setup] ✅
 - [x] Initialize project structure (Next.js 16 + Tailwind v4 + TypeScript)
 - [x] Configure Tailwind v4 with `@theme` CSS-first config
-- [x] Set up custom fonts: Khand (headlines) + Switzer (UI) + Plein (bold blocks) + Synonym (intro overlay)
-- [x] Set up globals.css with monochrome color system
+- [x] Set up custom fonts: Switzer (UI) + Synonym (editorial snow branding)
+- [x] Set up globals.css with monochrome + navy color system
 
 ### [Phase 2: Development]
-- [x] Hero Section — fullscreen video background with "SNOW" title
-- [x] Responsive Navbar — auto-hide/show, scroll-based mode switching
-- [x] SeasonEdit Section — "Featured" title + product grid (desktop 2x4, mobile single column)
-- [x] ProductCard Component — 3:4 image, heart save icon, name + price
-- [x] Collections Section — 3 category cards (Men, Women, Accessories), full-width grid
-- [x] CategoryCard Component — 3:4 image, 10% black overlay, label bottom-left
-- [x] About Section — twin 3:4 blocks (image + video), zero gap, custom assets
-- [x] Brand Section — full-width 4:3/3:4 autoplay video with centered "SNOW" in Switzer Bold
-- [x] Philosophy Section — editorial paragraph with Switzer light, large pull-quote
-- [x] Categories Section — 1 big + 2 small 1:1 images per row, 2 rows
-- [x] Footer Section — navy bg (#0d1b2a), NEVER MISS A DROP subscribe, 4 link columns (added Policies), desktop flex + mobile 2x2 stack, half-clipped SNOW
-- [x] Plein Font Registration — Bold (700) + Regular (400) self-hosted via @font-face
+- [x] Hero Section — fullscreen video background with centered VANTAGE heading + bottom-left "snow" in Synonym Bold (0 tracking)
+- [x] Responsive Navbar — auto-hide/show, scroll-based mode switching (transparent → navy bg with white text)
+- [x] SeasonEdit Section — "Featured" title + "SEE MORE" link, 4-product grid (desktop 4-col), heart save (navy #0d1b2a)
+- [x] ProductCard Component — 3:4 image, navy heart icon on hover, name + price
+- [x] Collections Section — 2 category cards (Men, Women), full-width grid, DISCOVER label
+- [x] CategoryCard Component — 3:4 image, 10% black overlay, name bottom-left + DISCOVER bottom-right
+- [x] About Section — 3-column layout (image + text + image), zero gap, custom assets
+- [x] Brand Section — full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`
+- [x] Philosophy Section — 60/40 image + text layout, Switzer Light body copy
+- [x] Categories Section — 6 category rows with alternating big-left/big-right 1:1 pattern, category titles below small images
+- [x] Footer Section — navy bg (#0d1b2a), massive "SNOW" logotype (Synonym Bold), 3 nav columns, copyright + legal links
+- [x] Intro Overlay — fullscreen black overlay with centered "snow" in Synonym Bold, click-to-dismiss
+- [x] Font Cleanup Audit — removed Khand, Plein, and ~70 unused Switzer variant files (~100 files total). Only Switzer and Synonym remain.
+- [x] Desktop Visual Description — comprehensive screen-reader-accessible document (DESKTOP_VISUAL_DESCRIPTION.md)
 - [ ] Mobile responsive audit
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
@@ -28,10 +30,20 @@
 
 ## Decision Log
 
+### Decision: Universal "snow" Font Switch (Switzer → Synonym Bold)
+- **Context:** The word "snow" (the brand's symbolic logotype) used Switzer Bold in the Hero, Brand section, and Navbar. It needed a more editorial, lowercase-friendly treatment.
+- **Choice:** Switched all instances of "snow" across the entire site to **Synonym Bold** — including Intro overlay, Hero (centered + bottom-left), Navbar logo, Brand statement, and Footer "SNOW" (uppercase).
+- **Rationale:** Synonym Bold offers a more refined, magazine-cover editorial character that works beautifully in lowercase. This creates a unified brand voice across every section. Switzer remains for all UI text, section titles, and body copy.
+
+### Decision: Universal Letter-Spacing Normalization (22px → 0px)
+- **Context:** The Hero's "snow" title originally had extreme tracking values (`tracking-[22px]` desktop, `tracking-[20px]` mobile) inherited from a Khand Bold experiment. After switching to Synonym Bold, these enormous letter-spacing values distorted the typeface.
+- **Choice:** Set letter-spacing to `0px` (normal) for all "snow" text across all sections — Hero, Brand, Navbar, Footer, and Intro.
+- **Rationale:** Synonym Bold's natural letterfit is tight and elegant. Adding tracking destroys its editorial character. Zero tracking creates visual consistency across the entire brand system.
+
 ### Decision: Navbar Mode Switching (Scroll-Based)
-- **Context:** The Navbar needs two visual modes — transparent over the dark Hero section, solid white when scrolled past it.
-- **Choice:** Track `scrollY >= window.innerHeight` and toggle `bg-transparent`/`bg-white` + `text-white`/`text-[#0d1b2a]` (navy) with `transition-colors duration-300`.
-- **Rationale:** Threshold at exactly 1 viewport height ensures the switch happens precisely when the Hero fully exits the viewport. No premature or delayed transition.
+- **Context:** The Navbar needs two visual modes — transparent over the dark Hero section, solid dark when scrolled past it.
+- **Choice:** Track `scrollY >= window.innerHeight` and toggle `bg-transparent`/`bg-[#0d1b2a]` (navy) + white text in both modes with `transition-colors duration-300`.
+- **Rationale:** Navy background on scroll matches the footer's accent color, creating bookend visual consistency. White text in both modes ensures legibility and avoids a jarring color shift.
 
 ### Decision: Navbar Auto-Hide/Show on Scroll
 - **Context:** Luxury e-commerce sites (Farfetch, SSENSE) hide the navbar on scroll-down to maximize content immersion and show it on scroll-up for navigation access.
@@ -39,125 +51,84 @@
 - **Rationale:** Using a ref avoids unnecessary re-renders on every scroll event. The 80px threshold prevents accidental hide on tiny scrolls.
 
 ### Decision: Navbar Fixed Height with Centered Logo
-- **Context:** The "SNOW" logo needed equal vertical spacing above and below it within the Navbar.
-- **Choice:** Fixed heights (`h-12` desktop / `h-10` mobile) with `flex items-center` on the header. Removed vertical padding from the nav element.
-- **Rationale:** Fixed height guarantees consistent spacing regardless of content. Flex centering is the simplest CSS approach for perfect vertical centering.
+- **Context:** The "snow" logo needed equal vertical spacing above and below it within the Navbar.
+- **Choice:** `py-4` with `flex items-center` on the header.
+- **Rationale:** Fixed vertical padding guarantees consistent spacing regardless of content. Flex centering is the simplest CSS approach for perfect vertical centering.
 
 ### Decision: Font Selection
 - **Context:** The original CONTEXT.md specified Didot/Bodoni for headlines and Inter/Satoshi for UI.
-- **Choice:** **Switzer** (Bold, Medium, Regular) for brand headlines (SNOW), section titles, and UI/navigation text. Khand Bold was evaluated via a side-by-side comparison but Switzer Bold was selected for its cleaner, more editorial look that better suits the avant-garde aesthetic.
-- **Rationale:** Switzer provides a clean, versatile sans-serif with excellent legibility across all sizes. Using a single font family (Switzer) across headlines, titles, and UI creates visual consistency. Switzer Bold offers enough weight for a hero title while maintaining elegance. Both Switzer and Khand are self-hosted via `@font-face` in globals.css.
+- **Choice:** **Switzer** (Bold, Medium, Regular, Light) for section titles, UI, navigation, and body copy. **Synonym** (Bold, Medium, Regular, Light) for all "snow" brand logotype text. Khand and Plein were evaluated and subsequently removed during a cleanup audit as neither was used in production.
+- **Rationale:** Switzer provides a clean, versatile sans-serif with excellent legibility across all sizes. Synonym offers a refined editorial character ideal for the lowercase "snow" brand treatment. Using two complementary families creates clear visual hierarchy.
 
 ### Decision: Hero Media Type
 - **Context:** CONTEXT.md originally called for a "massive high-res image" for the Hero.
-- **Choice:** Replaced with a fullscreen MP4 video background (`hero-bg.mp4`) with a subtle black overlay (`bg-black/20`).
-- **Rationale:** Video creates a more immersive, editorial, luxury feel. The overlay ensures text readability regardless of video content. MP4 is self-hosted for performance control.
+- **Choice:** Replaced with a fullscreen MP4 video background (`hero-bg.mp4`) with a subtle black overlay (`bg-black/40`).
+- **Rationale:** Video creates a more immersive, editorial, luxury feel. The overlay ensures text readability regardless of video content.
 
 ### Decision: Product Card Design
-- **Context:** The SeasonEdit section needed product cards that feel editorial and luxury, not commercial.
-- **Choice:** 3:4 portrait aspect ratio (`pt-[133.33%]`), heart icon (lucide `Heart`) appears on hover with opacity + scale transition, info below image with name (Switzer normal) + price (Switzer light) flush at zero gap.
-- **Rationale:** 3:4 is the industry standard for luxury fashion e-commerce (SSENSE, Farfetch). The heart icon on hover follows luxury site conventions for save/wishlist. Flush name + price creates a clean, editorial block.
+- **Context:** The SeasonEdit section needed product cards that feel editorial and luxury.
+- **Choice:** 3:4 portrait aspect ratio (`pt-[133.33%]`), heart icon (lucide `Heart`) appears on hover with opacity + scale transition, info below image with name (Switzer normal) + price (Switzer light) flush at zero gap. Navy `#0d1b2a` for heart color.
+- **Rationale:** 3:4 is the industry standard for luxury fashion e-commerce (SSENSE, Farfetch). Navy heart color ties into the brand's accent palette.
 
 ### Decision: Section Layout (Full-Width Grid)
-- **Context:** The SeasonEdit products should feel immersive and full-bleed, not constrained in a container.
-- **Choice:** No `max-width` container. `grid grid-cols-4 gap-1` with matching `px-1` on the section, so edge padding equals the gap between products. Row gap at `gap-y-12` for clear separation.
-- **Rationale:** The 4px equal spacing creates a tight, cohesive grid where products feel connected but distinct. Full-width layout matches the avant-garde, editorial aesthetic.
+- **Context:** All sections should feel immersive and full-bleed, not constrained in a container.
+- **Choice:** No `max-width` container. `grid-cols-N gap-1` with matching `px-1` on the section, so edge padding equals the gap between items.
+- **Rationale:** The 4px equal spacing creates a tight, cohesive grid where items feel connected but distinct.
 
-### Decision: Mobile Single-Column Pattern
-- **Context:** The mobile layout for SeasonEdit needed to maintain the same edge gap as desktop while adapting to smaller screens.
-- **Choice:** Single column (`flex flex-col gap-8`) with same `px-1` edge padding. Title uses `clamp(2.5rem,12vw,4rem)` for responsive sizing.
-- **Rationale:** Single column is the standard mobile pattern for product listings. The 32px gap between products provides clear breathing room. Matching edge padding ensures consistency across breakpoints.
+### Decision: Collections Section — Accessories Card Removed
+- **Context:** The Collections section originally had 3 cards (Men, Women, Accessories) in a 3-column grid.
+- **Choice:** Removed the Accessories card and changed to a 2-column grid (`grid-cols-2`) so Men and Women take full width with no empty space.
+- **Rationale:** Having only two editorial categories (Men, Women) creates a stronger visual focus. The Accessories category was redundant with the Categories section below.
 
-### Decision: Category Card Design
-- **Context:** The Collections section needed category cards (Men, Women, Accessories) that feel distinct from product cards while maintaining the same visual language.
-- **Choice:** Same 3:4 aspect ratio, custom brand images (men.jpg, women.jpg, accessories.jpg), 10% black overlay for text readability, category name bottom-left in white Switzer medium. No interactivity (save heart, etc.) — purely navigational.
-- **Rationale:** The 10% overlay is lighter than the ProductCard (no heart interaction needed). Bottom-left label position is a familiar luxury editorial convention. Keeping the same 3:4 ratio and `gap-1` spacing creates visual consistency across sections.
+### Decision: Categories Section — Expanded to 6 Rows with Alternating Layout
+- **Context:** The Categories section needed more content and a distinctive layout pattern.
+- **Choice:** 6 category rows with alternating big-left (odd rows) / big-right (even rows) pattern. Each row: one 1:1 big image on one side, two 1:1 small images stacked on the other. Category titles positioned below the small images.
+- **Rationale:** The alternating pattern creates visual rhythm and prevents monotony as the user scrolls. The 6 categories cover all major fashion segments without being overwhelming.
 
-### Decision: About Section Layout (Twin 3:4 Blocks)
-- **Context:** The About section needed to communicate brand story through a dual-media layout — one side image, one side video.
-- **Choice:** Two 3:4 blocks in a `grid grid-cols-2` with zero gap between them. Left: custom image with dual text (ABOUT US + DISCOVER), 20% overlay. Right: custom autoplay video with 10% overlay. Same `px-1` edge padding as other sections.
-- **Rationale:** Zero gap creates a cohesive visual where the two blocks feel like a single composition. The different overlay percentages (20% image vs 10% video) account for the inherent brightness difference between a still image and a moving video.
+### Decision: Category Image Outline Fix
+- **Context:** Category PNG images had baked-in dark edge pixels showing as a black outline around images on the white background.
+- **Choice:** Applied `outline-1 outline-white outline-offset-[-1px]` to every category `<img>` element, painting a 1px white line inside the image boundary that masks the dark edges.
+- **Rationale:** The issue was in the source PNG files (not a CSS problem). The outline-offset technique is lightweight, doesn't affect layout, and reliably covers edge artifacts without modifying the image files.
 
-### Decision: Section CTA Pattern ("DISCOVER / DISCOVER MORE")
-- **Context:** Section title rows across SeasonEdit, Collections, and About needed a consistent editorial CTA.
-- **Choice (initial):** "DISCOVER MORE" right-aligned on the same row as the section title, Switzer medium, `tracking-[0.15em]` uppercase, with `pr-10` right padding for breathing room from edge.
-- **Reversal:** "DISCOVER MORE" was later removed from SeasonEdit and Collections to keep the layout cleaner and let the visual content speak for itself. Only the About section retains "DISCOVER" as a subtle editorial prompt within the image block.
-- **Rationale:** Removing the CTA from product/category grids reduces visual clutter and lets the editorial photography drive engagement. The About section's "DISCOVER" remains as it functions as a brand storytelling cue rather than a commercial call-to-action.
+### Decision: Section Title Pattern (SEE MORE / MORE with Underline)
+- **Context:** All major sections (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY) needed a consistent secondary CTA aligned right of the section title.
+- **Choice:** Desktop: "SEE MORE" on one line, Switzer Semi-bold, 60% black opacity, uppercase, 0.15em tracking, 1px underline, `mr-8` right margin. Mobile: Just "MORE" (single word), same styling. Both vertically centered with the section title via `items-center`.
+- **Rationale:** "SEE MORE" is a clean editorial convention. The underline provides subtle visual weight without being obtrusive. The mobile truncation to just "MORE" saves horizontal space on small screens.
 
-### Decision: SNOW Hero Title Design
-- **Context:** The Hero section needed a brand title that's impactful at large sizes while staying elegant. Initially used Khand Bold, then compared Switzer Bold side-by-side.
-- **Choice:** Switzer Bold, bottom-left positioning (`bottom-1 left-2`), desktop `text-[14vw]` with `tracking-[22px]`, mobile `text-[20vw]` with `tracking-[20px]`.
-- **Rationale:** Switzer Bold provides a cleaner, more editorial look than Khand Bold. Bottom-left positioning maximizes screen real estate and follows luxury editorial conventions. Slightly tighter tracking on mobile (`20px` vs `22px`) accounts for the smaller viewport.
+### Decision: About Section — 3-Column Layout (Image + Text + Image)
+- **Context:** The original two-panel layout (image + video) didn't effectively communicate the brand story.
+- **Choice:** Changed to a 3-column grid: left panel = image with 10% overlay and text labels, center panel = brand text content with divider line, right panel = same image as left. All with 4px gaps.
+- **Rationale:** The symmetrical image panels create a strong editorial frame for the central text. The repeated image on both sides feels intentional and gallery-like rather than redundant.
 
-### Decision: Plein Font Addition
-- **Context:** The Brand and Footer sections needed a heavier, more monolithic "SNOW" brand block distinct from the Hero's Switzer Bold treatment.
-- **Choice:** Added Plein Bold (700) + Regular (400) via self-hosted `@font-face` in globals.css, under `--font-plein: "Plein", sans-serif;` in `@theme`.
-- **Rationale:** Plein offers a heavier, more blocky sans-serif that creates visual contrast against Switzer. The massive `text-[30vw]` SNOW in the Footer demands a weightier typeface to feel like a structural brand element rather than a headline. Brand section SNOW uses Switzer Bold for visual consistency with Hero's typeface weight.
+### Decision: Philosophy Section — Image + Text Split Layout
+- **Context:** The original Philosophy was just a centered pull-quote with a large quotation mark.
+- **Choice:** Changed to a full section with a title row (PHILOSOPHY + SEE MORE), then a two-column layout: 60% 16:9 image with 10% overlay left, 40% text right.
+- **Rationale:** The new layout better communicates the brand's philosophy through visual + textual storytelling rather than relying solely on typography.
 
-### Decision: Brand Section Layout
-- **Context:** Needed a brand-focused section that feels distinct from the Hero while maintaining the video + SNOW motif.
-- **Choice:** Autoplay MP4 video with 4:3 aspect ratio (desktop) / 3:4 (mobile), 30% black overlay, centered "SNOW" in Switzer Bold at `text-[clamp(4rem,16vw,16rem)]`.
-- **Rationale:** Switzer Bold was ultimately used for Brand (matching the Hero's typeface weight) for visual consistency across the full-page experience. The 30% overlay is heavier than Hero's 20% to ensure readability on varied video content. Centered positioning distinguishes it from Hero's bottom-left. The aspect ratio switch (4:3→3:4) follows the project's responsive pattern. Plein was reserved exclusively for the Footer's massive half-clipped brand block.
+### Decision: Brand Section — Text-Only Statement
+- **Context:** The Brand section originally had an autoplay MP4 video with centered "SNOW" in Switzer Bold.
+- **Choice:** Replaced entirely — now a pure text section with massive lowercase "snow" in Synonym Bold (`clamp(4rem,20vw,20rem)`) on a white background.
+- **Rationale:** The text-only approach is cleaner and more editorial. It lets the typography speak as the brand statement without competing with video content. The removal of the video improves page performance.
 
-### Decision: Philosophy Section Typography
-- **Context:** Needed an editorial section that communicates brand ethos through text alone, no images.
-- **Choice:** Single centered paragraph in Switzer light, large opening quote (`text-7xl`), "–" line breaks between key statements, **VANTAGE/SNOW** italicized.
-- **Rationale:** Pure typography creates a sophisticated editorial feel. The large pull-quote opening draws attention. Line breaks create rhythmic pacing. Italicized brand name adds emphasis without visual clutter.
+### Decision: Footer — Simplified Layout
+- **Context:** The original Footer had a complex subscribe form, 4 link columns, and various interactive elements that didn't match the brand's minimalist direction.
+- **Choice:** Simplified to: navy `#0d1b2a` background, massive "SNOW" (Synonym Bold, `clamp(4rem,20vw,20rem)`, `leading-[0.8]`) on the left, 3 nav columns on the right, copyright + legal links at the bottom.
+- **Rationale:** The simplified footer follows the minimalist luxury convention (similar to Celine, The Row). The massive SNOW creates a strong brand anchor at the page bottom.
 
-### Decision: Categories Section Layout (1 Big + 2 Small)
-- **Context:** The original plan was a horizontal scroll ("CollectionReveal"), but a static grid felt more editorial and performant.
-- **Choice:** 2 rows, each row: 1 large 1:1 image (left, `col-span-1`) + 2 small 1:1 images stacked in a column (right, `col-span-1`), `grid grid-cols-2 gap-1`. Mobile: same pattern stacked.
-- **Rationale:** The 1-big-2-small creates visual hierarchy within each category row — the large image anchors the row while the two smaller images provide variety. Static grid avoids the complexity and mobile UX issues of horizontal scroll.
+### Decision: Heart Color — Black to Navy
+- **Context:** The heart icon on ProductCards used black for stroke and fill.
+- **Choice:** Changed to navy `#0d1b2a` for both stroke and fill color.
+- **Rationale:** Navy ties the interactive save element into the brand's accent color palette, creating visual consistency with the footer and navbar.
 
-### Decision: Footer Subscribe Component
-- **Context:** The footer's newsletter column needed a more compelling subscribe experience than a simple "Think" heading + basic email input.
-- **Choice:** Integrated an adapted version of the subscribe component from olafhussein.com with the heading changed to "NEVER MISS A DROP" (brand-native, fashion "drop" language). Desktop: `24px` Switzer medium, `tracking-[0.05em]`. Mobile: `14px` compact. Subscribe button: white bg, black text, `tracking-[0.1em]`.
-- **Rationale:** "NEVER MISS A DROP" uses fashion-industry language ("drop" = new collection release) that resonates with the target audience. The olafhussein.com pattern is proven for luxury fashion newsletters. Button letter-spacing matches the editorial typography system.
+### Decision: Font Cleanup Audit
+- **Context:** The project had accumulated ~100 font files across 4 families. Only 2 families were actually used in production.
+- **Choice:** Removed Khand (24 files), Plein (4 files), and ~70 unused Switzer variant files. Kept only Switzer Regular/Medium/Bold (.woff2 + .woff) and Synonym Light/Regular/Medium/Bold. Also removed orphaned images (accessories.jpg, women-outerwear-big.jpg).
+- **Rationale:** Reduces project size by ~11-14 MB. No impact on production since removed fonts were not referenced in any production component.
 
-### Decision: Footer Navy Background
-- **Context:** The all-black footer felt heavy against the primarily black site. An accent color was needed to distinguish the footer as its own visual zone.
-- **Choice:** Deep navy `#0d1b2a` — dark enough to read near-black, but with a subtle blue undertone that feels richer and more luxurious.
-- **Rationale:** Navy is a staple of luxury fashion branding (think Saint Laurent, Celine). It differentiates the footer from the purely monochrome sections above without breaking the overall dark aesthetic. The same navy is used for the Navbar's scroll-state typography for subtle brand-wide accent continuity.
-
-### Decision: Footer Desktop Layout Restructure
-- **Context:** The original 4-column grid forced equal-width columns, making the subscribe form cramped and the link columns stretched.
-- **Choice:** Changed from `grid grid-cols-4` to a flex layout: subscribe block has fixed `max-w-lg` with `ml-20` left spacing; 4 link columns sit in a `ml-auto w-1/2` container with `grid-cols-4` sub-grid.
-- **Rationale:** Flex layout gives the subscribe section a defined maximum width (512px) so the form doesn't stretch awkwardly. The link columns take exactly 50% of the remaining width and are pushed to the right edge. This creates intentional editorial asymmetry.
-
-### Decision: Footer Mobile Restructure
-- **Context:** The mobile footer needed to work on small screens without overcrowding.
-- **Choice:** Three stacked zones: compact subscribe (14px heading, small input/button), 4 link columns in a 2x2 grid (Row 1: Collections + Customer, Row 2: Follow + Policies), and the half-clipped SNOW at the bottom. Columns sized to content with `w-fit` so they don't stretch.
-- **Rationale:** Stacking the subscribe and links creates a natural reading flow. The 2x2 grid keeps link columns readable without horizontal scrolling. `w-fit` ensures each column only takes the width of its longest word, creating a clean, intentionally compact layout.
-
-### Decision: Footer Link Columns — Policies Added
-- **Context:** The original 3 link columns had a 4th gap available in the flex container, and legal links (Terms, Privacy, etc.) were missing.
-- **Choice:** Added a "Policies" column with Terms of Service, Privacy Policy, Cookie Policy, and Warranty. All 4 columns now have 4 items each, sorted by word length (longest first) for visual rhythm.
-- **Rationale:** 4 columns of 4 items creates perfect visual symmetry. Sorting longest-to-shortest words aligns the column widths more consistently and prevents the eye from jumping between uneven line lengths. Legal links are essential for any e-commerce site.
-
-### Decision: Navbar Navy Scroll Text
-- **Context:** When scrolling past the Hero, the Navbar text turned pure black. With the introduction of navy as a brand accent, the scroll-state text felt like a natural integration point.
-- **Choice:** Changed `text-black` to `text-[#0d1b2a]` for both NavbarDesktop and NavbarMobile scroll-state, and `before:bg-[#0d1b2a]` for the underline hover.
-- **Rationale:** Navy text on white Navbar is more refined than pure black — it creates a quiet brand cue that aligns with the footer's navy background. The change is subtle enough that most users won't notice consciously, but it builds brand coherence across the full page experience.
-
-### Decision: Navbar Logo Visibility Over Hero
-- **Context:** The "SNOW" logo in the Navbar was always fully visible, creating visual conflict with the Hero's massive "SNOW" title — two "SNOW" texts on screen simultaneously.
-- **Choice:** Logo is `opacity-0` while the viewport is within the Hero section (scrollY < window.innerHeight), and `opacity-100` once scrolled past it. Same scroll threshold as the mode-switching logic.
-- **Rationale:** Eliminates duplicate brand text in the Hero viewport. The logo reappears as soon as the Hero exits, serving as a navigational anchor. Using the same `isPastHero` state avoids adding extra scroll listeners.
-
-### Decision: Intro Section — Curtain Reveal Overlay
-- **Context:** Needed a brand introduction that feels cinematic and editorial before revealing the main Hero. A fullscreen video overlay with a centered "snow" title that slides up to reveal the page.
-- **Choice:** Fullscreen video (`intro-bg.mp4`) with `bg-black/20` overlay for readability. "snow" title in Synonym Bold (lowercase, centered, `text-[clamp(6rem,18vw,20rem)]`). After 2.5s, the entire overlay slides up (`translateY(-100%)`) with a 1000ms `cubic-bezier(0.22,1,0.36,1)` ease. Logo fades in after 400ms.
-- **Rationale:** Synonym Bold was chosen for its editorial lowercase aesthetic — feels like a magazine cover line rather than a brand logo. The curtain reveal creates a theatrical, memorable entry. The 2.5s delay gives users time to read the text before the page reveals. Repeat on every visit (no sessionStorage) reinforces brand identity on each page load.
-
-### Decision: Synonym Font Registration
-- **Context:** The Intro section's "snow" title needed a typeface distinct from Switzer — more editorial and lowercase-friendly for the overlay treatment.
-- **Choice:** Added Synonym (Bold, Medium, Regular, Light) via self-hosted `@font-face` in globals.css. Bold (700) loaded as `.woff2` / `.ttf`, all other weights as `.woff2`. Theme entry: `--font-synonym: "Synonym", sans-serif;`.
-- **Rationale:** Synonym offers a refined, editorial character ideal for the lowercase "snow" treatment. Its weight range (Light through Bold) provides flexibility for future editorial use. Self-hosted for performance control with `font-display: swap`.
-
-### Decision: SeasonEdit Title Change ("SELECTION" → "Featured")
-- **Context:** Initially designed with "SELECTION" as the section header for the product grid, but the term felt overly generic and commercial for an editorial-first luxury site.
-- **Choice:** Changed to "Featured" — less aggressive, more editorial, implying curation rather than a hard sell.
-- **Rationale:** "Featured" aligns with the project's editorial-first philosophy. It suggests the products are hand-picked (curated) rather than simply displayed as a "selection." The softer tone matches the avant-garde, minimalist aesthetic.
+### Decision: Section Order on Homepage
+- **Context:** The sections needed a deliberate order that tells a brand story from top to bottom.
+- **Choice:** Navbar → Hero → Brand → Featured → Collections → Categories → Philosophy → About → Footer
+- **Rationale:** Brand statement right after Hero establishes visual identity immediately. Featured (products) follows as the first commercial section. Collections and Categories provide navigation structure. Philosophy and About offer brand depth as editorial closer-content before the Footer.
 
 ---
 
@@ -165,32 +136,32 @@
 
 ### Navbar Component Architecture
 - **Wrapper** (`Navbar.tsx`): Handles responsive detection (< 1024px = mobile), scroll tracking (isPastHero, isVisible), passes props down.
-- **Desktop variant** (`NavbarDesktop.tsx`): Full nav links (Men, Women, Accessories, Collections, Account, Saved, Cart), underline hover effects.
-- **Mobile variant** (`NavbarMobile.tsx`): Compact layout (SNOW, Menu, Cart).
+- **Desktop variant** (`NavbarDesktop.tsx`): Full nav links (ready to wear, accessories, collections, editorial, journal), underline hover effects.
+- **Mobile variant** (`NavbarMobile.tsx`): Compact layout with hamburger menu.
 - Both variants are stateless presentational components — all state lives in the wrapper.
 
 ### ProductCard Component Architecture
-- **Location:** `src/components/ui/ProductCard/ProductCard.tsx` — reusable, can be used across sections
+- **Location:** `src/components/ui/ProductCard/ProductCard.tsx`
 - **Props:** Accepts `Product` type (`id`, `name`, `price`, `imageUrl`)
 - **Image:** 3:4 ratio via padding trick, `object-cover` for consistent fill, neutral-900 background fallback
 - **Save state:** Local `useState` toggle on heart click, `stopPropagation` to prevent accidental navigation
 - **Hover:** Heart appears with `opacity-0 → opacity-100` + `scale-75 → scale-100`, `duration-300`
 
 ### CategoryCard Component Architecture
-- **Location:** `src/components/ui/CategoryCard/CategoryCard.tsx` — reusable, can be used across sections
+- **Location:** `src/components/ui/CategoryCard/CategoryCard.tsx`
 - **Props:** Accepts `Category` type (`id`, `name`, `imageUrl`)
 - **Image:** 3:4 ratio via padding trick, `object-cover`
 - **Overlay:** `bg-black/10` positioned absolutely over the full image
 - **Label:** Absolute positioned bottom-left with `z-10`, white Switzer medium, clamp-based responsive sizing
 
 ### Assets Directory Structure
-- **public/assets/images/categories/** — men.jpg, women.jpg, accessories.jpg
+- **public/assets/images/categories-new/** — 18 PNGs (6 categories × 3 images each): big + small-1 + small-2
+- **public/assets/images/categories/** — men.jpg, women.jpg (Accessories removed)
 - **public/assets/images/about/** — about-us.jpg
-- **public/assets/videos/** — hero-bg.mp4, about-us.mp4, brand-bg.mp4, intro-bg.mp4
+- **public/assets/images/season-edit/** — product-1.jpg through product-4.jpg
+- **public/assets/videos/** — hero-bg.mp4
 - **public/assets/fonts/synonym/** — Synonym-Bold.woff2, Synonym-Bold.ttf, Synonym-Medium.woff2, Synonym-Regular.woff2, Synonym-Light.woff2
 - **public/assets/fonts/switzer/** — Switzer-Bold.woff2, Switzer-Bold.woff, Switzer-Medium.woff2, Switzer-Medium.woff, Switzer-Regular.woff2, Switzer-Regular.woff
-- **public/assets/fonts/plein/** — Plein-Bold.woff2, Plein-Bold.woff, Plein-Regular.woff2, Plein-Regular.woff
-- **public/assets/fonts/khand/** — Khand-SemiBold.woff2, Khand-SemiBold.woff, Khand-Bold.woff2, Khand-Bold.woff
 
 ### Component Architecture: Section Wrapper Pattern
 - **Wrapper** (e.g., `Brand.tsx`, `Philosophy.tsx`): Handles responsive detection (`< 1024px`), renders Desktop or Mobile variant. Returns null during SSR to prevent hydration mismatch.
@@ -198,9 +169,8 @@
 - **Mobile variant** (e.g., `BrandMobile.tsx`): Adapted layout for screens < 1024px.
 - All variants are stateless presentational components.
 
-### Plein Font Registration
-- **Location:** Added to `globals.css` in two `@font-face` blocks: Bold (700) and Regular (400)
-- **Theme entry:** `--font-plein: "Plein", sans-serif;` in `@theme`
-- **Files:** `public/assets/fonts/plein/Plein-Bold.woff2` + `.woff`, `Plein-Regular.woff2` + `.woff`
-- **Usage:** `font-plein font-bold` exclusively for the Footer's massive half-clipped SNOW brand block at `text-[30vw]`. Brand section SNOW uses Switzer Bold at `text-[clamp(4rem,16vw,16rem)]` — not Plein.
-- **Removed:** Cleanup audit on 2026-07-27 — Plein was unused in production code (Footer was already changed to Synonym). Khand was also unused. ~100 font files and 2 orphaned images deleted. globals.css cleaned up. Synonym-Bold.woff2 added to Bold @font-face for better browser support.
+### Font Cleanup Summary
+- **Removed:** Khand (entire folder), Plein (entire folder), ~70 unused Switzer variant files (kept only Regular/Medium/Bold)
+- **Removed images:** accessories.jpg, women-outerwear-big.jpg (orphaned)
+- **globals.css:** Cleaned @font-face blocks — only Switzer (400/500/700) and Synonym (300/400/500/700) remain. Added Synonym-Bold.woff2 alongside existing .ttf for better browser coverage.
+- **Savings:** ~100 files, ~11-14 MB total

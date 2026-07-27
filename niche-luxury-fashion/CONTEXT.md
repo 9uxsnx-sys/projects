@@ -2,7 +2,7 @@
 
 ## 1. Project Identity
 - **Brand Name:** VANTAGE
-- **Logo/Label:** SNOW
+- **Logo/Label:** snow (lowercase)
 - **Niche:** Luxury Fashion / High-End Streetwear
 - **Target Audience:** High-net-worth individuals, fashion-forward Gen Z/Millennials in the GCC (Oman/Dubai) and Global markets.
 - **Vibe:** Avant-garde, minimalist, sophisticated, and fast (performance-focused).
@@ -12,106 +12,102 @@
 - **Our Solution:** An editorial-first homepage that blends high-end typography with lightning-fast Next.js performance and subtle "scroll-triggered" storytelling.
 
 ## 3. Visual Direction
-- **Typeface:** *Synonym* (Bold) for editorial "snow" branding across Hero (lowercase, bottom-left), Brand section (lowercase, centered), Navbar logo (lowercase), and the massive Footer brand block (uppercase, half-clipped). *Switzer* (Bold, Medium, Regular, Light) for section titles (Featured, COLLECTIONS, CATEGORIES), UI/navigation text, product cards, and the Philosophy pull-quote. *Plein* (Bold, Regular) was evaluated for the Footer but replaced with Synonym Bold after testing. *Khand* (SemiBold, Bold) was evaluated for headlines but replaced with Switzer Bold for a cleaner editorial look. Khand remains registered but unused in production.
-- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Deep Navy (`#0d1b2a`) for footer background and navbar scroll-state typography. Mode switching on scroll.
-- **Layout:** Asymmetric grids, large whitespace, fullscreen video hero, and editorial-first presentation.
+- **Typeface:** *Synonym* (Bold) for all "snow" branding across every section — Intro overlay, Hero (lowercase, bottom-left), Navbar logo (lowercase), Brand statement (lowercase), and Footer brand block (uppercase "SNOW"). *Switzer* (Bold, Medium, Regular, Light) for all section titles (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY), UI/navigation text, product cards, Philosophy copy, and "SEE MORE/MORE" links. *Khand* and *Plein* were evaluated and removed during a cleanup audit as neither was used in production code.
+- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Deep Navy (`#0d1b2a`) for footer background and navbar scroll-state background. Mode switching on scroll (transparent → navy bg with white text).
+- **Layout:** Full-width grids with 4px gaps, large typography using `clamp()`, alternating big-left/big-right pattern for Categories rows, and consistent edge padding (`px-1`).
 
 ## 4. Sections & Current Status
 
 | # | Section | Status |
 |---|---------|--------|
-| 1 | **Intro Overlay** — Fullscreen video overlay with centered "snow" in Synonym Bold (lowercase). Plays on every visit. Slides upward (curtain reveal) after ~2.5s | ✅ Complete |
-| 2 | **The Editorial Hero** — Fullscreen video background with lowercase "snow" title (Synonym Bold, bottom-left), zero letter-spacing | ✅ Complete |
-| 3 | **Responsive Navbar** — Fixed top, auto-hide/show on scroll, mode switching (transparent→white bg, white→navy text), logo hidden over hero | ✅ Complete |
-| 4 | **The Selection Edit** — "Featured" title. 4 products in full-width single-row grid (desktop) / single column (mobile). Product cards with 3:4 images, hover heart save, name + price | ✅ Complete |
-| 5 | **Collections** — "COLLECTIONS" title. 3 category cards (Men, Women, Accessories) in full-width 3-column grid (desktop) / single column (mobile). 3:4 images with 10% black overlay, category name bottom-left, "DISCOVER" bottom-right | ✅ Complete |
-| 6 | **About** — Two 3:4 blocks side by side (desktop) / stacked (mobile). Left: image with "ABOUT US" top-left + "DISCOVER" top-right, 20% overlay. Right: auto-playing video with 10% overlay. Zero gap between blocks | ✅ Complete |
-| 7 | **Brand** — Full-width 4:3 (desktop) / 3:4 (mobile) autoplay video with centered "snow" in Synonym Bold, 30% black overlay for readability | ✅ Complete |
-| 8 | **Philosophy** — Editorial pull-quote with Switzer medium, centered single paragraph, large opening quotation mark | ✅ Complete |
-| 9 | **Categories** — 1 big 1:1 image left + 1 column of 2 small 1:1 images right per row (desktop 2 rows, mobile 2 rows stacked). Category titles overlay. "CATEGORIES" header | ✅ Complete |
-| 10 | **Footer** — Navy bg (`#0d1b2a`). Desktop: Subscribe ("NEVER MISS A DROP" + email + white Subscribe button with navy hover) left-aligned with fixed width. 4 link columns (Collections, Customer, Follow, Policies) pushed right. Mobile: Compact subscribe + stacked 2x2 link grid + half-clipped SNOW. Massive "SNOW" in Synonym Bold clipped at bottom | ✅ Complete |
+| 1 | **Intro Overlay** — Fullscreen black overlay with centered lowercase "snow" in Synonym Bold. Click-to-dismiss with 1s opacity transition. | ✅ Complete |
+| 2 | **Hero Section** — Fullscreen MP4 video background with `bg-black/40` overlay, centered "VANTAGE" heading + lowercase "snow" (Synonym Bold), and bottom-left "snow" (Synonym Bold, `clamp(4rem,22vw,20rem)`, 0 tracking) | ✅ Complete |
+| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → navy `#0d1b2a` bg past hero). White text in both modes. Lowercase "snow" logo in Synonym Bold. | ✅ Complete |
+| 4 | **Brand Statement** — Full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text on white background. Right side: three link columns (Collections, Support, Connect). | ✅ Complete |
+| 5 | **Featured (SeasonEdit)** — "Featured" title + "SEE MORE" (right-aligned with underline). 4 products in `grid-cols-4` with 4px gap. Product cards: 3:4 images, hover heart save (navy `#0d1b2a`), name + price. | ✅ Complete |
+| 6 | **Collections** — "COLLECTIONS" title + "SEE MORE". 2 cards (Men, Women) in `grid-cols-2`. Cards: 3:4 ratio, 10% black overlay, category name bottom-left, "DISCOVER" bottom-right. Accessories card removed. | ✅ Complete |
+| 7 | **Categories** — "CATEGORIES" title + "SEE MORE". 6 category rows with alternating big-left/big-right 1:1 image pattern. Category titles below small images. All images use 1px white outline-offset to mask dark edges. | ✅ Complete |
+| 8 | **Philosophy** — "PHILOSOPHY" title + "SEE MORE". Two-column layout: 60% image (16:9) left, 40% text right. Switzer Light body copy. | ✅ Complete |
+| 9 | **About Us** — 3-column grid (image + text + image). Left/right panels: 3:4 ratio images with 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right. Center panel: brand copy with divider line. | ✅ Complete |
+| 10 | **Footer** — Navy `#0d1b2a` bg. Left: massive "SNOW" in Synonym Bold `clamp(4rem,20vw,20rem)` with `leading-[0.8]`. Right: 3 nav columns (Collections, Support, Connect). Bottom: copyright + legal links. | ✅ Complete |
 
 ## 5. Implemented Features
 
 ### Intro Overlay Section
-- **Fullscreen video background** — Auto-playing, muted, looping MP4 (`intro-bg.mp4`) with `bg-black/20` overlay for readability
-- **"snow" title** — Synonym Bold, centered, lowercase, `text-[clamp(6rem,18vw,20rem)]`, `tracking-[0.02em]`, `leading-[0.85]`
-- **Logo fade-in** — Appears after 400ms, 600ms opacity transition
-- **Curtain slide-up** — Entire overlay slides up (`translateY(-100%)`) after 2.5s, 1000ms duration, `cubic-bezier(0.22,1,0.36,1)` easing
-- **Repeat behavior:** Plays on every page visit (no sessionStorage restriction)
-- **Z-index:** `z-[9999]` — highest layer, above all page content
+- **Fullscreen black overlay** — Fixed position (`z-50`), pure black background
+- **"snow" title** — Synonym Bold, centered, lowercase, `text-[clamp(6rem,22vw,20rem)]`, 0 tracking
+- **Dismiss behavior:** Click anywhere to trigger opacity transition from 1→0 over 1000ms (`cubic-bezier(0.87,0,0.13,1)`). Cursor is pointer during display.
 - **Architecture:** `Intro.tsx` (wrapper with responsive detection) → `IntroDesktop.tsx` (≥1024px) or `IntroMobile.tsx` (<1024px). Desktop "snow" uses `clamp(6rem,22vw,20rem)`, mobile uses `clamp(6rem,26vw,16rem)`.
 
 ### Hero Section
-- **Fullscreen video background** — Auto-playing, muted, looping MP4 (`hero-bg.mp4`) with `bg-black/20` overlay for readability
-- **"snow" title** — Synonym Bold, positioned bottom-left (`bottom-6 left-6` desktop / `bottom-4 left-4` mobile), desktop `text-[14vw]` with `tracking-[0px]`, mobile `text-[20vw]` with `tracking-[0px]`, `leading-[0.85]`
-- **Responsive:** Desktop uses `h-screen`, mobile uses `min-h-[100dvh]` for proper viewport handling
+- **Fullscreen video background** — Auto-playing, muted, looping MP4 with `bg-black/40` overlay for readability
+- **"VANTAGE" heading** — Centered, Switzer Bold, `clamp(3rem,8vw,8rem)`, white, 0 tracking
+- **Centered "snow" title** — Synonym Bold, `clamp(3rem,15vw,15rem)`, white, 0 tracking
+- **Bottom-left "snow" title** — Synonym Bold, `clamp(4rem,22vw,20rem)`, white, 0 tracking, positioned `bottom-6 left-6`
+- **Architecture:** `Hero.tsx` → `HeroDesktop.tsx` (≥1024px) | `HeroMobile.tsx` (<1024px). Mobile bottom-left: `bottom-4 left-4`.
 
 ### Navbar
-- **Fixed positioning** — Always visible at top of viewport
-- **Scroll-based mode switching:** Transparent background + white text over Hero → White background + navy (`#0d1b2a`) text past Hero (switches precisely at `scrollY >= window.innerHeight`)
-- **Auto-hide/show:** Navbar slides up out of view on scroll down, slides back into view on scroll up (tracked via scroll direction)
-- **Fixed height:** Desktop `h-14` (56px), Mobile `h-10` (40px) — with flex-centered SNOW logo. Logo hidden over hero (`opacity-0`), visible past hero (`opacity-100`).
-- **Smooth transitions:** All color and position changes use `transition-all duration-300`
+- **Fixed positioning** — Always visible at top of viewport (`z-40`)
+- **Scroll-based mode switching:** Transparent background + white text over Hero → Navy (`#0d1b2a`) background + white text past Hero (switches precisely at `scrollY >= window.innerHeight`)
+- **Layout:** Flexbox row with `px-6 py-4`. Left: lowercase "snow" logo (Synonym Bold, 24px). Right: 5 nav links (ready to wear, accessories, collections, editorial, journal) with hover underline animation (300ms).
+- **Smooth transitions:** All color changes use `transition-all duration-300`
 
-### SeasonEdit Section
-- **Title:** "Featured" in Switzer medium, large clamp-based sizing, tight letter-spacing (`0.01em`)
-- **Desktop layout:** Full-width 4-column grid, 1 row of 4 products, `gap-x-1` (4px) between columns and matching edge padding (`px-1`)
-- **Mobile layout:** Single-column vertical stack, `gap-8` between products, same edge padding (`px-1`)
+### Brand Statement Section
+- **Background:** Pure white
+- **Content:** Massive lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text
+- **Layout:** Full-width, left-aligned, `pt-24 pb-4`, with right-side column for three nav link groups
+
+### SeasonEdit Section (Featured)
+- **Title row:** "Featured" (Switzer Medium, `clamp(3.5rem,10vw,10rem)`) left + "SEE MORE" (Switzer Semi-bold, 60% black, underline, right-aligned with `mr-8`)
+- **Desktop layout:** Full-width 4-column grid (`grid-cols-4`), 1 row of 4 products, `gap-1` (4px) between columns and matching edge padding (`px-1`)
+- **Products:** 4 fashion items with 3:4 images (`.jpg`), names in Switzer Regular, prices in Switzer Light
+- **Heart save:** Lucide `Heart` icon, navy `#0d1b2a`, appears on hover with opacity + scale transition, toggles fill on click
 
 ### Collections Section
-- **Title:** "COLLECTIONS" in Switzer medium, same sizing + tracking as SeasonEdit
-- **Desktop layout:** Full-width 3-column grid, `gap-1` between cards, matching `px-1` edge padding
-- **Mobile layout:** Single-column vertical stack, `gap-4` between cards
-- **Category cards:** 3:4 ratio, custom images (men.jpg, women.jpg, accessories.jpg), 10% black overlay, category name bottom-left in white Switzer medium, "DISCOVER" bottom-right in Switzer light
-
-### About Section
-- **Desktop layout:** `grid grid-cols-2` — image left, video right, zero gap between blocks, `px-1` edge padding
-- **Mobile layout:** Stacked vertically, same edge padding
-- **Image block (left):** Custom image (about-us.jpg), 20% black overlay, "ABOUT US" (large) top-left + "DISCOVER" (small, loose tracking) top-right
-- **Video block (right):** Custom video (about-us.mp4), auto-play muted loop, 10% black overlay
-
-### Brand Section
-- **Desktop layout:** Full-width 4:3 aspect ratio video (`aspect-video`), centered "snow" in Synonym Bold `text-[clamp(4rem,16vw,16rem)]`, 30% black overlay (`bg-black/30`) for readability
-- **Mobile layout:** 3:4 aspect ratio video (`aspect-[3/4]`), same centered "snow" + overlay
-- **Video:** Custom MP4 (`brand-bg.mp4`), auto-play muted loop
-- **Font:** Synonym Bold for the centered "snow" brand statement — lowercase editorial treatment matching the Intro and Hero
-
-### Philosophy Section
-- **Desktop layout:** Max-width container (`max-w-[90%]`), centered single editorial pull-quote with large opening quotation mark
-- **Mobile layout:** Same paragraph style, responsive padding, slightly larger text for mobile readability
-- **Typography:** Switzer medium, large clamp-based opening quote (`text-[clamp(3rem,10vw,10rem)]` desktop / `text-[clamp(3rem,12vw,6rem)]` mobile), single centered paragraph
-- **Background:** White background (`bg-white`), black text
+- **Title row:** "COLLECTIONS" + "SEE MORE" (same styling as Featured)
+- **Desktop layout:** 2-column grid (`grid-cols-2`), `gap-1` between cards
+- **Category cards:** 2 cards (Men, Women), 3:4 ratio, custom images, 10% black overlay, category name bottom-left (Switzer Medium, `clamp(1.8rem,4vw,3.5rem)`), "DISCOVER" bottom-right (Switzer Light, loose tracking)
 
 ### Categories Section
-- **Title:** "CATEGORIES" in Switzer medium, same sizing + tracking as other section headers
-- **Desktop layout:** 2 rows, each row has 1 large 1:1 image (left, `col-span-1`) + 2 small 1:1 images (right, stacked in a column, `col-span-1`), `grid grid-cols-2 gap-1`
-- **Mobile layout:** 2 rows stacked vertically, same 1-big-2-small per row
-- **Images:** Custom category photos with text overlays, uniform 1:1 aspect ratio
-- **Edge padding:** `px-1` consistent with other sections
+- **Title row:** "CATEGORIES" + "SEE MORE" (same styling)
+- **Desktop layout:** 6 category rows stacked vertically, each with 4px gap. Alternating pattern:
+  - Odd rows (1,3,5): Big 1:1 image left, two small 1:1 images stacked right
+  - Even rows (2,4,6): Two small 1:1 images stacked left, big 1:1 image right
+- **Category titles:** Below the two small images, Switzer Medium, `clamp(3rem,7vw,7rem)`, pure black, `leading-[1]`
+- **Images:** All PNGs with white background (`/assets/images/categories-new/`). 1px white outline (`outline-1 outline-white outline-offset-[-1px]`) on every image to mask baked-in dark edges.
+- **6 categories:** Women's Outerwear & Coats, Men's Outerwear & Coats, Blouses & Tops, Dresses, Suits, Accessories
+
+### Philosophy Section
+- **Title row:** "PHILOSOPHY" + "SEE MORE" (same styling)
+- **Desktop layout:** Flex row with `gap-1`. Left 60%: 16:9 image (`object-cover`) with 10% black overlay. Right 40%: text content with heading + body copy in Switzer Light.
+- **Background:** White
+
+### About Section
+- **Desktop layout:** 3-column grid (`grid-cols-3`, `gap-1`)
+- **Panel 1 (left):** 3:4 image, 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right
+- **Panel 2 (center):** Text content — badge ("The Studio"), brand description (Switzer Light, `clamp(1.25rem,2vw,2.5rem)`), divider line, brand paragraph
+- **Panel 3 (right):** Same image as panel 1, identical styling
 
 ### Footer Section
-- **Desktop layout:** Flex layout — subscribe block (fixed width `max-w-lg`, left-spaced with `ml-20`), 4 link columns pushed right (`ml-auto w-1/2`)
-- **Subscribe:** "NEVER MISS A DROP" heading (`24px`, Switzer medium, `tracking-[0.05em]`), editorial paragraph, email input (`placeholder="Email address"`) + Subscribe button (white bg, black text, `tracking-[0.1em]`, `hover:bg-[#0d1b2a]` navy fill)
-- **Link columns (4):** Collections (Accessories, The Archive, Women, Men), Customer (Shipping, Contact, Returns, FAQ), Follow (Instagram, Pinterest, YouTube, TikTok), Policies (Terms of Service, Privacy Policy, Cookie Policy, Warranty) — all sorted longest word first, uppercase label + link list
-- **Mobile layout:** Compact subscribe block at top, 4 columns in 2x2 stacked grid (row 1: Collections + Customer, row 2: Follow + Policies), sized to content (`w-fit`), left-aligned. SNOW at bottom with `-mb-[6vh]` clip
-- **SNOW brand block:** Massive `text-[30vw]` (desktop) / `text-[28vw]` (mobile) in Synonym Bold, half-clipped bottom with `-mb-[20vh]` (desktop) / `-mb-[6vh]` (mobile), `overflow-hidden`
-- **Background:** Deep navy (`bg-[#0d1b2a]`)
+- **Background:** Deep navy (`bg-[#0d1b2a]`), `px-16 pt-24 pb-4`
+- **Top row:** Flex layout. Left: massive "SNOW" (Synonym Bold, `clamp(4rem,20vw,20rem)`, white, `leading-[0.8]`). Right: 3 nav columns (Collections, Support, Connect) with uppercase headings (Switzer Bold, wide tracking) and lowercase link lists.
+- **Bottom row:** Copyright + legal links (Privacy Policy, Terms of Service), separated by white divider line
+- **All text:** Pure white
 
 ### ProductCard Component
-- **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick
-- **Save heart:** Lucide `Heart` icon, appears on hover (opacity + scale transition), toggles fill on click, positioned top-right
-- **Info:** Name (Switzer normal) + Price (Switzer light) — flush with zero gap, left-aligned to image edge
+- **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick, `bg-neutral-900` fallback
+- **Save heart:** Lucide `Heart` icon, navy `#0d1b2a` stroke + fill, appears on hover (`opacity-0→100`, `scale-75→100`, 300ms), positioned top-right
+- **Info:** Name (Switzer Regular, neutral-900, `tracking-wide`) + Price (Switzer Light, neutral-600) — flush zero gap, left-aligned to image edge
 
 ### CategoryCard Component
-- **Image:** 3:4 portrait aspect ratio, `object-cover`
+- **Image:** 3:4 portrait aspect ratio, `object-cover`, `bg-neutral-900`
 - **Overlay:** 10% black (`bg-black/10`) for readability
-- **Label:** Category name bottom-left, white Switzer medium, clamp-based responsive sizing (`clamp(1.8rem,4vw,3.5rem)`)
-- **DISCOVER:** "DISCOVER" text bottom-right, white Switzer light, loose tracking (`0.15em`), uppercase
+- **Label:** Category name bottom-left, white Switzer Medium, `clamp(1.8rem,4vw,3.5rem)`
+- **DISCOVER:** "DISCOVER" bottom-right, white Switzer Light, `tracking-[0.15em]`, uppercase
 - **Location:** `src/components/ui/CategoryCard/`
 
 ## 6. Technical Goals
 - 100% Mobile Responsive (Critical for Fashion).
-- Framer Motion for "Catwalk-style" entrance animations (installed, pending use).
+- Font cleanup: only Synonyn and Switzer remain; Khand and Plein removed.
 - Image/video optimization using Next.js `<Image />` and native `<video>` for instant loading.
 - Auto-hide Navbar pattern (scroll-down-hide, scroll-up-show) common in luxury e-commerce.
