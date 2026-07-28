@@ -61,7 +61,7 @@ export default function CheckoutDesktop() {
 
   if (items.length === 0) {
     return (
-      <section className="bg-white min-h-screen flex items-center justify-center px-6 pt-14">
+      <section className="bg-white min-h-screen flex items-center justify-center px-6 pt-10">
         <div className="text-center">
           <ShoppingBag size={48} className="text-neutral-200 mx-auto mb-4" strokeWidth={1} />
           <p className="text-sm font-switzer font-normal text-neutral-400 mb-6">
@@ -85,7 +85,7 @@ export default function CheckoutDesktop() {
     "block text-xs font-switzer font-medium text-neutral-500 tracking-[0.05em] uppercase mb-1";
 
   return (
-    <section className="bg-white min-h-screen pt-14">
+    <section className="bg-white min-h-screen pt-10">
       <div className="flex">
         {/* ─── Left: Form ─── */}
         <div className="w-3/5 min-h-screen px-12 pt-16 pb-24">

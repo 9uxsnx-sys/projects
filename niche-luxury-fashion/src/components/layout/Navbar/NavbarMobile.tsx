@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useCart } from "@/contexts/CartContext";
+import { useSaved } from "@/contexts/SavedContext";
 
 export default function NavbarMobile({
   isPastHero,
@@ -11,12 +12,13 @@ export default function NavbarMobile({
   isVisible: boolean;
 }) {
   const { itemCount, setCartOpen } = useCart();
+  const { savedCount } = useSaved();
   const textColor = "text-white";
   const bgColor = isPastHero ? "bg-[#284468]" : "bg-transparent";
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-10 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+      className={`fixed top-0 left-0 right-0 z-50 h-9 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="flex items-center justify-between px-6 w-full">
         {/* Logo - Left — hidden over hero, visible past hero */}
@@ -29,8 +31,14 @@ export default function NavbarMobile({
           snow
         </a>
 
-        {/* Right: Menu + Cart */}
+        {/* Right: Saved + Menu + Cart */}
         <div className="flex items-center gap-5">
+          <a
+            href="#"
+            className={`${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium transition-colors duration-300`}
+          >
+            Saved ({savedCount})
+          </a>
           <a
             href="#"
             className={`${textColor} text-xs tracking-[1.5px] uppercase font-switzer font-medium transition-colors duration-300`}

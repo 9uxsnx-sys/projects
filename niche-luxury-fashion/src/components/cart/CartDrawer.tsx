@@ -26,7 +26,7 @@ export default function CartDrawer() {
         }`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-16 pb-4 border-b border-neutral-100 flex-shrink-0">
+        <div className="flex items-center justify-between px-6 pt-14 pb-4 border-b border-neutral-100 flex-shrink-0">
           <h2 className="text-base font-switzer font-medium text-black tracking-[0.05em] uppercase">
             Bag
             <span className="text-neutral-400 font-normal ml-1">
@@ -35,9 +35,9 @@ export default function CartDrawer() {
           </h2>
           <button
             onClick={() => setCartOpen(false)}
-            className="hover:opacity-60 transition-opacity"
+            className="w-8 h-8 flex items-center justify-center text-neutral-400 hover:text-black transition-colors rounded-full hover:bg-neutral-50"
           >
-            <X size={18} className="text-neutral-500" />
+            <X size={16} strokeWidth={1.5} />
           </button>
         </div>
 
@@ -56,7 +56,7 @@ export default function CartDrawer() {
             </button>
           </div>
         ) : (
-          <div className="flex-1 overflow-y-auto px-6 py-6">
+          <div className="flex-1 overflow-y-auto flex flex-col px-6 py-6">
             <div className="space-y-6">
               {items.map((item) => {
                 const key = `${item.id}-${item.size}-${item.color}`;
@@ -147,30 +147,28 @@ export default function CartDrawer() {
                 );
               })}
             </div>
-          </div>
-        )}
 
-        {/* Footer */}
-        {items.length > 0 && (
-          <div className="flex-shrink-0 px-6 py-5 border-t border-neutral-100 bg-white">
-            <div className="flex items-center justify-between mb-5">
-              <span className="text-sm font-switzer font-medium text-black uppercase tracking-[0.05em]">
-                Subtotal
-              </span>
-              <span className="text-base font-switzer font-medium text-black">
-                {subtotal}
-              </span>
+            {/* Checkout footer — stays at bottom when items are few, scrolls when list is long */}
+            <div className="mt-auto pt-8 pb-4 border-t border-neutral-100">
+              <div className="flex items-center justify-between mb-5">
+                <span className="text-sm font-switzer font-medium text-black uppercase tracking-[0.05em]">
+                  Subtotal
+                </span>
+                <span className="text-base font-switzer font-medium text-black">
+                  {subtotal}
+                </span>
+              </div>
+              <Link
+                href="/checkout"
+                onClick={() => setCartOpen(false)}
+                className="block w-full py-3.5 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-[#284468] text-white hover:opacity-90 transition-opacity text-center"
+              >
+                Checkout
+              </Link>
+              <p className="mt-3 text-xs font-switzer font-normal text-neutral-400 text-center">
+                Free shipping on all orders
+              </p>
             </div>
-            <Link
-              href="/checkout"
-              onClick={() => setCartOpen(false)}
-              className="block w-full py-3.5 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-[#284468] text-white hover:opacity-90 transition-opacity text-center"
-            >
-              Checkout
-            </Link>
-            <p className="mt-3 text-xs font-switzer font-normal text-neutral-400 text-center">
-              Free shipping on all orders
-            </p>
           </div>
         )}
       </div>

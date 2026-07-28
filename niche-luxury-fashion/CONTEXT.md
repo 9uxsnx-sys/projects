@@ -30,11 +30,11 @@
 | 8 | **Philosophy** — "PHILOSOPHY" title + "SEE MORE". Two-column layout: 60% image (16:9) left, 40% text right. Switzer Light body copy. | ✅ Complete |
 | 9 | **About Us** — 3-column grid (image + text + image). Left/right panels: 3:4 ratio images with 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right. Center panel: brand copy with divider line. | ✅ Complete |
 | 10 | **Footer** — Navy `#284468` bg. Left: massive "SNOW" in Synonym Bold `clamp(4rem,20vw,20rem)` with `leading-[0.8]`. Right: 3 nav columns (Collections, Support, Connect). Bottom: copyright + legal links. | ✅ Complete |
-| 11 | **Product Detail Desktop** — Sticky 50/50 layout. Left: stacked 3:4 images scroll normally. Right: sticky product info (name, price, color/size selectors, Add to Cart) + 5-section accordion (Description, Details, Size & Fit, Material & Care, Shipping & Returns). Accordion uses +/× icon with smooth open animation. Color swatch borders match own color when selected. | ✅ Complete |
+| 11 | **Product Detail Desktop** — Sticky 50/50 layout. Left: stacked 3:4 images scroll normally. Right: sticky product info (name, price, description always visible, color/size selectors, Add to Cart) + 4-section accordion (Details, Size & Fit, Material & Care, Shipping & Returns). Description moved out of accordion to sit between tax note and divider (always visible). Color swatches changed from circles to squares with self-matching border on select. Size buttons changed to squares (w-11 h-11) with smaller text (text-xs). Right panel padding increased to `pl-12 pr-32`. | ✅ Complete |
 | 12 | **Suggested Products** — "You May Also Like" section below product detail, 4 ProductCards in a row, same grid style as SeasonEdit. | ✅ Complete |
 | 13 | **Dynamic Product Routing** — `/products/[slug]` dynamic route handles all product detail pages. Shared product data in `src/data/products.ts`. All 4 SeasonEdit products link to their respective detail pages. | ✅ Complete |
-| 14 | **Product Listing Page** — SSENSE-inspired layout with Filter drawer and Sort dropdown. 4-column grid of ProductCards with category title bar, product count, and bottom spacing. | ✅ Complete |
-| 15 | **Cart System** — React Context cart state with global `useCart()` hook. Right slide-in drawer with item list, quantity controls, subtotal + Checkout. Live cart count in navbar. | ✅ Complete |
+| 14 | **Product Listing Page** — SSENSE-inspired layout with right-drawer filter (30% width, 340-500px). Top bar: "Ready to Wear" title + Filters button (with toggle count) + Sort by button. Right-drawer: Category selector (dot indicator multi-select per collection with toggle expand), Colour (text row with `·` separator, multi-select), Size (text row with `·` separator, multi-select), Price Range (underline-style inputs), Sort By (dot indicator single-select), Clear + Apply buttons inline. 4-column grid of ProductCards. | ✅ Complete |
+| 15 | **Cart System** — React Context cart state with global `useCart()` hook. Right slide-in drawer with item list, quantity controls, subtotal + Checkout. Live cart count in navbar. **SavedContext** — React Context wishlist state with `toggleSave()`, `isSaved()`, `savedCount`. Live saved count in navbar. Heart toggle on ProductCards. | ✅ Complete |
 | 16 | **Checkout Page** — Single-page checkout at `/checkout`. Form left (Contact, Shipping, Payment), order summary right (sticky). Underline-style inputs, custom country dropdown, place order flow. | ✅ Complete |
 
 ## 5. Implemented Features
@@ -55,8 +55,11 @@
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport (`z-40`)
 - **Scroll-based mode switching:** Transparent background + white text over Hero → Navy (`#284468`) background + white text past Hero (switches precisely at `scrollY >= window.innerHeight`)
-- **Layout:** Flexbox row with `px-6 py-4`. Left: lowercase "snow" logo (Synonym Bold, 24px). Right: nav links (Men, Women, Accessories, Collections, Account, Saved, Cart) with hover underline animation (300ms).
-- **Cart button:** Opens right slide-in drawer. Live count from `CartContext` — updates instantly when items are added/removed.
+- **Layout:** Flexbox row with `px-12`. Left: lowercase "snow" logo (Synonym Bold, 28px). Right: nav links (New Arrivals, Women, Men, The Edit, Journal) each with hover underline animation (300ms), followed by Saved (live count from `useSaved()`) and Cart (live count from `useCart()`).
+- **Mega menu:** Hovering New Arrivals/Women/Men/The Edit/Journal opens a unified navy (`bg-[#284468]`) dropdown panel spanning the full links block width. Content changes based on hovered link. Max 4 rows per column — longer lists (Women, Men with 7 items each) split into 2 columns. Items use `text-white` with `hover:text-white/70`. Saved and Cart have no dropdown.
+- **Height:** `h-10` (40px) desktop, `h-9` mobile.
+- **Cart button:** Opens right slide-in drawer. Live count from `CartContext`.
+- **Saved button:** Shows live count from `SavedContext`. Links to `#`.
 - **Smooth transitions:** All color changes use `transition-all duration-300`
 
 ### Brand Statement Section
@@ -103,7 +106,7 @@
 
 ### ProductCard Component
 - **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick, `bg-neutral-900` fallback
-- **Save heart:** Lucide `Heart` icon, navy `#0d1b2a` stroke + fill, appears on hover (`opacity-0→100`, `scale-75→100`, 300ms), positioned top-right
+- **Save heart:** Lucide `Heart` icon, navy `#0d1b2a` stroke + fill, appears on hover (`opacity-0→100`, `scale-75→100`, 300ms), positioned top-right. Uses `SavedContext.toggleSave(product.id)` with `preventDefault()` + `stopPropagation()` to prevent accidental navigation.
 - **Info:** Name (Switzer Regular, neutral-900, `tracking-wide`) + Price (Switzer Light, neutral-600) — flush zero gap, left-aligned to image edge
 - **Link support:** Accepts optional `href` prop. When present, card wraps in `<Link>` for client-side navigation. Used in SeasonEdit (all 4 products link to their detail pages).
 
@@ -111,9 +114,10 @@
 - **Location:** `src/components/sections/product-detail/ProductDetailDesktop.tsx`
 - **Props:** Accepts `ProductDetail` type (from `@/data/products`)
 - **Layout:** 50/50 flex split. Left: 5 stacked 3:4 images with `outline-offset-[-1px]` to mask dark edges. Right: sticky info panel (`sticky top-0 min-h-screen`)
-- **Top section (fixed, never shrinks):** Product name (clamp 1.5-2.5rem, font-medium, black), price (text-2xl, font-medium, neutral-600), tax note, divider, color selector (swatches with self-matching border on select), size selector (navy `#284468` on select, navy hover border on unselected), quantity + Add to Cart button
+- **Top section (fixed, never shrinks):** Product name (clamp 1.5-2.5rem, font-medium, black), price (text-2xl, font-medium, neutral-600), tax note, **description always visible** (between tax note and divider), divider, color selector (square swatches with self-matching border on select, scale-110 on selected), size selector (square buttons w-11 h-11, text-xs, navy fill on select, navy hover border), quantity + Add to Cart button
+- **Right padding:** Increased from `px-12` to `pl-12 pr-32` for cleaner spacing from screen edge
 - **Fixed spacer:** 80px (`h-20`) gap between Add to Cart and accordion section
-- **Accordion section:** 5 items using native `<details>` elements — Description, Details (bullet list), Size & Fit, Material & Care, Shipping & Returns. Custom +/× icon with group-open:rotate-45 transition. CSS keyframe animation for smooth open (opacity + translateY).
+- **Accordion section:** 4 items using native `<details>` elements — Details (bullet list), Size & Fit, Material & Care, Shipping & Returns (Description removed from accordion, now always visible). Custom +/× icon with group-open:rotate-45 transition. CSS keyframe animation for smooth open (opacity + translateY).
 - **Data:** Product content lives in `src/data/products.ts` with all 4 products
 
 ### SuggestedProducts Component
@@ -130,24 +134,25 @@
 
 ### ProductListingDesktop Component
 - **Location:** `src/components/sections/product-listing/ProductListingDesktop.tsx`
-- **Layout:** Full-width section with category title ("Dresses"), Filter button, Sort dropdown (Newest, Price Low-High, Price High-Low), product count line, 4-column grid of ProductCards, `pb-24` bottom spacing
-- **Filter drawer:** Left slide-in (`fixed`, `w-80`), overlay backdrop. Contains Size pills (XS-XL, navy fill on select), Color swatches (self-matching border), Price Range radio buttons. Clear all filters at bottom.
-- **Sort dropdown:** Absolute positioned below Sort by button, 3 options, closes on outside click via `useRef` + `mousedown` listener
-- **Data:** Maps `products` from `@/data/products` into `Product[]` format (cover image + slug href)
-- **Body scroll lock:** `document.body.style.overflow = "hidden"` when filter drawer is open
+- **Layout:** Full-width section with "Ready to Wear" title (clamp 3.5-10rem), Filters button (SlidersHorizontal icon + toggle count), Sort by button (ArrowUpDown icon), product count line, 4-column grid of ProductCards, `pb-24` bottom spacing
+- **Filter drawer:** Right slide-in (`fixed`, `30vw`, min 340px, max 500px), overlay backdrop. Contains: Category selector (Women/Men collections with toggle expand, dot indicator multi-select per subcategory), Colour (text row with `·` separator, multi-select), Size (text row with `·` separator, multi-select), Price Range (underline-style inputs), Sort By (dot indicator single-select for Newest/Price Low-High/Price High-Low), Clear + Apply buttons inline below Sort By.
+- **Both "Filters" and "Sort by"** buttons open the same right drawer — sort options appear as a section inside the drawer.
+- **Drawer header:** "Filters" title + X close button (rounded-full hover:bg-neutral-50). No "Clear all" in header.
+- **Body scroll lock:** `document.body.style.overflow = "hidden"` when drawer is open
 
-### Cart System (CartContext + CartDrawer)
-- **Context:** `src/contexts/CartContext.tsx`
-- **Provider:** `CartProvider` wraps entire app via `CartWrapper` in root layout
+### Cart System (CartContext + SavedContext + CartDrawer)
+- **CartContext:** `src/contexts/CartContext.tsx`
+- **SavedContext:** `src/contexts/SavedContext.tsx` — Same pattern as CartContext. Tracks `savedIds: number[]`. Provides `toggleSave()`, `isSaved()`, `savedCount`.
+- **Provider:** `SavedProvider` + `CartProvider` wrap the app via `CartWrapper` (SavedProvider outer, CartProvider inner)
 - **State:** `items: CartItem[]` where each item has id, slug, name, price, priceValue (number), imageUrl, size, color, quantity
 - **Derived:** `itemCount` (total quantity), `subtotal` (computed string)
 - **Actions:** `addItem()` (merges duplicates by id+size+color key), `removeItem()`, `updateQuantity()`, `clearCart()`
 - **Drawer open/close:** `isCartOpen` / `setCartOpen()` — exposed globally
 - **CartDrawer:** `src/components/cart/CartDrawer.tsx`
-- **Layout:** Fixed right slide-in (`w-[420px]`), overlay backdrop. Header with "Bag (N)" + X close.
+- **Layout:** Fixed right slide-in (`w-[420px]`), overlay backdrop. Header with "Bag (N)" + X close (rounded-full hover:bg-neutral-50). Header padding `pt-14`.
 - **Item row:** 80×100px image (links to product), name, size/color, −/+/qty controls, line price, remove X button
 - **Empty state:** ShoppingBag icon + "Your bag is empty" + "Continue Shopping" link
-- **Footer (non-empty):** Subtotal + "Checkout" Link (navigates to `/checkout`, closes drawer) + "Free shipping" note
+- **Checkout footer:** Inside scrollable area (not fixed), uses `mt-auto` to stay at bottom when items are few, scrolls with long lists. Subtotal + "Checkout" Link (navigates to `/checkout`, closes drawer) + "Free shipping" note
 - **Body scroll lock** applied when open
 
 ### CheckoutDesktop Component

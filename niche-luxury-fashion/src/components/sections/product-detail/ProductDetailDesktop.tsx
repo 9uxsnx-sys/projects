@@ -47,7 +47,7 @@ export default function ProductDetailDesktop({
 
         {/* ─── Right: Sticky Info ─── */}
         <div className="w-1/2">
-          <div className="sticky top-0 min-h-screen flex flex-col pt-20 pb-16 px-12">
+          <div className="sticky top-0 min-h-screen flex flex-col pt-20 pb-16 pl-12 pr-32">
             {/* Top section — product identity (fixed, never shrinks) */}
             <div className="flex-shrink-0">
               {/* Product name */}
@@ -63,6 +63,11 @@ export default function ProductDetailDesktop({
               {/* Tax note */}
               <p className="mt-1 text-xs font-switzer font-normal text-neutral-400">
                 + tax. Free shipping on all orders.
+              </p>
+
+              {/* Description — always visible */}
+              <p className="mt-5 text-sm font-switzer font-normal text-neutral-600 leading-relaxed">
+                {product.description}
               </p>
 
               {/* ─── Divider ─── */}
@@ -83,7 +88,7 @@ export default function ProductDetailDesktop({
                     <button
                       key={color.name}
                       onClick={() => setSelectedColor(color.name)}
-                      className={`w-8 h-8 rounded-full border-2 transition-all duration-200 ${
+                      className={`w-8 h-8 border-2 transition-all duration-200 ${
                         selectedColor === color.name
                           ? "scale-110"
                           : "border-neutral-200 hover:border-neutral-400"
@@ -116,7 +121,7 @@ export default function ProductDetailDesktop({
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-5 py-2.5 text-sm font-switzer font-medium border transition-all duration-200 bg-white text-black border-neutral-300`}
+                      className={`w-11 h-11 flex items-center justify-center text-xs font-switzer font-medium border transition-all duration-200 bg-white text-black border-neutral-300`}
                       style={
                         selectedSize === size
                           ? { backgroundColor: sizeColors[size], borderColor: sizeColors[size], color: "#ffffff" }
@@ -205,19 +210,6 @@ export default function ProductDetailDesktop({
 
             {/* Bottom section — accordion-style info */}
             <div className="space-y-0">
-              {/* Description */}
-              <details className="accordion-item group border-t border-neutral-200 py-4">
-                <summary className="flex items-center justify-between cursor-pointer list-none text-xs font-switzer font-medium text-black tracking-[0.05em] uppercase">
-                  Description
-                  <span className="text-neutral-400 text-2xl group-open:rotate-45 transition-transform duration-300 select-none leading-none">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-3 text-sm font-switzer font-normal text-neutral-600 leading-relaxed">
-                  {product.description}
-                </p>
-              </details>
-
               {/* Details */}
               <details className="accordion-item group border-t border-neutral-200 py-4">
                 <summary className="flex items-center justify-between cursor-pointer list-none text-xs font-switzer font-medium text-black tracking-[0.05em] uppercase">

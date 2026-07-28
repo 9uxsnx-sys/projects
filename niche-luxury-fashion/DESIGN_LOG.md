@@ -31,6 +31,17 @@
 - [x] Product Listing Page — SSENSE-inspired filter drawer + sort dropdown + 4-col grid
 - [x] Cart System — CartContext + right slide-in drawer + live navbar count
 - [x] Checkout Page — single-page checkout with Contact/Shipping/Payment form + order summary
+- [x] Saved/Wishlist System — SavedContext with toggleSave/isSaved, live count in navbar, heart toggle on ProductCard
+- [x] Product Listing Filter Redesign — Right-drawer filter (30vw, 340-500px), dot-indicator multi-select categories, text-row colour/size, underline price range, sort inside drawer
+- [x] ProductDetail Description Placement — Moved description out of accordion to sit between price/tax note and divider (always visible)
+- [x] ProductDetail Color Swatches — Changed from circles to squares, self-matching border on select
+- [x] ProductDetail Size Buttons — Changed to squares (w-11 h-11), smaller text (text-xs)
+- [x] ProductDetail Right Padding — Increased from px-12 to pl-12 pr-32 for cleaner spacing from screen edge
+- [x] Navbar Link Restructure — Removed Accessories, Collections, Account. Added New Arrivals, The Edit, Journal. Kept Men, Women, Saved (live count), Cart (live count)
+- [x] Navbar Mega Menu — Unified navy block (bg-[#284468]) dropdown under links, content changes on hover, max 4 rows per column with 2-column split for longer lists
+- [x] Navbar Height — Finalized at h-10 (40px) with h-9 for mobile
+- [x] Cart Drawer Refinements — Header padding pt-16→pt-14, refined close button (rounded-full hover:bg-neutral-50), checkout footer inside scrollable area with mt-auto
+- [x] ProductCard Saved Integration — Local useState replaced with SavedContext, added e.preventDefault() to prevent navigation on heart click
 - [ ] Custom animations & micro-interactions (Framer Motion)
 
 ---
@@ -186,6 +197,28 @@
 - **Context:** Had to choose between multi-step (Net-a-Porter) or single-page (SSENSE). VANTAGE is a static test site with no real payment processing.
 - **Choice:** SSENSE-style single-page checkout. 60/40 split: form left (Contact → Shipping → Payment sections with thin underline dividers), order summary right (sticky, pure white). Place Order button shows success state with checkmark + "Continue Shopping" link.
 - **Rationale:** Single-page is cleaner for a small collection. The underline-style inputs and custom country dropdown match the editorial aesthetic. The success state avoids needing a full thank-you page.
+
+---
+
+### Decision: Saved/Wishlist System — SavedContext
+- **Context:** Needed a way for users to save products (heart icon on ProductCard) with a live count displayed in the navbar "Saved" link, matching the cart pattern.
+- **Choice:** Created `SavedContext` — tracks `savedIds: number[]`, exposes `toggleSave(id)`, `isSaved(id)`, `savedCount`. Wraps the app via `CartWrapper` alongside `CartProvider`.
+- **Rationale:** Same pattern as CartContext — simple, no external dependencies. The `isSaved` lookup by ID is O(1) and integrates cleanly with the existing navbar underline hover style.
+
+### Decision: Navbar Link Architecture — Mega Menu Dropdown
+- **Context:** The original navbar had basic links (Men, Women, Accessories, Collections, Account, Saved, Cart). Needed a richer navigation experience with hover dropdowns for category browsing.
+- **Choice:** Restructured to: **New Arrivals · Women · Men · The Edit · Journal · Saved (N) · Cart (N)**. Each link with a dropdown opens a unified navy (`bg-[#284468]`) panel that spans the full links block width. Content changes based on hovered link. Max 4 rows per column — longer lists split into 2 columns.
+- **Rationale:** The unified block approach feels substantial and luxury. Navy matches the navbar's scrolled state, creating a seamless transition. The 4-row max prevents overly tall dropdowns.
+
+### Decision: Cart Drawer Refinements
+- **Context:** The cart drawer had a large header gap (pt-16) and a plain close icon. The checkout footer was fixed outside the scrollable area.
+- **Choice:** Reduced header to `pt-14`, added `rounded-full hover:bg-neutral-50` on the close button (matching the filter drawer), and moved the checkout footer inside the scrollable area with `mt-auto` so it sits at the bottom naturally but scrolls with long lists.
+- **Rationale:** The header now aligns better with the h-10 navbar. The consistent close button style unifies the drawer system. The mt-auto approach keeps the footer at the bottom for short carts but lets it scroll when the list grows.
+
+### Decision: ProductDetail Layout Refinements
+- **Context:** The product description was hidden inside an accordion while color/size selectors appeared below a divider. Users had to open the accordion to read the description, which disrupted browsing flow.
+- **Choice:** Moved the description to sit permanently between the tax note and the divider. Changed color swatches from circles to squares with self-matching borders. Changed size buttons to squares (w-11 h-11) with smaller text (text-xs). Increased right panel padding from `px-12` to `pl-12 pr-32`.
+- **Rationale:** Luxury sites (SSENSE, Net-a-Porter) always show the description above the fold. Square swatches and size buttons feel more structured and editorial. The extra right padding prevents text from running too close to the screen edge.
 
 ---
 

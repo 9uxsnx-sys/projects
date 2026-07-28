@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { useSaved } from "@/contexts/SavedContext";
 
 export type Product = {
   id: number;
@@ -13,7 +14,8 @@ export type Product = {
 };
 
 export default function ProductCard({ product }: { product: Product }) {
-  const [saved, setSaved] = useState(false);
+  const { toggleSave, isSaved } = useSaved();
+  const saved = isSaved(product.id);
 
   const card = (
     <>
@@ -29,8 +31,9 @@ export default function ProductCard({ product }: { product: Product }) {
         {/* Save heart — appears on hover */}
         <button
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
-            setSaved((prev) => !prev);
+            toggleSave(product.id);
           }}
           className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100"
         >
