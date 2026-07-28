@@ -22,7 +22,7 @@
 |---|---------|--------|
 | 1 | **Intro Overlay** — Fullscreen black overlay with centered lowercase "snow" in Synonym Bold. Click-to-dismiss with 1s opacity transition. | ✅ Complete |
 | 2 | **Hero Section** — Fullscreen MP4 video background with `bg-black/40` overlay, centered "VANTAGE" heading + lowercase "snow" (Synonym Bold), and bottom-left "snow" (Synonym Bold, `clamp(4rem,22vw,20rem)`, 0 tracking) | ✅ Complete |
-| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → white `bg-white` bg with black text past hero). Lowercase "snow" logo in Synonym Bold. Hover mega menu dropdowns on New Arrivals/Women/Men/The Edit/Journal. Saved and Cart with live counts. Height: h-10 desktop, h-9 mobile. | ✅ Complete |
+| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → white `bg-white` bg with black text past hero). Lowercase "snow" logo in Synonym Bold. Hover mega menu dropdowns on New Arrivals/Women/Men/Journal/Currency. Saved and Cart with live counts. Height: h-10 desktop, h-9 mobile. | ✅ Complete |
 | 4 | **Brand Statement** — Full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text on white background. Right side: three link columns (Collections, Support, Connect). | ✅ Complete |
 | 5 | **Featured (SeasonEdit)** — "Featured" title + "SEE MORE" (right-aligned with underline). 4 products in `grid-cols-4` with 4px gap. Product cards: 3:4 images, hover heart save (navy `#0d1b2a`), name + price. | ✅ Complete |
 | 6 | **Collections** — "COLLECTIONS" title + "SEE MORE". 2 cards (Men, Women) in `grid-cols-2`. Cards: 3:4 ratio, 10% black overlay, category name bottom-left, "DISCOVER" bottom-right. Accessories card removed. | ✅ Complete |
@@ -55,8 +55,8 @@
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport (`z-40`)
 - **Scroll-based mode switching:** Transparent background + white text over Hero → White background (`bg-white`) + black text past Hero (switches precisely at `scrollY >= window.innerHeight`)
-- **Layout:** Flexbox row with `px-12`. Left: lowercase "snow" logo (Synonym Bold, 28px). Right: nav links (New Arrivals, Women, Men, The Edit, Journal) each with hover underline animation (300ms), followed by Saved (live count from `useSaved()`) and Cart (live count from `useCart()`).
-- **Mega menu:** Hovering New Arrivals/Women/Men/The Edit/Journal opens a unified white dropdown (`bg-white shadow-lg border-t`) spanning the full links block width. Always 2 columns, each with its own section title (`text-sm uppercase black bold`). Items split using `Math.ceil(length/2)`. First column always 8 items, second can have fewer. Items use `text-xs uppercase text-black hover:text-black/60`. Saved and Cart have no dropdown.
+- **Layout:** Flexbox row with `px-12`. Left: lowercase "snow" logo (Synonym Bold, 28px). Right: nav links (New Arrivals, Women, Men, Journal, Currency) each with hover underline animation (300ms), followed by Saved (live count from `useSaved()`) and Cart (live count from `useCart()`).
+- **Mega menu:** Hovering New Arrivals/Women/Men/Journal/Currency opens a unified white dropdown (`bg-white shadow-lg border-t border-neutral-100`) spanning the full links block width. Each column has its own section title (`text-sm uppercase black bold`). First column always 8 items, second can have fewer. Items use `text-xs uppercase text-black hover:text-black/60`. Currency dropdown has 3 columns (Americas, Europe, MENA & Asia) with dot indicator buttons instead of links — selected currency shows a filled dot and its code is displayed in the navbar. Dropdown inner padding: `py-3 px-5`. Saved and Cart have no dropdown.
 - **Height:** `h-10` (40px) desktop, `h-9` mobile.
 - **Cart button:** Opens right slide-in drawer. Live count from `CartContext`.
 - **Saved button:** Shows live count from `SavedContext`. Links to `#`.

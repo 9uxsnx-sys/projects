@@ -37,8 +37,8 @@
 - [x] ProductDetail Color Swatches — Changed from circles to squares, self-matching border on select
 - [x] ProductDetail Size Buttons — Changed to squares (w-11 h-11), smaller text (text-xs)
 - [x] ProductDetail Right Padding — Increased from px-12 to pl-12 pr-32 for cleaner spacing from screen edge
-- [x] Navbar Link Restructure — Removed Accessories, Collections, Account. Added New Arrivals, The Edit, Journal. Kept Men, Women, Saved (live count), Cart (live count)
-- [x] Navbar Mega Menu — Unified white dropdown (bg-white shadow-lg) under links, always 2 columns with per-column titles (text-sm bold), first column 8 items, items text-xs black. Hover content switch.
+- [x] Navbar Link Restructure — Removed Accessories, Collections, Account. Added New Arrivals, Journal. Replaced The Edit with Currency link (dot indicator dropdown, 3 columns, shows selected code in navbar). Kept Men, Women, Saved (live count), Cart (live count)
+- [x] Navbar Mega Menu — Unified white dropdown (bg-white shadow-lg border-t border-neutral-100) under links, per-column titles (text-sm bold), first column 8 items, items text-xs black. Currency gets 3 columns with dot indicator buttons. Dropdown inner padding: py-3 px-5. Hover content switch.
 - [x] Navbar Height — Finalized at h-10 (40px) with h-9 for mobile
 - [x] Cart Drawer Refinements — Header padding pt-16→pt-14, refined close button (rounded-full hover:bg-neutral-50), checkout footer inside scrollable area with mt-auto
 - [x] ProductCard Saved Integration — Local useState replaced with SavedContext, added e.preventDefault() to prevent navigation on heart click
@@ -215,8 +215,8 @@
 
 ### Decision: Navbar Link Architecture — Mega Menu Dropdown
 - **Context:** The original navbar had basic links (Men, Women, Accessories, Collections, Account, Saved, Cart). Needed a richer navigation experience with hover dropdowns for category browsing.
-- **Choice:** Restructured to: **New Arrivals · Women · Men · The Edit · Journal · Saved (N) · Cart (N)**. Each link with a dropdown opens a unified navy (`bg-[#284468]`) panel that spans the full links block width. Content changes based on hovered link. Max 4 rows per column — longer lists split into 2 columns.
-- **Rationale:** The unified block approach feels substantial and luxury. Navy matches the navbar's scrolled state, creating a seamless transition. The 4-row max prevents overly tall dropdowns.
+- **Choice:** Restructured to: **New Arrivals · Women · Men · Journal · Currency · Saved (N) · Cart (N)**. Each link with a dropdown opens a unified white panel (`bg-white shadow-lg border-t border-neutral-100`) that spans the full links block width. Content changes based on hovered link. Columns with section titles (`text-sm bold`), first column always 8 items. Currency uses 3 columns with dot indicator buttons.
+- **Rationale:** The unified block approach feels substantial and luxury. White dropdown with shadow creates a clean separation from content. Column titles establish clear hierarchy. Currency buttons with dot indicators match the interactive pattern.
 
 ### Decision: Cart Drawer Refinements
 - **Context:** The cart drawer had a large header gap (pt-16) and a plain close icon. The checkout footer was fixed outside the scrollable area.
@@ -227,6 +227,12 @@
 - **Context:** The product description was hidden inside an accordion while color/size selectors appeared below a divider. Users had to open the accordion to read the description, which disrupted browsing flow.
 - **Choice:** Moved the description to sit permanently between the tax note and the divider. Changed color swatches from circles to squares with self-matching borders. Changed size buttons to squares (w-11 h-11) with smaller text (text-xs). Increased right panel padding from `px-12` to `pl-12 pr-32`.
 - **Rationale:** Luxury sites (SSENSE, Net-a-Porter) always show the description above the fold. Square swatches and size buttons feel more structured and editorial. The extra right padding prevents text from running too close to the screen edge.
+
+### Decision: Currency Link Replacing "The Edit"
+- **Context:** The navbar had 5 links with dropdowns (New Arrivals, Women, Men, The Edit, Journal). "The Edit" was redundant since the SeasonEdit feature section already served that purpose. User suggested replacing it with a currency selector for international shoppers.
+- **Choice:** Removed "The Edit" link and replaced with "Currency" link. The Currency link displays the selected currency code (e.g., "USD") instead of its label. Its dropdown contains 14 currencies across 3 columns: Americas (USD, CAD, BRL, MXN), Europe (EUR, GBP, CHF, SEK, NOK), and MENA & Asia (AED, SAR, QAR, JPY, KRW, SGD, AUD). Each currency is rendered as a `<button>` (not an `<a>` link) with a dot indicator — the selected currency shows a filled black dot (`w-1.5 h-1.5 rounded-full bg-black`), others show a transparent dot. Clicking a currency updates the `selectedCurrency` state.
+- **Rationale:** Currency selection is a practical need for a luxury e-commerce brand targeting GCC + global markets. Showing the code (USD) instead of the label keeps the navbar compact. The dot indicator pattern provides clear visual feedback without color reliance. Buttons instead of links make sense since no page navigation occurs — it's an interactive state change.
+- **Dropdown inner padding:** Reduced from `py-5 px-6` to `py-3 px-5` for tighter spacing.
 
 ---
 

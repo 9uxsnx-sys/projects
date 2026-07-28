@@ -7,6 +7,23 @@ import { useSaved } from "@/contexts/SavedContext";
 type DropdownItem = { label: string; href: string };
 type DropdownColumn = { title: string; items: DropdownItem[] };
 
+const currencyList = [
+  { label: "USD", href: "#" },
+  { label: "EUR", href: "#" },
+  { label: "GBP", href: "#" },
+  { label: "CHF", href: "#" },
+  { label: "SEK", href: "#" },
+  { label: "NOK", href: "#" },
+  { label: "AED", href: "#" },
+  { label: "SAR", href: "#" },
+  { label: "QAR", href: "#" },
+  { label: "JPY", href: "#" },
+  { label: "KRW", href: "#" },
+  { label: "SGD", href: "#" },
+  { label: "AUD", href: "#" },
+  { label: "CAD", href: "#" },
+];
+
 const navLinks: { label: string; hasDropdown: boolean; columns?: DropdownColumn[] }[] = [
   {
     label: "New Arrivals",
@@ -97,34 +114,6 @@ const navLinks: { label: string; hasDropdown: boolean; columns?: DropdownColumn[
     ],
   },
   {
-    label: "The Edit",
-    hasDropdown: true,
-    columns: [
-      {
-        title: "Curated",
-        items: [
-          { label: "Seasonal Edit", href: "#" },
-          { label: "Evening Wear", href: "#" },
-          { label: "The Essentials", href: "#" },
-          { label: "Tailoring", href: "#" },
-          { label: "Resort Wear", href: "#" },
-          { label: "Weekend Edit", href: "#" },
-          { label: "Uniforms", href: "#" },
-          { label: "Capsule Wardrobe", href: "#" },
-        ],
-      },
-      {
-        title: "By Vibe",
-        items: [
-          { label: "Minimalist", href: "#" },
-          { label: "Statement", href: "#" },
-          { label: "Relaxed", href: "#" },
-          { label: "Refined", href: "#" },
-        ],
-      },
-    ],
-  },
-  {
     label: "Journal",
     hasDropdown: true,
     columns: [
@@ -151,6 +140,43 @@ const navLinks: { label: string; hasDropdown: boolean; columns?: DropdownColumn[
       },
     ],
   },
+  {
+    label: "Currency",
+    hasDropdown: true,
+    columns: [
+      {
+        title: "Americas",
+        items: [
+          { label: "USD", href: "#" },
+          { label: "CAD", href: "#" },
+          { label: "BRL", href: "#" },
+          { label: "MXN", href: "#" },
+        ],
+      },
+      {
+        title: "Europe",
+        items: [
+          { label: "EUR", href: "#" },
+          { label: "GBP", href: "#" },
+          { label: "CHF", href: "#" },
+          { label: "SEK", href: "#" },
+          { label: "NOK", href: "#" },
+        ],
+      },
+      {
+        title: "MENA & Asia",
+        items: [
+          { label: "AED", href: "#" },
+          { label: "SAR", href: "#" },
+          { label: "QAR", href: "#" },
+          { label: "JPY", href: "#" },
+          { label: "KRW", href: "#" },
+          { label: "SGD", href: "#" },
+          { label: "AUD", href: "#" },
+        ],
+      },
+    ],
+  },
 ];
 
 export default function NavbarDesktop({
@@ -163,6 +189,7 @@ export default function NavbarDesktop({
   const { itemCount, setCartOpen } = useCart();
   const { savedCount } = useSaved();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
   const textColor = isPastHero ? "text-black" : "text-white";
   const underlineColor = isPastHero ? "before:bg-black" : "before:bg-white";
   const bgColor = isPastHero ? "bg-white" : "bg-transparent";
@@ -199,11 +226,12 @@ export default function NavbarDesktop({
                   href="#"
                   className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-0.5 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
                 >
-                  {link.label}
+                  {link.label === "Currency" ? selectedCurrency : link.label}
                 </a>
               </li>
             ))}
 
+            {/* Saved with live count */}
             <li>
               <a
                 href="#"
@@ -213,6 +241,7 @@ export default function NavbarDesktop({
               </a>
             </li>
 
+            {/* Cart with live count */}
             <li>
               <button
                 onClick={() => setCartOpen(true)}
@@ -231,7 +260,7 @@ export default function NavbarDesktop({
               onMouseLeave={() => setActiveMenu(null)}
             >
               <div className="bg-white shadow-lg border-t border-neutral-100">
-                <div className="py-5 px-6 min-h-[300px]">
+                <div className="py-3 px-5 min-h-[300px]">
                   {/* Columns */}
                   <div className="flex gap-16">
                     {activeLink.columns.map((col, ci) => (
@@ -241,15 +270,32 @@ export default function NavbarDesktop({
                           {col.title}
                         </h5>
                         {/* Column items */}
-                        {col.items.map((item, i) => (
-                          <a
-                            key={i}
-                            href={item.href}
-                            className="block py-1 text-xs tracking-[1.5px] uppercase font-switzer font-normal text-black hover:text-black/60 transition-colors duration-200"
-                          >
-                            {item.label}
-                          </a>
-                        ))}
+                        {col.items.map((item, i) =>
+                          activeLink.label === "Currency" ? (
+                            <button
+                              key={i}
+                              onClick={() => setSelectedCurrency(item.label)}
+                              className="block w-full text-left py-1 text-xs tracking-[1.5px] uppercase font-switzer font-normal text-black hover:text-black/60 transition-colors duration-200"
+                            >
+                              <span className="flex items-center gap-3">
+                                <span
+                                  className={`w-1.5 h-1.5 rounded-full transition-all duration-200 flex-shrink-0 ${
+                                    selectedCurrency === item.label ? "bg-black" : "bg-transparent"
+                                  }`}
+                                />
+                                {item.label}
+                              </span>
+                            </button>
+                          ) : (
+                            <a
+                              key={i}
+                              href={item.href}
+                              className="block py-1 text-xs tracking-[1.5px] uppercase font-switzer font-normal text-black hover:text-black/60 transition-colors duration-200"
+                            >
+                              {item.label}
+                            </a>
+                          ),
+                        )}
                       </div>
                     ))}
                   </div>
