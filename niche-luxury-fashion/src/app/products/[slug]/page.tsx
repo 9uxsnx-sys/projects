@@ -6,6 +6,7 @@ import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
 import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
 import Footer from "@/components/sections/home-page/Footer/Footer";
 import ProductDetailDesktop from "@/components/sections/product-detail/ProductDetailDesktop";
+import ProductDetailMobile from "@/components/sections/product-detail/ProductDetailMobile";
 import SuggestedProducts from "@/components/sections/product-detail/SuggestedProducts";
 import { getProductBySlug } from "@/data/products";
 
@@ -58,7 +59,11 @@ export default function ProductPage() {
       ) : (
         <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
-      <ProductDetailDesktop product={product} />
+      {isMobile ? (
+        <ProductDetailMobile product={product} />
+      ) : (
+        <ProductDetailDesktop product={product} />
+      )}
       <SuggestedProducts />
       <Footer />
     </main>

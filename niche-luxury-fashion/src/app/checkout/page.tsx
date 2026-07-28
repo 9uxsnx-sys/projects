@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
 import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
 import CheckoutDesktop from "@/components/checkout/CheckoutDesktop";
+import CheckoutMobile from "@/components/checkout/CheckoutMobile";
 
 export default function CheckoutPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -42,7 +43,7 @@ export default function CheckoutPage() {
       ) : (
         <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
-      <CheckoutDesktop />
+      {isMobile ? <CheckoutMobile /> : <CheckoutDesktop />}
     </main>
   );
 }

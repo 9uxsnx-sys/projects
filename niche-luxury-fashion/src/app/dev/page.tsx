@@ -5,10 +5,12 @@ import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
 import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
 import Footer from "@/components/sections/home-page/Footer/Footer";
 import ProductListingDesktop from "@/components/sections/product-listing/ProductListingDesktop";
+import ProductListingMobile from "@/components/sections/product-listing/ProductListingMobile";
 
 export default function DevPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const prevScrollY = useRef(0);
 
   useEffect(() => {
@@ -39,11 +41,11 @@ export default function DevPage() {
   return (
     <main>
       {isMobile ? (
-        <NavbarMobile isPastHero={true} isVisible={isVisible} />
+        <NavbarMobile isPastHero={true} isVisible={isVisible} overlayOpen={isFilterOpen} />
       ) : (
         <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
-      <ProductListingDesktop />
+      {isMobile ? <ProductListingMobile onFilterChange={setIsFilterOpen} /> : <ProductListingDesktop />}
       <Footer />
     </main>
   );

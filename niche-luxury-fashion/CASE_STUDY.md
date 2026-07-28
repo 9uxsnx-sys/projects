@@ -8,7 +8,7 @@ If you're a boutique owner, a fashion brand founder, or someone investing in a d
 
 > **Does this make my brand look expensive, feel exclusive, and sell without screaming?**
 
-Here is exactly how we built a homepage that does all three — explained in plain language.
+Here is exactly how we built a full e-commerce experience that does all three — explained in plain language.
 
 ---
 
@@ -20,6 +20,7 @@ You've seen it before. A fashion website that:
 - Has ugly stock photos and generic grids that look like every other brand
 - Plays auto-video everywhere like a MySpace page from 2009
 - Has fonts that don't match — Comic Sans on one page, Times New Roman on another
+- Forces a clunky mobile experience that feels like an afterthought
 
 **The result?** Your brand looks cheap. Your products look like they belong on a clearance rack. Your customer doesn't trust you.
 
@@ -27,9 +28,9 @@ Luxury is supposed to feel quiet, refined, intentional. Most websites scream "I 
 
 ---
 
-## The Solution (One Page, One Purpose)
+## The Solution (A Complete E-Commerce Experience)
 
-We built a **single homepage** that works like a magazine editorial spread. You scroll through it like you flip through Vogue or Architectural Digest — each section tells the next chapter of the story.
+We built a **full luxury e-commerce website** with desktop and mobile support. It works like a magazine editorial spread on desktop — you scroll through it like you flip through Vogue or Architectural Digest — and feels just as intentional on mobile.
 
 ### What the customer sees (in order):
 
@@ -51,6 +52,20 @@ We built a **single homepage** that works like a magazine editorial spread. You 
 - **Your products look expensive.** 3:4 portrait ratio — the same format luxury magazines use. Full-bleed images with no borders. No clutter.
 - **Your site loads fast.** No bloated animations. No unnecessary videos. The page feels instant.
 
+### Mobile Experience (Fully Built)
+
+Every feature available on desktop is also built for mobile:
+
+| Mobile Feature | How It Works |
+|---------------|-------------|
+| **Navbar** | Slim `h-8` bar, auto-hides on scroll, shows on scroll up |
+| **Menu** | Full-screen overlay that opens below the navbar — accordion-style categories with smooth height animation |
+| **Product Detail** | Main image → name/price → remaining images stacked full-width → color/size/quantity → Add to Cart |
+| **Cart** | Full-page cart with Navbar + Footer, quantity controls, checkout button |
+| **Checkout** | Stacked layout, scrollable, clean sections |
+| **Product Listing** | 2-column grid, filter/sort buttons open a full-screen overlay (below navbar) |
+| **Wishlist ("Saved Pieces")** | Same grid as listing, no filters, clean empty state |
+
 ---
 
 ## Three Business Decisions We Made (Not Technical Ones)
@@ -69,11 +84,13 @@ Every section has exactly 4 pixels of breathing room between elements. Not 8 pix
 
 **Why this matters for your business:** This is what makes the page feel like a gallery, not a grid. When spacing is inconsistent, the brain feels "off" — the customer doesn't know why, but they feel less comfortable. Consistent spacing is the difference between Zara (grid) and The Row (gallery).
 
-### Decision 3: The Navy Accent (Not Black)
+### Decision 3: Black CTAs (Not Navy)
 
-The navigation bar starts invisible (floating over the video, white text). When you scroll past the hero, it becomes a deep navy blue — `#284468`. That same navy appears in only two other places: the footer, and the heart icon fill.
+All primary action buttons (Add to Cart, Checkout, Place Order) use **pure black** as their default state. On hover, they **invert** to white with black text — a subtle interaction that rewards exploration.
 
-**Why this matters for your business:** Navy reads as "near-black" — sophisticated, not aggressive. Using it sparingly (only three times on the entire page) makes it feel intentional, not accidental. Your customer won't consciously notice the navy, but they'll feel the page has a "signature color" — like Tiffany blue or Hermès orange. It's subtle branding that works without a logo slapped everywhere.
+Navy (`#0d1b2a`) is reserved for the footer background and the heart icon fill. Navy accent (`#284468`) is used only on the Subscribe button's hover state in the footer.
+
+**Why this matters for your business:** Using one color for all CTAs creates a clear visual language — your customer always knows what's clickable and what matters. The invert-on-hover pattern feels responsive and premium without being flashy. Navy used sparingly (footer + heart) becomes a signature detail rather than a design crutch.
 
 ---
 
@@ -101,7 +118,7 @@ This is the difference between someone who knows how to code and someone who kno
 | **Brand perception** | Your brand looks established, intentional, expensive — even if you're launching tomorrow |
 | **Customer trust** | Consistency in fonts, spacing, and colors signals professionalism |
 | **Storytelling** | The scroll flow takes your customer on a journey — not a shopping trip |
-| **Mobile** | The architecture is ready for mobile. Desktop is done, mobile is the next chapter. |
+| **Mobile** | Full mobile experience: navbar, menu, product detail, cart, checkout, listing with filters, wishlist |
 
 ---
 
@@ -113,4 +130,4 @@ And that's the entire point.
 
 ---
 
-*Built for VANTAGE — a luxury fashion brand for the discerning. Want to see it live? Visit localhost:3000 on desktop.*
+*Built for VANTAGE — a luxury fashion brand for the discerning. Want to see it live? Visit localhost:3000.*

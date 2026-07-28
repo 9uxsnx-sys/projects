@@ -2,7 +2,7 @@
 
 > **Document purpose:** This Markdown file provides a comprehensive, exhaustive transcription of every visual element displayed on the desktop version of the VANTAGE luxury fashion website (viewports 1024 pixels wide and above). It is designed to be used exclusively with screen-reading software, enabling a non-visual user to form a complete mental model of the visual appearance of every section, component, interactive state, layout grid, color value, typographic specification, spacing measurement, and decorative effect exactly as a sighted user would perceive them on a desktop monitor.
 
-> **Last updated:** 2026-07-27
+> **Last updated:** 2026-07-28
 
 ---
 
@@ -40,9 +40,10 @@ The website uses a minimalist, high-contrast palette:
 
 | Token | Color Code | Description |
 |-------|-----------|-------------|
-| Pure black | `#000000` | Background of the page body and the intro animation |
+| Pure black | `#000000` | Background of the page body and the intro animation; ALL primary buttons/CTAs (Add to Cart, Checkout, Place Order, Apply) |
 | Pure white | `#ffffff` | Text color over black or dark backgrounds; also used as a 1-pixel outline on category images |
-| Navy | `#0d1b2a` | Primary accent color — used for navbar background (past-hero state), footer background, heart icon, and text color on light backgrounds |
+| Navy | `#0d1b2a` | Footer background, heart icon fill/stroke |
+| Navy accent | `#284468` | Subscribe button hover state (footer only) |
 | Near-black neutral-900 | `#171717` | Background of all product image containers and category image containers |
 | Neutral-600 | `#525252` | Product price text color |
 | Black at 10% opacity | `rgba(0,0,0,0.1)` | Overlay on collection and category images |
@@ -136,6 +137,7 @@ When the overlay receives a click or touch event anywhere on its surface:
 - **Horizontal padding:** 24 pixels on each side (`px-6`)
 - **Vertical padding:** Top and bottom padding of 16 pixels (`py-4`)
 - **Background:** Two states (see 4.4 below)
+- **Auto-hide behavior:** The navbar hides when scrolling down past 80px and shows when scrolling up (controlled by a `useRef` tracking `prevScrollY`, using `translate-y-0` / `-translate-y-full`).
 
 ### 4.2 Left-Aligned Content — "snow" Brand Logo
 
@@ -168,13 +170,14 @@ The navbar has two distinct visual states determined by scroll position relative
 - **Background:** Fully transparent (`bg-transparent`). The hero video remains fully visible behind the text.
 - **Text color of all links and the "snow" logo:** Pure white (`text-white`)
 - **Underline color on hover:** White
+- **"snow" logo:** Hidden (opacity 0, pointer-events none) — only visible in State B
 
-#### State B: Navy background (after scrolling past the hero)
+#### State B: White background (after scrolling past the hero)
 
-- **Background:** Solid navy blue — hexadecimal color `#0d1b2a` (`bg-[#0d1b2a]`)
-- **Text color of all links and the "snow" logo:** Pure white (`text-white`)
-- **Underline color on hover:** White
-- **Border bottom:** None (no divider line between navbar and content below)
+- **Background:** Solid white (`bg-white`)
+- **Text color of all links and the "snow" logo:** Pure black (`text-black`)
+- **Underline color on hover:** Black
+- **"snow" logo:** Fully visible (opacity 100)
 
 The transition between State A and State B occurs at the exact bottom edge of the hero section. A JavaScript `IntersectionObserver` watches a 1-pixel-high sentinel element positioned at the hero's bottom edge. When this sentinel exits the viewport (i.e., the user has scrolled past the hero), the navbar switches to State B. When the user scrolls back up and the sentinel re-enters the viewport, the navbar reverts to State A.
 
@@ -332,14 +335,14 @@ Each image is rendered with:
 **Product name:**
 - **Font family:** Switzer
 - **Font weight:** Normal (400, `font-normal`)
-- **Font size:** 16 pixels (`text-base`, equivalent to `1rem`)
+- **Font size (desktop):** 16 pixels (`text-base`, equivalent to `1rem`). On smaller viewports, product name and price reduce to 14 pixels (`text-sm`), then scale back to 16 pixels at the `lg:` breakpoint via `text-sm lg:text-base`.
 - **Text color:** Near-black neutral-900 (`text-neutral-900`, equivalent to `#171717`)
 - **Letter spacing:** `tracking-wide` — approximately 0.025em additional space between characters
 
 **Product price:**
 - **Font family:** Switzer
 - **Font weight:** Light (300, `font-light`)
-- **Font size:** 16 pixels (`text-base`, equivalent to `1rem`)
+- **Font size (desktop):** 16 pixels (`text-base`, equivalent to `1rem`). On smaller viewports, reduces to 14 pixels (`text-sm`) — same responsive behavior as the product name.
 - **Text color:** Neutral-600 (`text-neutral-600`, equivalent to `#525252`) — a medium gray
 
 **Exact product names and prices:**
@@ -749,14 +752,17 @@ A separate area at the bottom of the footer containing legal and copyright infor
 
 | Color Name | Hex Code | RGB Value | Where Used |
 |-----------|----------|-----------|------------|
-| Pure black | `#000000` | `rgb(0,0,0)` | Body background, intro overlay, all black text elements |
-| Pure white | `#ffffff` | `rgb(255,255,255)` | Text over hero video, text over dark backgrounds, category image outlines |
-| Navy | `#0d1b2a` | `rgb(13,27,42)` | Navbar past-hero background, footer background, heart icon |
+| Pure black | `#000000` | `rgb(0,0,0)` | ALL primary CTAs (default state), body background, intro overlay, text over white bg |
+| Pure white | `#ffffff` | `rgb(255,255,255)` | Text over hero video, text over dark backgrounds, CTA text (default state), category image outlines |
+| Navy | `#0d1b2a` | `rgb(13,27,42)` | Footer background, heart icon fill/stroke |
+| Navy accent | `#284468` | `rgb(40,68,104)` | Subscribe button hover state (footer only) |
 | Neutral-900 | `#171717` | `rgb(23,23,23)` | Product/category image container backgrounds (placeholder before images load) |
 | Neutral-600 | `#525252` | `rgb(82,82,82)` | Product price text color |
 | Black/10 | `rgba(0,0,0,0.1)` | — | Image overlay on collection/category cards |
 | Black/40 | `rgba(0,0,0,0.4)` | — | Hero section video darkening overlay |
 | Black/60 | `rgba(0,0,0,0.6)` | — | "SEE MORE" / "MORE" link text color |
+
+**Note:** All primary action buttons (Add to Cart, Checkout, Place Order, Apply) now use `bg-black text-white` as default and invert to `bg-white text-black` on hover. Navy `#284468` is no longer used for CTAs — only for the Subscribe button hover effect in the footer.
 
 ---
 
@@ -767,14 +773,15 @@ A separate area at the bottom of the footer containing legal and copyright infor
 | Location | Weight | Size | Color | Letter Spacing |
 |----------|--------|------|-------|---------------|
 | Section titles (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY) | Medium (500) | `clamp(3.5rem,10vw,10rem)` | Black | 0.01em |
-| Navbar links | Medium (500) | 14px / 0.875rem | White or Navy (state-dependent) | 0 |
+| Navbar links | Medium (500) | 14px / 0.875rem | White or Black (state-dependent) | 0 |
 | Collection card category names | Medium (500) | `clamp(1.8rem,4vw,3.5rem)` | White | 0.01em |
-| Product card names | Regular (400) | 16px / 1rem | Neutral-900 | track-wide |
-| Product card prices | Light (300) | 16px / 1rem | Neutral-600 | 0 |
+| Product card names | Regular (400) | `text-sm lg:text-base` (responsive) | Neutral-900 | track-wide |
+| Product card prices | Light (300) | `text-sm lg:text-base` (responsive) | Neutral-600 | 0 |
 | "SEE MORE" / "MORE" links | Semi-bold (600) | `clamp(0.7rem,1.2vw,1rem)` | Black/60 | 0.15em |
 | "DISCOVER" labels (collection cards) | Light (300) | `clamp(0.75rem,1.5vw,1.25rem)` | White | 0.15em |
 | "ABOUT US" label | Light (300) | `clamp(0.875rem,1.5vw,1.25rem)` | White | 0.15em |
 | "VANTAGE" hero heading | Bold (700) | `clamp(3rem,8vw,8rem)` | White | 0 |
+| Primary CTAs (add to cart, checkout, etc.) | Medium (500) | 14px / 0.875rem | White (default) / Black (hover) | 0.1em |
 | Footer column headings | Bold (700) | Small (12-14px approx.) | White | 0.15em |
 | Footer link text | Regular (400) | Small (12-14px approx.) | White | 0 |
 | Introduction paragraph text | Light (300) | `clamp(1.25rem,2vw,2.5rem)` | Black | 0 |
@@ -788,7 +795,7 @@ A separate area at the bottom of the footer containing legal and copyright infor
 | Hero bottom-left "snow" | Bold (700) | `clamp(4rem,22vw,20rem)` | White |
 | Brand section "snow" | Bold (700) | `clamp(4rem,20vw,20rem)` | Black |
 | Footer "SNOW" | Bold (700) | `clamp(4rem,20vw,20rem)` | White |
-| Navbar "snow" logo | Bold (700) | 24px / 1.5rem | White or Navy (state-dependent) |
+| Navbar "snow" logo | Bold (700) | 24px / 1.5rem | White or Black (state-dependent) |
 
 ---
 
@@ -798,11 +805,26 @@ A separate area at the bottom of the footer containing legal and copyright infor
 
 | State | Visual Change |
 |-------|---------------|
-| Default | White text (hero mode) or white text (navy mode). No underline visible. |
+| Default | White text (hero mode) or black text (past-hero mode). No underline visible. |
 | Hover | Underline smoothly expands from 0% to 100% width over 300 milliseconds. No color change to the text itself. |
 | Active (click) | Browser default active state (momentary color flash) — no custom styling applied. |
 
-### 15.2 Product Card Heart Button
+### 15.2 Primary CTAs (Add to Cart, Checkout, Place Order, Apply)
+
+| State | Visual Change |
+|-------|---------------|
+| Default | Black background (`bg-black`), white text, 1-pixel solid black border. |
+| Hover | Background inverts to white (`bg-white`), text becomes black. Border remains black. 300ms transition. |
+| Disabled | Light gray background (`bg-neutral-200`), medium gray text (`text-neutral-500`), cursor changes to `cursor-not-allowed`. No hover effect. |
+
+### 15.3 Subscribe Button (Footer)
+
+| State | Visual Change |
+|-------|---------------|
+| Default | White background, black text, 1-pixel white border. |
+| Hover | Background inverts to navy `#284468`, text becomes white. Border remains white. 150ms transition. |
+
+### 15.4 Product Card Heart Button
 
 | State | Visual Change |
 |-------|---------------|
@@ -811,21 +833,21 @@ A separate area at the bottom of the footer containing legal and copyright infor
 | Heart filled (saved) | Heart icon shows a solid navy `#0d1b2a` fill. Outline (stroke) is also navy. |
 | Heart unfilled (not saved) | Heart icon shows only a navy outline with transparent/empty interior. |
 
-### 15.3 Collection Cards and Category Cards
+### 15.5 Collection Cards and Category Cards
 
 | State | Visual Change |
 |-------|---------------|
 | Default | Image displayed at full opacity with a 10% black overlay. Text labels (category name + "DISCOVER") are fully visible. |
 | Hover | No custom hover effect is defined on these cards. The cursor changes to `cursor-pointer` via the `group` class. |
 
-### 15.4 "SEE MORE" / "MORE" Links
+### 15.6 "SEE MORE" / "MORE" Links
 
 | State | Visual Change |
 |-------|---------------|
 | Default | Text at 60% black opacity with a 1-pixel underline. |
 | Hover | No custom hover effect is defined — the text remains the same. The cursor may change to pointer if a parent group has `cursor-pointer`. |
 
-### 15.5 Intro Overlay
+### 15.7 Intro Overlay
 
 | State | Visual Change |
 |-------|---------------|
@@ -836,4 +858,4 @@ A separate area at the bottom of the footer containing legal and copyright infor
 
 ## End of Document
 
-*This document provides a complete visual transcription of the desktop-only VANTAGE website as of 2026-07-27. Every section, element dimension, color, font, spacing value, layout rule, hover state, and interactive effect has been transcribed from the actual source code of the production components for accessibility by users relying on screen-reading technology.*
+*This document provides a complete visual transcription of the desktop-only VANTAGE website as of 2026-07-28. Every section, element dimension, color, font, spacing value, layout rule, hover state, and interactive effect has been transcribed from the actual source code of the production components for accessibility by users relying on screen-reading technology.*

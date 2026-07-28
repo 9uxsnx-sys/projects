@@ -270,7 +270,7 @@ export default function CheckoutDesktop() {
             {/* ── Place Order ── */}
             <button
               onClick={() => setPlaced(true)}
-              className="w-full py-4 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-[#284468] text-white hover:opacity-90 transition-opacity mb-5"
+              className="w-full py-4 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-black text-white border border-black hover:bg-white hover:text-black transition-all duration-300 mb-5"
             >
               Place Order — {subtotal}
             </button>

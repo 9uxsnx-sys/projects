@@ -15,13 +15,13 @@ export default function ProductDetailDesktop({
   const { addItem, setCartOpen } = useCart();
 
   const sizeColors: Record<string, string> = {
-    XS: "#284468",
-    S: "#284468",
-    M: "#284468",
-    L: "#284468",
-    XL: "#284468",
+    XS: "#000000",
+    S: "#000000",
+    M: "#000000",
+    L: "#000000",
+    XL: "#000000",
   };
-  const navyColor = "#284468";
+  const navyColor = "#000000";
 
   return (
     <section className="bg-white">
@@ -47,7 +47,7 @@ export default function ProductDetailDesktop({
 
         {/* ─── Right: Sticky Info ─── */}
         <div className="w-1/2">
-          <div className="sticky top-0 min-h-screen flex flex-col pt-20 pb-16 pl-12 pr-32">
+          <div className="sticky top-0 min-h-screen flex flex-col pt-20 pb-8 pl-12 pr-32">
             {/* Top section — product identity (fixed, never shrinks) */}
             <div className="flex-shrink-0">
               {/* Product name */}
@@ -185,14 +185,9 @@ export default function ProductDetailDesktop({
                   }}
                   className={`flex-1 py-2.5 text-sm font-switzer font-medium tracking-[0.1em] uppercase transition-all duration-300 ${
                     selectedSize
-                      ? ""
+                      ? "bg-black text-white border border-black hover:bg-white hover:text-black"
                       : "bg-neutral-200 text-neutral-500 cursor-not-allowed"
                   }`}
-                  style={
-                    selectedSize
-                      ? { backgroundColor: navyColor, color: "#ffffff" }
-                      : {}
-                  }
                   disabled={!selectedSize}
                 >
                   Add to Cart

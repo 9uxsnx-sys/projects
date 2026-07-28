@@ -234,7 +234,7 @@ export default function NavbarDesktop({
             {/* Saved with live count */}
             <li>
               <a
-                href="#"
+                href="/saved"
                 className={`relative ${textColor} text-sm tracking-[1.5px] uppercase font-switzer font-medium pb-0.5 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-0 before:h-px ${underlineColor} before:transition-all before:duration-300 hover:before:w-full transition-colors duration-300`}
               >
                 Saved ({savedCount})

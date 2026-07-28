@@ -76,6 +76,16 @@ body {
   font-family: Inter, system-ui, -apple-system, sans-serif;
 }
 
+/* ─── Hide global scrollbar ─── */
+html {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
 /* ─── Accordion smooth open/close ─── */
 details.accordion-item[open] > :not(summary) {
   animation: accordionOpen 0.35s ease-out forwards;
@@ -105,4 +115,13 @@ details.accordion-item[open] > :not(summary) {
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #a3a3a3;
+}
+
+/* ─── Hide scrollbar (keep functionality) ─── */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

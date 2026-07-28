@@ -1,173 +1,119 @@
-# Niche Strategy: Luxury Fashion Brand (E-commerce)
+# VANTAGE — Project Context
 
-## 1. Project Identity
-- **Brand Name:** VANTAGE
-- **Logo/Label:** snow (lowercase)
-- **Niche:** Luxury Fashion / High-End Streetwear
-- **Target Audience:** High-net-worth individuals, fashion-forward Gen Z/Millennials in the GCC (Oman/Dubai) and Global markets.
-- **Vibe:** Avant-garde, minimalist, sophisticated, and fast (performance-focused).
+## Overview
 
-## 2. The Problem (For the Case Study)
-- **Problem:** Existing luxury fashion sites are often heavy and slow, or generic. They fail to tell a "story" and rely too much on basic grids, leading to high bounce rates for mobile users.
-- **Our Solution:** An editorial-first homepage that blends high-end typography with lightning-fast Next.js performance and subtle "scroll-triggered" storytelling.
+A luxury fashion e-commerce website for the **VANTAGE** brand, built with Next.js, Tailwind CSS v4, and TypeScript. The site is a full-fledged e-commerce experience with desktop and mobile support for browsing, product detail, cart, checkout, wishlist, and product listing with filtering.
 
-## 3. Visual Direction
-- **Typeface:** *Synonym* (Bold) for all "snow" branding across every section — Intro overlay, Hero (lowercase, bottom-left), Navbar logo (lowercase), Brand statement (lowercase), and Footer brand block (uppercase "SNOW"). *Switzer* (Bold, Medium, Regular, Light) for all section titles (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY), UI/navigation text, product cards, Philosophy copy, and "SEE MORE/MORE" links. *Khand* and *Plein* were evaluated and removed during a cleanup audit as neither was used in production code.
-- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Navy (`#284468`) for footer background, size buttons, Add to Cart, and interactive accent elements. Navbar switches from transparent (over hero) to white (`bg-white`) past hero with black text. Heart icon stroke+fill uses `#0d1b2a`.
-- **Layout:** Full-width grids with 4px gaps, large typography using `clamp()`, alternating big-left/big-right pattern for Categories rows, and consistent edge padding (`px-1`).
+### Brand Identity
 
-## 4. Sections & Current Status
+- **Minimalist, editorial aesthetic** — heavily inspired by SSENSE, The Row, and luxury lookbook layouts
+- **Monochrome palette** — black, white, and deep navy (`#0d1b2a`) used sparingly
+- **Two fonts:** Switzer (body/UI) and Synonym (brand logotype "snow")
 
-| # | Section | Status |
-|---|---------|--------|
-| 1 | **Intro Overlay** — Fullscreen black overlay with centered lowercase "snow" in Synonym Bold. Click-to-dismiss with 1s opacity transition. | ✅ Complete |
-| 2 | **Hero Section** — Fullscreen MP4 video background with `bg-black/40` overlay, centered "VANTAGE" heading + lowercase "snow" (Synonym Bold), and bottom-left "snow" (Synonym Bold, `clamp(4rem,22vw,20rem)`, 0 tracking) | ✅ Complete |
-| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → white `bg-white` bg with black text past hero). Lowercase "snow" logo in Synonym Bold. Hover mega menu dropdowns on New Arrivals/Women/Men/Journal/Currency. Saved and Cart with live counts. Height: h-10 desktop, h-9 mobile. | ✅ Complete |
-| 4 | **Brand Statement** — Full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text on white background. Right side: three link columns (Collections, Support, Connect). | ✅ Complete |
-| 5 | **Featured (SeasonEdit)** — "Featured" title + "SEE MORE" (right-aligned with underline). 4 products in `grid-cols-4` with 4px gap. Product cards: 3:4 images, hover heart save (navy `#0d1b2a`), name + price. | ✅ Complete |
-| 6 | **Collections** — "COLLECTIONS" title + "SEE MORE". 2 cards (Men, Women) in `grid-cols-2`. Cards: 3:4 ratio, 10% black overlay, category name bottom-left, "DISCOVER" bottom-right. Accessories card removed. | ✅ Complete |
-| 7 | **Categories** — "CATEGORIES" title + "SEE MORE". 6 category rows with alternating big-left/big-right 1:1 image pattern. Category titles below small images. All images use 1px white outline-offset to mask dark edges. | ✅ Complete |
-| 8 | **Philosophy** — "PHILOSOPHY" title + "SEE MORE". Two-column layout: 60% image (16:9) left, 40% text right. Switzer Light body copy. | ✅ Complete |
-| 9 | **About Us** — 3-column grid (image + text + image). Left/right panels: 3:4 ratio images with 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right. Center panel: brand copy with divider line. | ✅ Complete |
-| 10 | **Footer** — Navy `#284468` bg. Left: massive "SNOW" in Synonym Bold `clamp(4rem,20vw,20rem)` with `leading-[0.8]`. Right: 3 nav columns (Collections, Support, Connect). Bottom: copyright + legal links. | ✅ Complete |
-| 11 | **Product Detail Desktop** — Sticky 50/50 layout. Left: stacked 3:4 images scroll normally. Right: sticky product info (name, price, description always visible, color/size selectors, Add to Cart) + 4-section accordion (Details, Size & Fit, Material & Care, Shipping & Returns). Description moved out of accordion to sit between tax note and divider (always visible). Color swatches changed from circles to squares with self-matching border on select. Size buttons changed to squares (w-11 h-11) with smaller text (text-xs). Right panel padding increased to `pl-12 pr-32`. | ✅ Complete |
-| 12 | **Suggested Products** — "You May Also Like" section below product detail, 4 ProductCards in a row, same grid style as SeasonEdit. | ✅ Complete |
-| 13 | **Dynamic Product Routing** — `/products/[slug]` dynamic route handles all product detail pages. Shared product data in `src/data/products.ts`. All 4 SeasonEdit products link to their respective detail pages. | ✅ Complete |
-| 14 | **Product Listing Page** — SSENSE-inspired layout with right-drawer filter (30% width, 340-500px). Top bar: "Ready to Wear" title + Filters button (with toggle count) + Sort by button. Right-drawer: Category selector (dot indicator multi-select per collection with toggle expand), Colour (text row with `·` separator, multi-select), Size (text row with `·` separator, multi-select), Price Range (underline-style inputs), Sort By (dot indicator single-select), Clear + Apply buttons inline. 4-column grid of ProductCards. | ✅ Complete |
-| 15 | **Cart System** — React Context cart state with global `useCart()` hook. Right slide-in drawer with item list, quantity controls, subtotal + Checkout. Live cart count in navbar. **SavedContext** — React Context wishlist state with `toggleSave()`, `isSaved()`, `savedCount`. Live saved count in navbar. Heart toggle on ProductCards. | ✅ Complete |
-| 16 | **Checkout Page** — Single-page checkout at `/checkout`. Form left (Contact, Shipping, Payment), order summary right (sticky). Underline-style inputs, custom country dropdown, place order flow. | ✅ Complete |
+---
 
-## 5. Implemented Features
+## Architecture
 
-### Intro Overlay Section
-- **Fullscreen black overlay** — Fixed position (`z-50`), pure black background
-- **"snow" title** — Synonym Bold, centered, lowercase, `text-[clamp(6rem,22vw,20rem)]`, 0 tracking
-- **Dismiss behavior:** Click anywhere to trigger opacity transition from 1→0 over 1000ms (`cubic-bezier(0.87,0,0.13,1)`). Cursor is pointer during display.
-- **Architecture:** `Intro.tsx` (wrapper with responsive detection) → `IntroDesktop.tsx` (≥1024px) or `IntroMobile.tsx` (<1024px). Desktop "snow" uses `clamp(6rem,22vw,20rem)`, mobile uses `clamp(6rem,26vw,16rem)`.
+### Design System
 
-### Hero Section
-- **Fullscreen video background** — Auto-playing, muted, looping MP4 with `bg-black/40` overlay for readability
-- **"VANTAGE" heading** — Centered, Switzer Bold, `clamp(3rem,8vw,8rem)`, white, 0 tracking
-- **Centered "snow" title** — Synonym Bold, `clamp(3rem,15vw,15rem)`, white, 0 tracking
-- **Bottom-left "snow" title** — Synonym Bold, `clamp(4rem,22vw,20rem)`, white, 0 tracking, positioned `bottom-6 left-6`
-- **Architecture:** `Hero.tsx` → `HeroDesktop.tsx` (≥1024px) | `HeroMobile.tsx` (<1024px). Mobile bottom-left: `bottom-4 left-4`.
+#### CTAs & Interactive Elements
+- **Primary CTAs** (Add to Cart, Checkout, Place Order, Apply filters): `bg-black text-white border border-black` with `hover:bg-white hover:text-black` (invert on hover)
+- **Subscribe button (footer):** `bg-white text-black` with `hover:bg-[#284468] hover:text-white` (inverts to navy)
+- **Size selectors:** Selected size uses `bg-black text-white`, unselected uses `bg-transparent border border-neutral-200`
 
-### Navbar
-- **Fixed positioning** — Always visible at top of viewport (`z-40`)
-- **Scroll-based mode switching:** Transparent background + white text over Hero → White background (`bg-white`) + black text past Hero (switches precisely at `scrollY >= window.innerHeight`)
-- **Layout:** Flexbox row with `px-12`. Left: lowercase "snow" logo (Synonym Bold, 28px). Right: nav links (New Arrivals, Women, Men, Journal, Currency) each with hover underline animation (300ms), followed by Saved (live count from `useSaved()`) and Cart (live count from `useCart()`).
-- **Mega menu:** Hovering New Arrivals/Women/Men/Journal/Currency opens a unified white dropdown (`bg-white shadow-lg border-t border-neutral-100`) spanning the full links block width. Each column has its own section title (`text-sm uppercase black bold`). First column always 8 items, second can have fewer. Items use `text-xs uppercase text-black hover:text-black/60`. Currency dropdown has 3 columns (Americas, Europe, MENA & Asia) with dot indicator buttons instead of links — selected currency shows a filled dot and its code is displayed in the navbar. Dropdown inner padding: `py-3 px-5`. Saved and Cart have no dropdown.
-- **Height:** `h-10` (40px) desktop, `h-9` mobile.
-- **Cart button:** Opens right slide-in drawer. Live count from `CartContext`.
-- **Saved button:** Shows live count from `SavedContext`. Links to `#`.
-- **Smooth transitions:** All color changes use `transition-all duration-300`
+#### Color System
+| Token | Code | Usage |
+|-------|------|-------|
+| Black | `#000000` | ALL buttons/CTAs, selected states, primary text |
+| Navy | `#0d1b2a` | Footer background, heart icon |
+| Navy accent | `#284468` | Subscribe button hover (footer only) |
+| White | `#ffffff` | Backgrounds, text over dark |
 
-### Brand Statement Section
-- **Background:** Pure white
-- **Content:** Massive lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text
-- **Layout:** Full-width, left-aligned, `pt-24 pb-4`, with right-side column for three nav link groups
+#### Button Hover Pattern
+All primary action buttons invert colors on hover:
+```
+Default:  bg-black text-white border border-black
+Hover:    bg-white text-black
+```
 
-### SeasonEdit Section (Featured)
-- **Title row:** "Featured" (Switzer Medium, `clamp(3.5rem,10vw,10rem)`) left + "SEE MORE" (Switzer Semi-bold, 60% black, underline, right-aligned with `mr-8`)
-- **Desktop layout:** Full-width 4-column grid (`grid-cols-4`), 1 row of 4 products, `gap-1` (4px) between columns and matching edge padding (`px-1`)
-- **Products:** 4 fashion items with 3:4 images (`.jpg`), names in Switzer Regular, prices in Switzer Light
-- **Heart save:** Lucide `Heart` icon, navy `#0d1b2a`, appears on hover with opacity + scale transition, toggles fill on click
+### Page Architecture
 
-### Collections Section
-- **Title row:** "COLLECTIONS" + "SEE MORE" (same styling as Featured)
-- **Desktop layout:** 2-column grid (`grid-cols-2`), `gap-1` between cards
-- **Category cards:** 2 cards (Men, Women), 3:4 ratio, custom images, 10% black overlay, category name bottom-left (Switzer Medium, `clamp(1.8rem,4vw,3.5rem)`), "DISCOVER" bottom-right (Switzer Light, loose tracking)
+```
+Pages (routes):
+├── /                    → Homepage (Intro → Hero → Sections → Footer)
+├── /dev                 → Dev/listing page
+├── /cart                → Full-page cart (mobile)
+├── /checkout            → Responsive checkout (Mobile / Desktop)
+├── /products/[slug]     → Responsive product detail (Mobile / Desktop)
+└── /saved               → Wishlist "Saved Pieces"
 
-### Categories Section
-- **Title row:** "CATEGORIES" + "SEE MORE" (same styling)
-- **Desktop layout:** 6 category rows stacked vertically, each with 4px gap. Alternating pattern:
-  - Odd rows (1,3,5): Big 1:1 image left, two small 1:1 images stacked right
-  - Even rows (2,4,6): Two small 1:1 images stacked left, big 1:1 image right
-- **Category titles:** Below the two small images, Switzer Medium, `clamp(3rem,7vw,7rem)`, pure black, `leading-[1]`
-- **Images:** All PNGs with white background (`/assets/images/categories-new/`). 1px white outline (`outline-1 outline-white outline-offset-[-1px]`) on every image to mask baked-in dark edges.
-- **6 categories:** Women's Outerwear & Coats, Men's Outerwear & Coats, Blouses & Tops, Dresses, Suits, Accessories
+Components:
+├── layout/
+│   ├── NavbarDesktop.tsx      ← Auto-hide on scroll, transparent→white bg
+│   └── NavbarMobile.tsx       ← Fixed h-8, menu overlay, overlayOpen prop
+│
+├── cart/
+│   └── CartDrawer.tsx         ← Desktop slide-in drawer
+│
+├── checkout/
+│   ├── CheckoutDesktop.tsx    ← 60/40 split layout
+│   └── CheckoutMobile.tsx     ← Stacked full-width, scrollable
+│
+├── sections/
+│   ├── home-page/             ← Hero, SeasonEdit, Collections, etc.
+│   ├── product-detail/
+│   │   ├── ProductDetailDesktop.tsx
+│   │   ├── ProductDetailMobile.tsx
+│   │   └── SuggestedProducts.tsx
+│   └── product-listing/
+│       ├── ProductListingDesktop.tsx  ← Drawer filters, 4-col grid
+│       └── ProductListingMobile.tsx   ← Overlay filters, 2-col/4-col grid
+│
+└── ui/
+    └── ProductCard/ProductCard.tsx    ← Shared card component
 
-### Philosophy Section
-- **Title row:** "PHILOSOPHY" + "SEE MORE" (same styling)
-- **Desktop layout:** Flex row with `gap-1`. Left 60%: 16:9 image (`object-cover`) with 10% black overlay. Right 40%: text content with heading + body copy in Switzer Light.
-- **Background:** White
+Context:
+├── CartContext   ← items, addItem, removeItem, updateQuantity, setCartOpen
+└── SavedContext  ← savedIds, toggleSave, isSaved, savedCount
+```
 
-### About Section
-- **Desktop layout:** 3-column grid (`grid-cols-3`, `gap-1`)
-- **Panel 1 (left):** 3:4 image, 10% black overlay, "ABOUT US" top-left + "DISCOVER" top-right
-- **Panel 2 (center):** Text content — badge ("The Studio"), brand description (Switzer Light, `clamp(1.25rem,2vw,2.5rem)`), divider line, brand paragraph
-- **Panel 3 (right):** Same image as panel 1, identical styling
+### Mobile Features (Complete)
+| Feature | Implementation |
+|---------|---------------|
+| Navbar | `h-8` fixed, auto-hide on scroll, bg-white/text-black past hero |
+| Menu overlay | Full-screen below navbar, accordion links, smooth opacity transition |
+| Product detail | Full-width images, stacked remaining images, color/size/quantity, Add to Cart |
+| Cart page | `/cart` route with Navbar + Footer, qty controls, Checkout button |
+| Checkout | Stacked layout, scrollable, Place Order with invert hover |
+| Product listing | Filter/sort buttons, full-screen filter overlay (below navbar) |
+| Saved (wishlist) | `/saved` route, "Saved Pieces" title, same grid as listing |
+| Filter overlay | Full-screen, category accordion + color/size/price/sort, body scroll lock |
 
-### Footer Section
-- **Background:** Deep navy (`bg-[#284468]`), `px-16 pt-24 pb-4`
-- **Top row:** Flex layout. Left: massive "SNOW" (Synonym Bold, `clamp(4rem,20vw,20rem)`, white, `leading-[0.8]`). Right: 3 nav columns (Collections, Support, Connect) with uppercase headings (Switzer Bold, wide tracking) and lowercase link lists.
-- **Bottom row:** Copyright + legal links (Privacy Policy, Terms of Service), separated by white divider line
-- **All text:** Pure white
+### Key Technical Patterns
 
-### ProductCard Component
-- **Image:** 3:4 portrait aspect ratio using `pt-[133.33%]` padding trick, `bg-neutral-900` fallback
-- **Save heart:** Lucide `Heart` icon, navy `#0d1b2a` stroke + fill, appears on hover (`opacity-0→100`, `scale-75→100`, 300ms), positioned top-right. Uses `SavedContext.toggleSave(product.id)` with `preventDefault()` + `stopPropagation()` to prevent accidental navigation.
-- **Info:** Name (Switzer Regular, neutral-900, `tracking-wide`) + Price (Switzer Light, neutral-600) — flush zero gap, left-aligned to image edge
-- **Link support:** Accepts optional `href` prop. When present, card wraps in `<Link>` for client-side navigation. Used in SeasonEdit (all 4 products link to their detail pages).
+1. **Navbar overlay communication:** Components with child overlays (e.g., ProductListingMobile) use `onFilterChange` callback. Parent page passes `overlayOpen` to `NavbarMobile` to keep navbar visible while overlay is open.
 
-### ProductDetailDesktop Component
-- **Location:** `src/components/sections/product-detail/ProductDetailDesktop.tsx`
-- **Props:** Accepts `ProductDetail` type (from `@/data/products`)
-- **Layout:** 50/50 flex split. Left: 5 stacked 3:4 images with `outline-offset-[-1px]` to mask dark edges. Right: sticky info panel (`sticky top-0 min-h-screen`)
-- **Top section (fixed, never shrinks):** Product name (clamp 1.5-2.5rem, font-medium, black), price (text-2xl, font-medium, neutral-600), tax note, **description always visible** (between tax note and divider), divider, color selector (square swatches with self-matching border on select, scale-110 on selected), size selector (square buttons w-11 h-11, text-xs, navy fill on select, navy hover border), quantity + Add to Cart button
-- **Right padding:** Increased from `px-12` to `pl-12 pr-32` for cleaner spacing from screen edge
-- **Fixed spacer:** 80px (`h-20`) gap between Add to Cart and accordion section
-- **Accordion section:** 4 items using native `<details>` elements — Details (bullet list), Size & Fit, Material & Care, Shipping & Returns (Description removed from accordion, now always visible). Custom +/× icon with group-open:rotate-45 transition. CSS keyframe animation for smooth open (opacity + translateY).
-- **Data:** Product content lives in `src/data/products.ts` with all 4 products
+2. **Smooth accordion animation:** `useRef<Record<string, HTMLDivElement | null>>` to measure `scrollHeight`, animate via `requestAnimationFrame`.
 
-### SuggestedProducts Component
-- **Location:** `src/components/sections/product-detail/SuggestedProducts.tsx`
-- **Layout:** Same grid style as SeasonEdit — `grid-cols-4 gap-x-1`, 4 ProductCards
-- **Title:** "You May Also Like" in clamp(2.5rem,6vw,6rem), Switzer Medium, `mb-12` spacing
+3. **Body scroll lock:** `useEffect` sets `overflow = "hidden"` when overlay/menu opens, restores and cleans up on close.
 
-### CategoryCard Component
-- **Image:** 3:4 portrait aspect ratio, `object-cover`, `bg-neutral-900`
-- **Overlay:** 10% black (`bg-black/10`) for readability
-- **Label:** Category name bottom-left, white Switzer Medium, `clamp(1.8rem,4vw,3.5rem)`
-- **DISCOVER:** "DISCOVER" bottom-right, white Switzer Light, `tracking-[0.15em]`, uppercase
-- **Location:** `src/components/ui/CategoryCard/`
+4. **Global scrollbar hidden:** CSS hides scrollbar on `html` while keeping scroll functionality (`overflow-y: scroll` + `scrollbar-width: none`).
 
-### ProductListingDesktop Component
-- **Location:** `src/components/sections/product-listing/ProductListingDesktop.tsx`
-- **Layout:** Full-width section with "Ready to Wear" title (clamp 3.5-10rem), Filters button (SlidersHorizontal icon + toggle count), Sort by button (ArrowUpDown icon), product count line, 4-column grid of ProductCards, `pb-24` bottom spacing
-- **Filter drawer:** Right slide-in (`fixed`, `30vw`, min 340px, max 500px), overlay backdrop. Contains: Category selector (Women/Men collections with toggle expand, dot indicator multi-select per subcategory), Colour (text row with `·` separator, multi-select), Size (text row with `·` separator, multi-select), Price Range (underline-style inputs), Sort By (dot indicator single-select for Newest/Price Low-High/Price High-Low), Clear + Apply buttons inline below Sort By.
-- **Both "Filters" and "Sort by"** buttons open the same right drawer — sort options appear as a section inside the drawer.
-- **Drawer header:** "Filters" title + X close button (rounded-full hover:bg-neutral-50). No "Clear all" in header.
-- **Body scroll lock:** `document.body.style.overflow = "hidden"` when drawer is open
+5. **Responsive breakpoint:** `lg:` = 1024px. Mobile detection via `window.innerWidth < 1024`.
 
-### Cart System (CartContext + SavedContext + CartDrawer)
-- **CartContext:** `src/contexts/CartContext.tsx`
-- **SavedContext:** `src/contexts/SavedContext.tsx` — Same pattern as CartContext. Tracks `savedIds: number[]`. Provides `toggleSave()`, `isSaved()`, `savedCount`.
-- **Provider:** `SavedProvider` + `CartProvider` wrap the app via `CartWrapper` (SavedProvider outer, CartProvider inner)
-- **State:** `items: CartItem[]` where each item has id, slug, name, price, priceValue (number), imageUrl, size, color, quantity
-- **Derived:** `itemCount` (total quantity), `subtotal` (computed string)
-- **Actions:** `addItem()` (merges duplicates by id+size+color key), `removeItem()`, `updateQuantity()`, `clearCart()`
-- **Drawer open/close:** `isCartOpen` / `setCartOpen()` — exposed globally
-- **CartDrawer:** `src/components/cart/CartDrawer.tsx`
-- **Layout:** Fixed right slide-in (`w-[420px]`), overlay backdrop. Header with "Bag (N)" + X close (rounded-full hover:bg-neutral-50). Header padding `pt-14`.
-- **Item row:** 80×100px image (links to product), name, size/color, −/+/qty controls, line price, remove X button
-- **Empty state:** ShoppingBag icon + "Your bag is empty" + "Continue Shopping" link
-- **Checkout footer:** Inside scrollable area (not fixed), uses `mt-auto` to stay at bottom when items are few, scrolls with long lists. Subtotal + "Checkout" Link (navigates to `/checkout`, closes drawer) + "Free shipping" note
-- **Body scroll lock** applied when open
+6. **Navbar auto-hide:** Hides on scroll down past 80px, shows on scroll up. Uses `translate-y-0` / `-translate-y-full`.
 
-### CheckoutDesktop Component
-- **Location:** `src/components/checkout/CheckoutDesktop.tsx`
-- **Route:** `/checkout` — `src/app/checkout/page.tsx` (client component with NavbarDesktop + scroll detection)
-- **Layout:** 60/40 flex split. Left: form. Right: order summary (sticky, pure white, `border-l` separator).
-- **Form sections (left):** Contact (email + newsletter checkbox), Shipping (first/last name, address, apt, city, ZIP, country), Payment (Credit Card/PayPal/Apple Pay radio, card number, expiry, CVC, accepted cards badges)
-- **Inputs:** Underline-style (`border-b` only, no box), labels above in uppercase, focus transitions from `neutral-200` → `neutral-900`
-- **Country dropdown:** Custom button-based dropdown (not native `<select>`) with 19 countries, ChevronDown icon rotates on open, closes on outside click via fixed overlay, thin scrollbar styling
-- **Order summary (right):** Item list (image, name, size/color, qty, price), Subtotal, Shipping ("Free" in green), Total
-- **Place Order:** Click → success state with checkmark + "Order placed" message + "Continue Shopping" link
-- **Empty state:** "Your bag is empty" with Continue Shopping link (same pattern as CartDrawer)
+## Project Status
 
-## 6. Technical Goals
-- 100% Mobile Responsive (Critical for Fashion).
-- Font cleanup: only Synonyn and Switzer remain; Khand and Plein removed.
-- Image/video optimization using Next.js `<Image />` and native `<video>` for instant loading.
-- Auto-hide Navbar pattern (scroll-down-hide, scroll-up-show) common in luxury e-commerce.
+| Area | Status |
+|------|--------|
+| Desktop homepage | Complete |
+| Desktop product detail | Complete |
+| Desktop cart/checkout | Complete |
+| Desktop product listing | Complete |
+| Mobile navbar + menu | Complete |
+| Mobile product detail | Complete |
+| Mobile cart + checkout | Complete |
+| Mobile product listing + filters | Complete |
+| Saved / wishlist page | Complete |
+| Button hover states (invert) | Complete |

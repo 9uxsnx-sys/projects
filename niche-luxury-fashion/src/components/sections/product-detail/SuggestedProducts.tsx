@@ -32,7 +32,7 @@ const suggestedProducts: Product[] = [
 
 export default function SuggestedProducts() {
   return (
-    <section className="w-full bg-white pt-24 pb-16 px-1">
+    <section className="w-full bg-white pt-12 pb-16 px-1">
       {/* Section Title */}
       <div className="mb-12 flex justify-between items-center">
         <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
@@ -40,8 +40,8 @@ export default function SuggestedProducts() {
         </h2>
       </div>
 
-      {/* Product Grid — single row of 4, full width */}
-      <div className="grid grid-cols-4 gap-x-1">
+      {/* Product Grid — 2 cols mobile, 4 cols desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-4">
         {suggestedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

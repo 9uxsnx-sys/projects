@@ -35,57 +35,57 @@ export default function FooterMobile() {
           </form>
         </div>
 
-        {/* Link Columns — 2x2 grid, sized to content */}
-        <div className="grid grid-cols-2 w-fit gap-x-10 gap-y-8 mb-16">
+        {/* Link Columns — 2x2 grid, centered */}
+        <div className="grid grid-cols-2 w-fit mx-auto gap-x-10 gap-y-8 mb-16">
           {/* Row 1 */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center gap-2">
             <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
               Collections
             </h3>
             {["Accessories", "The Archive", "Women", "Men"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em]"
+                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
               ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center gap-2">
             <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
               Customer
             </h3>
             {["Shipping", "Contact", "Returns", "FAQ"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em]"
+                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
               ))}
           </div>
           {/* Row 2 */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center gap-2">
             <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
               Follow
             </h3>
             {["Instagram", "Pinterest", "YouTube", "TikTok"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em]"
+                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
               ))}
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center gap-2">
             <h3 className="text-white/50 text-xs font-switzer font-medium tracking-[0.2em] uppercase">
               Policies
             </h3>
             {["Terms of Service", "Privacy Policy", "Cookie Policy", "Warranty"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em]"
+                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
               >
                 {item}
               </span>

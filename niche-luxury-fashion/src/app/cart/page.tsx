@@ -1,63 +1,82 @@
 "use client";
 
-import React from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import NavbarDesktop from "@/components/layout/Navbar/NavbarDesktop";
+import NavbarMobile from "@/components/layout/Navbar/NavbarMobile";
+import Footer from "@/components/sections/home-page/Footer/Footer";
 
-export default function CartDrawer() {
-  const { items, itemCount, subtotal, isCartOpen, setCartOpen, removeItem, updateQuantity } =
-    useCart();
+export default function CartPage() {
+  const { items, itemCount, subtotal, removeItem, updateQuantity } = useCart();
+  const [isMobile, setIsMobile] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const prevScrollY = useRef(0);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 1024);
+
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > prevScrollY.current && currentScrollY > 80) {
+        setIsVisible(false);
+      } else if (currentScrollY < prevScrollY.current) {
+        setIsVisible(true);
+      }
+
+      prevScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <>
-      {/* Overlay */}
-      {isCartOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 z-50"
-          onClick={() => setCartOpen(false)}
-        />
+    <main className="min-h-screen flex flex-col bg-white">
+      {/* Navbar */}
+      {isMobile ? (
+        <NavbarMobile isPastHero={true} isVisible={isVisible} />
+      ) : (
+        <NavbarDesktop isPastHero={true} isVisible={isVisible} />
       )}
 
-      {/* Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-[420px] bg-white z-50 shadow-2xl transition-transform duration-300 ease-out flex flex-col ${
-          isCartOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
+      {/* Page content */}
+      <div className="flex-1 pt-20 pb-12 px-6 max-w-2xl mx-auto w-full">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 pt-14 pb-4 border-b border-neutral-100 flex-shrink-0">
-          <h2 className="text-base font-switzer font-medium text-black tracking-[0.05em] uppercase">
+        <div className="pb-6 border-b border-neutral-100">
+          <h1 className="text-xl font-switzer font-medium text-black tracking-[0.05em] uppercase">
             Bag
             <span className="text-neutral-400 font-normal ml-1">
               ({itemCount})
             </span>
-          </h2>
-          <button
-            onClick={() => setCartOpen(false)}
-            className="w-8 h-8 flex items-center justify-center text-neutral-400 hover:text-black transition-colors rounded-full hover:bg-neutral-50"
-          >
-            <X size={16} strokeWidth={1.5} />
-          </button>
+          </h1>
         </div>
 
-        {/* Body */}
         {items.length === 0 ? (
-          <div className="flex-1 flex flex-col items-center justify-center px-6 text-center">
-            <ShoppingBag size={40} className="text-neutral-200 mb-4" strokeWidth={1} />
+          <div className="flex flex-col items-center justify-center py-24 text-center">
+            <ShoppingBag size={48} className="text-neutral-200 mb-4" strokeWidth={1} />
             <p className="text-sm font-switzer font-normal text-neutral-400 mb-6">
               Your bag is empty
             </p>
-            <button
-              onClick={() => setCartOpen(false)}
+            <Link
+              href="/"
               className="text-sm font-switzer font-medium text-black underline underline-offset-4 decoration-[1px] hover:text-neutral-500 transition-colors"
             >
               Continue Shopping
-            </button>
+            </Link>
           </div>
         ) : (
-          <div className="flex-1 overflow-y-auto flex flex-col px-6 py-6">
-            <div className="space-y-6">
+          <>
+            {/* Items */}
+            <div className="py-6 space-y-6">
               {items.map((item) => {
                 const key = `${item.id}-${item.size}-${item.color}`;
                 return (
@@ -65,8 +84,7 @@ export default function CartDrawer() {
                     {/* Image */}
                     <Link
                       href={`/products/${item.slug}`}
-                      onClick={() => setCartOpen(false)}
-                      className="w-20 h-[100px] bg-neutral-900 overflow-hidden flex-shrink-0"
+                      className="w-24 h-[120px] bg-neutral-900 overflow-hidden flex-shrink-0"
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
@@ -83,7 +101,6 @@ export default function CartDrawer() {
                         <div className="flex justify-between items-start gap-2">
                           <Link
                             href={`/products/${item.slug}`}
-                            onClick={() => setCartOpen(false)}
                             className="text-sm font-switzer font-medium text-black leading-tight hover:text-neutral-500 transition-colors truncate"
                           >
                             {item.name}
@@ -115,11 +132,11 @@ export default function CartDrawer() {
                                 item.quantity - 1,
                               )
                             }
-                            className="px-2 py-1 text-xs text-neutral-400 hover:text-black transition-colors"
+                            className="px-2.5 py-1.5 text-xs text-neutral-400 hover:text-black transition-colors"
                           >
                             <Minus size={12} strokeWidth={1.5} />
                           </button>
-                          <span className="w-8 py-1 text-xs font-switzer font-medium text-black text-center select-none">
+                          <span className="w-8 py-1.5 text-xs font-switzer font-medium text-black text-center select-none">
                             {item.quantity}
                           </span>
                           <button
@@ -131,7 +148,7 @@ export default function CartDrawer() {
                                 item.quantity + 1,
                               )
                             }
-                            className="px-2 py-1 text-xs text-neutral-400 hover:text-black transition-colors"
+                            className="px-2.5 py-1.5 text-xs text-neutral-400 hover:text-black transition-colors"
                           >
                             <Plus size={12} strokeWidth={1.5} />
                           </button>
@@ -148,9 +165,9 @@ export default function CartDrawer() {
               })}
             </div>
 
-            {/* Checkout footer — stays at bottom when items are few, scrolls when list is long */}
-            <div className="mt-auto pt-8 pb-4 border-t border-neutral-100">
-              <div className="flex items-center justify-between mb-5">
+            {/* Summary */}
+            <div className="pt-6 border-t border-neutral-100">
+              <div className="flex items-center justify-between mb-6">
                 <span className="text-sm font-switzer font-medium text-black uppercase tracking-[0.05em]">
                   Subtotal
                 </span>
@@ -160,8 +177,7 @@ export default function CartDrawer() {
               </div>
               <Link
                 href="/checkout"
-                onClick={() => setCartOpen(false)}
-                className="block w-full py-3 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-black text-white border border-black hover:bg-white hover:text-black transition-all duration-300 text-center"
+                className="block w-full py-3 text-sm font-switzer font-medium tracking-[0.1em] uppercase bg-black text-white hover:opacity-80 transition-opacity text-center"
               >
                 Checkout
               </Link>
@@ -169,9 +185,12 @@ export default function CartDrawer() {
                 Free shipping on all orders
               </p>
             </div>
-          </div>
+          </>
         )}
       </div>
-    </>
+
+      {/* Footer */}
+      <Footer />
+    </main>
   );
 }

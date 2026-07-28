@@ -48,10 +48,10 @@ export default function ProductCard({ product }: { product: Product }) {
 
       {/* Product info — left-aligned */}
       <div className="mt-3 leading-none">
-        <p className="text-base font-switzer font-normal text-neutral-900 tracking-wide">
+        <p className="text-sm lg:text-base font-switzer font-normal text-neutral-900 tracking-wide">
           {product.name}
         </p>
-        <p className="text-base font-switzer font-light text-neutral-600">
+        <p className="text-sm lg:text-base font-switzer font-light text-neutral-600">
           {product.price}
         </p>
       </div>
