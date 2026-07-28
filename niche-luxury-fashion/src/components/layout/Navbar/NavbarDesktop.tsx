@@ -5,62 +5,150 @@ import { useCart } from "@/contexts/CartContext";
 import { useSaved } from "@/contexts/SavedContext";
 
 type DropdownItem = { label: string; href: string };
+type DropdownColumn = { title: string; items: DropdownItem[] };
 
-const navLinks: { label: string; hasDropdown: boolean; dropdownItems?: DropdownItem[] }[] = [
+const navLinks: { label: string; hasDropdown: boolean; columns?: DropdownColumn[] }[] = [
   {
     label: "New Arrivals",
     hasDropdown: true,
-    dropdownItems: [
-      { label: "View All", href: "#" },
-      { label: "Women's New", href: "#" },
-      { label: "Men's New", href: "#" },
-      { label: "Accessories", href: "#" },
+    columns: [
+      {
+        title: "Highlights",
+        items: [
+          { label: "View All", href: "#" },
+          { label: "Women's New", href: "#" },
+          { label: "Men's New", href: "#" },
+          { label: "Accessories New", href: "#" },
+          { label: "Shoes New", href: "#" },
+          { label: "Bags New", href: "#" },
+          { label: "Seasonal Capsule", href: "#" },
+          { label: "Limited Edition", href: "#" },
+        ],
+      },
+      {
+        title: "Trending",
+        items: [
+          { label: "Ready-to-Wear", href: "#" },
+          { label: "Outerwear", href: "#" },
+          { label: "Evening", href: "#" },
+          { label: "Vacation Shop", href: "#" },
+        ],
+      },
     ],
   },
   {
     label: "Women",
     hasDropdown: true,
-    dropdownItems: [
-      { label: "View All Women", href: "#" },
-      { label: "Dresses", href: "#" },
-      { label: "Blouses & Tops", href: "#" },
-      { label: "Trousers & Pants", href: "#" },
-      { label: "Outerwear & Coats", href: "#" },
-      { label: "Suits", href: "#" },
-      { label: "Accessories", href: "#" },
+    columns: [
+      {
+        title: "Clothing",
+        items: [
+          { label: "View All Women", href: "#" },
+          { label: "Dresses", href: "#" },
+          { label: "Blouses & Tops", href: "#" },
+          { label: "Trousers & Pants", href: "#" },
+          { label: "Outerwear & Coats", href: "#" },
+          { label: "Suits", href: "#" },
+          { label: "Knitwear", href: "#" },
+          { label: "Denim", href: "#" },
+        ],
+      },
+      {
+        title: "Accessories",
+        items: [
+          { label: "Shoes", href: "#" },
+          { label: "Bags", href: "#" },
+          { label: "Belts", href: "#" },
+          { label: "Hats", href: "#" },
+          { label: "Scarves", href: "#" },
+          { label: "Jewellery", href: "#" },
+        ],
+      },
     ],
   },
   {
     label: "Men",
     hasDropdown: true,
-    dropdownItems: [
-      { label: "View All Men", href: "#" },
-      { label: "T-Shirts & Polos", href: "#" },
-      { label: "Shirts", href: "#" },
-      { label: "Trousers & Pants", href: "#" },
-      { label: "Outerwear & Coats", href: "#" },
-      { label: "Suits", href: "#" },
-      { label: "Accessories", href: "#" },
+    columns: [
+      {
+        title: "Clothing",
+        items: [
+          { label: "View All Men", href: "#" },
+          { label: "T-Shirts & Polos", href: "#" },
+          { label: "Shirts", href: "#" },
+          { label: "Trousers & Pants", href: "#" },
+          { label: "Outerwear & Coats", href: "#" },
+          { label: "Suits", href: "#" },
+          { label: "Knitwear", href: "#" },
+          { label: "Denim", href: "#" },
+        ],
+      },
+      {
+        title: "Accessories",
+        items: [
+          { label: "Shoes", href: "#" },
+          { label: "Bags", href: "#" },
+          { label: "Belts", href: "#" },
+          { label: "Hats", href: "#" },
+          { label: "Scarves", href: "#" },
+          { label: "Jewellery", href: "#" },
+        ],
+      },
     ],
   },
   {
     label: "The Edit",
     hasDropdown: true,
-    dropdownItems: [
-      { label: "Seasonal Edit", href: "#" },
-      { label: "Evening Wear", href: "#" },
-      { label: "The Essentials", href: "#" },
-      { label: "Tailoring", href: "#" },
+    columns: [
+      {
+        title: "Curated",
+        items: [
+          { label: "Seasonal Edit", href: "#" },
+          { label: "Evening Wear", href: "#" },
+          { label: "The Essentials", href: "#" },
+          { label: "Tailoring", href: "#" },
+          { label: "Resort Wear", href: "#" },
+          { label: "Weekend Edit", href: "#" },
+          { label: "Uniforms", href: "#" },
+          { label: "Capsule Wardrobe", href: "#" },
+        ],
+      },
+      {
+        title: "By Vibe",
+        items: [
+          { label: "Minimalist", href: "#" },
+          { label: "Statement", href: "#" },
+          { label: "Relaxed", href: "#" },
+          { label: "Refined", href: "#" },
+        ],
+      },
     ],
   },
   {
     label: "Journal",
     hasDropdown: true,
-    dropdownItems: [
-      { label: "All Stories", href: "#" },
-      { label: "Style Notes", href: "#" },
-      { label: "Lookbooks", href: "#" },
-      { label: "Behind the Scenes", href: "#" },
+    columns: [
+      {
+        title: "Read",
+        items: [
+          { label: "All Stories", href: "#" },
+          { label: "Style Notes", href: "#" },
+          { label: "Lookbooks", href: "#" },
+          { label: "Behind the Scenes", href: "#" },
+          { label: "Interviews", href: "#" },
+          { label: "Runway Reports", href: "#" },
+          { label: "Brand Drops", href: "#" },
+          { label: "Editor's Letter", href: "#" },
+        ],
+      },
+      {
+        title: "Watch",
+        items: [
+          { label: "Films", href: "#" },
+          { label: "Campaigns", href: "#" },
+          { label: "Tutorials", href: "#" },
+        ],
+      },
     ],
   },
 ];
@@ -75,9 +163,9 @@ export default function NavbarDesktop({
   const { itemCount, setCartOpen } = useCart();
   const { savedCount } = useSaved();
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const textColor = "text-white";
-  const underlineColor = "before:bg-white";
-  const bgColor = isPastHero ? "bg-[#284468]" : "bg-transparent";
+  const textColor = isPastHero ? "text-black" : "text-white";
+  const underlineColor = isPastHero ? "before:bg-black" : "before:bg-white";
+  const bgColor = isPastHero ? "bg-white" : "bg-transparent";
 
   const activeLink = navLinks.find((l) => l.label === activeMenu);
 
@@ -96,7 +184,7 @@ export default function NavbarDesktop({
           snow
         </a>
 
-        {/* Links block container — holds links + unified navy dropdown */}
+        {/* Links block container */}
         <div
           className="relative"
           onMouseLeave={() => setActiveMenu(null)}
@@ -116,7 +204,6 @@ export default function NavbarDesktop({
               </li>
             ))}
 
-            {/* Saved with live count */}
             <li>
               <a
                 href="#"
@@ -126,7 +213,6 @@ export default function NavbarDesktop({
               </a>
             </li>
 
-            {/* Cart with live count */}
             <li>
               <button
                 onClick={() => setCartOpen(true)}
@@ -137,52 +223,37 @@ export default function NavbarDesktop({
             </li>
           </ul>
 
-          {/* Unified navy dropdown — spans full links block width */}
-          {activeLink && activeLink.dropdownItems && (
+          {/* Unified white dropdown */}
+          {activeLink && activeLink.columns && (
             <div
               className="absolute top-full -left-4 -right-4 pt-3"
               onMouseEnter={() => setActiveMenu(activeLink.label)}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <div className="bg-[#284468]">
-                {activeLink.dropdownItems.length <= 4 ? (
-                  <div className="py-3 px-5">
-                    {activeLink.dropdownItems.map((item, i) => (
-                      <a
-                        key={i}
-                        href={item.href}
-                        className="block py-1.5 text-sm tracking-[1.5px] uppercase font-switzer font-medium text-white hover:text-white/70 transition-colors duration-200"
-                      >
-                        {item.label}
-                      </a>
+              <div className="bg-white shadow-lg border-t border-neutral-100">
+                <div className="py-5 px-6 min-h-[300px]">
+                  {/* Columns */}
+                  <div className="flex gap-16">
+                    {activeLink.columns.map((col, ci) => (
+                      <div key={ci}>
+                        {/* Column title */}
+                        <h5 className="text-sm tracking-[1.5px] uppercase font-switzer font-medium text-black mb-3">
+                          {col.title}
+                        </h5>
+                        {/* Column items */}
+                        {col.items.map((item, i) => (
+                          <a
+                            key={i}
+                            href={item.href}
+                            className="block py-1 text-xs tracking-[1.5px] uppercase font-switzer font-normal text-black hover:text-black/60 transition-colors duration-200"
+                          >
+                            {item.label}
+                          </a>
+                        ))}
+                      </div>
                     ))}
                   </div>
-                ) : (
-                  <div className="py-3 px-5 flex gap-12">
-                    <div>
-                      {activeLink.dropdownItems.slice(0, 4).map((item, i) => (
-                        <a
-                          key={i}
-                          href={item.href}
-                          className="block py-1.5 text-sm tracking-[1.5px] uppercase font-switzer font-medium text-white hover:text-white/70 transition-colors duration-200"
-                        >
-                          {item.label}
-                        </a>
-                      ))}
-                    </div>
-                    <div>
-                      {activeLink.dropdownItems.slice(4).map((item, i) => (
-                        <a
-                          key={i}
-                          href={item.href}
-                          className="block py-1.5 text-sm tracking-[1.5px] uppercase font-switzer font-medium text-white hover:text-white/70 transition-colors duration-200"
-                        >
-                          {item.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
             </div>
           )}

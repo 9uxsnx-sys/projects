@@ -38,7 +38,7 @@
 - [x] ProductDetail Size Buttons — Changed to squares (w-11 h-11), smaller text (text-xs)
 - [x] ProductDetail Right Padding — Increased from px-12 to pl-12 pr-32 for cleaner spacing from screen edge
 - [x] Navbar Link Restructure — Removed Accessories, Collections, Account. Added New Arrivals, The Edit, Journal. Kept Men, Women, Saved (live count), Cart (live count)
-- [x] Navbar Mega Menu — Unified navy block (bg-[#284468]) dropdown under links, content changes on hover, max 4 rows per column with 2-column split for longer lists
+- [x] Navbar Mega Menu — Unified white dropdown (bg-white shadow-lg) under links, always 2 columns with per-column titles (text-sm bold), first column 8 items, items text-xs black. Hover content switch.
 - [x] Navbar Height — Finalized at h-10 (40px) with h-9 for mobile
 - [x] Cart Drawer Refinements — Header padding pt-16→pt-14, refined close button (rounded-full hover:bg-neutral-50), checkout footer inside scrollable area with mt-auto
 - [x] ProductCard Saved Integration — Local useState replaced with SavedContext, added e.preventDefault() to prevent navigation on heart click
@@ -204,6 +204,14 @@
 - **Context:** Needed a way for users to save products (heart icon on ProductCard) with a live count displayed in the navbar "Saved" link, matching the cart pattern.
 - **Choice:** Created `SavedContext` — tracks `savedIds: number[]`, exposes `toggleSave(id)`, `isSaved(id)`, `savedCount`. Wraps the app via `CartWrapper` alongside `CartProvider`.
 - **Rationale:** Same pattern as CartContext — simple, no external dependencies. The `isSaved` lookup by ID is O(1) and integrates cleanly with the existing navbar underline hover style.
+
+### Decision: Navbar Color & Mega Menu Evolution — White Background + Column Structure
+- **Context:** The navbar originally switched from transparent to navy (`bg-[#284468]`) past the hero, with the mega menu also navy and white text. The menu felt bare with single-column layouts, and the navy-heavy look was reconsidered.
+- **Iterations:**
+  1. Navy navbar + navy mega menu with single column, max 8 items (too bare for small menus)
+  2. Navy navbar + navy mega menu with title + always 2 columns (better but felt dark)
+  3. **Final:** White navbar (`bg-white`) past hero with black text + white mega dropdown (`bg-white shadow-lg border-t border-neutral-100`). Black text throughout. Each column has its own section title (`text-sm uppercase bold`), first column always 8 items, second column varies. Items use `text-xs uppercase text-black hover:text-black/60`.
+- **Rationale:** The white navbar creates a cleaner, more editorial transition from the hero section. The white dropdown with shadow feels like a natural extension rather than a separate block. Column titles (`text-sm bold`) establish clear hierarchy over sub-options (`text-xs`), making navigation scannable. Black text on white is higher contrast and more readable than white on navy, especially for small uppercase text.
 
 ### Decision: Navbar Link Architecture — Mega Menu Dropdown
 - **Context:** The original navbar had basic links (Men, Women, Accessories, Collections, Account, Saved, Cart). Needed a richer navigation experience with hover dropdowns for category browsing.

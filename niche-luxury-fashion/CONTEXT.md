@@ -13,7 +13,7 @@
 
 ## 3. Visual Direction
 - **Typeface:** *Synonym* (Bold) for all "snow" branding across every section — Intro overlay, Hero (lowercase, bottom-left), Navbar logo (lowercase), Brand statement (lowercase), and Footer brand block (uppercase "SNOW"). *Switzer* (Bold, Medium, Regular, Light) for all section titles (Featured, COLLECTIONS, CATEGORIES, PHILOSOPHY), UI/navigation text, product cards, Philosophy copy, and "SEE MORE/MORE" links. *Khand* and *Plein* were evaluated and removed during a cleanup audit as neither was used in production code.
-- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Navy (`#284468`) for navbar background, footer background, size buttons, Add to Cart, and interactive accent elements. Original navy `#0d1b2a` replaced with `#284468` across all components. Mode switching on scroll (transparent → navy bg with white text). Color swatch borders match their own hex when selected. Heart icon stroke+fill uses `#0d1b2a`.
+- **Color Palette:** Monochrome with accent — Pure Black (`#000000`) background, White (`#ffffff`) foreground, Navy (`#284468`) for footer background, size buttons, Add to Cart, and interactive accent elements. Navbar switches from transparent (over hero) to white (`bg-white`) past hero with black text. Heart icon stroke+fill uses `#0d1b2a`.
 - **Layout:** Full-width grids with 4px gaps, large typography using `clamp()`, alternating big-left/big-right pattern for Categories rows, and consistent edge padding (`px-1`).
 
 ## 4. Sections & Current Status
@@ -22,7 +22,7 @@
 |---|---------|--------|
 | 1 | **Intro Overlay** — Fullscreen black overlay with centered lowercase "snow" in Synonym Bold. Click-to-dismiss with 1s opacity transition. | ✅ Complete |
 | 2 | **Hero Section** — Fullscreen MP4 video background with `bg-black/40` overlay, centered "VANTAGE" heading + lowercase "snow" (Synonym Bold), and bottom-left "snow" (Synonym Bold, `clamp(4rem,22vw,20rem)`, 0 tracking) | ✅ Complete |
-| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → navy `#0d1b2a` bg past hero). White text in both modes. Lowercase "snow" logo in Synonym Bold. | ✅ Complete |
+| 3 | **Responsive Navbar** — Fixed top, scroll-based mode switching (transparent over hero → white `bg-white` bg with black text past hero). Lowercase "snow" logo in Synonym Bold. Hover mega menu dropdowns on New Arrivals/Women/Men/The Edit/Journal. Saved and Cart with live counts. Height: h-10 desktop, h-9 mobile. | ✅ Complete |
 | 4 | **Brand Statement** — Full-width lowercase "snow" in Synonym Bold, `clamp(4rem,20vw,20rem)`, pure black text on white background. Right side: three link columns (Collections, Support, Connect). | ✅ Complete |
 | 5 | **Featured (SeasonEdit)** — "Featured" title + "SEE MORE" (right-aligned with underline). 4 products in `grid-cols-4` with 4px gap. Product cards: 3:4 images, hover heart save (navy `#0d1b2a`), name + price. | ✅ Complete |
 | 6 | **Collections** — "COLLECTIONS" title + "SEE MORE". 2 cards (Men, Women) in `grid-cols-2`. Cards: 3:4 ratio, 10% black overlay, category name bottom-left, "DISCOVER" bottom-right. Accessories card removed. | ✅ Complete |
@@ -54,9 +54,9 @@
 
 ### Navbar
 - **Fixed positioning** — Always visible at top of viewport (`z-40`)
-- **Scroll-based mode switching:** Transparent background + white text over Hero → Navy (`#284468`) background + white text past Hero (switches precisely at `scrollY >= window.innerHeight`)
+- **Scroll-based mode switching:** Transparent background + white text over Hero → White background (`bg-white`) + black text past Hero (switches precisely at `scrollY >= window.innerHeight`)
 - **Layout:** Flexbox row with `px-12`. Left: lowercase "snow" logo (Synonym Bold, 28px). Right: nav links (New Arrivals, Women, Men, The Edit, Journal) each with hover underline animation (300ms), followed by Saved (live count from `useSaved()`) and Cart (live count from `useCart()`).
-- **Mega menu:** Hovering New Arrivals/Women/Men/The Edit/Journal opens a unified navy (`bg-[#284468]`) dropdown panel spanning the full links block width. Content changes based on hovered link. Max 4 rows per column — longer lists (Women, Men with 7 items each) split into 2 columns. Items use `text-white` with `hover:text-white/70`. Saved and Cart have no dropdown.
+- **Mega menu:** Hovering New Arrivals/Women/Men/The Edit/Journal opens a unified white dropdown (`bg-white shadow-lg border-t`) spanning the full links block width. Always 2 columns, each with its own section title (`text-sm uppercase black bold`). Items split using `Math.ceil(length/2)`. First column always 8 items, second can have fewer. Items use `text-xs uppercase text-black hover:text-black/60`. Saved and Cart have no dropdown.
 - **Height:** `h-10` (40px) desktop, `h-9` mobile.
 - **Cart button:** Opens right slide-in drawer. Live count from `CartContext`.
 - **Saved button:** Shows live count from `SavedContext`. Links to `#`.
@@ -99,7 +99,7 @@
 - **Panel 3 (right):** Same image as panel 1, identical styling
 
 ### Footer Section
-- **Background:** Deep navy (`bg-[#0d1b2a]`), `px-16 pt-24 pb-4`
+- **Background:** Deep navy (`bg-[#284468]`), `px-16 pt-24 pb-4`
 - **Top row:** Flex layout. Left: massive "SNOW" (Synonym Bold, `clamp(4rem,20vw,20rem)`, white, `leading-[0.8]`). Right: 3 nav columns (Collections, Support, Connect) with uppercase headings (Switzer Bold, wide tracking) and lowercase link lists.
 - **Bottom row:** Copyright + legal links (Privacy Policy, Terms of Service), separated by white divider line
 - **All text:** Pure white
