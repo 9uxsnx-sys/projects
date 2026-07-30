@@ -10,15 +10,15 @@ import { useSaved } from "@/contexts/SavedContext";
 /* ─── All products that can be saved ─── */
 const allProducts: Product[] = [
   // From data/products.ts (ids 1-4)
-  { id: 1, name: "Whispering Petals Wrap Midi Dress", price: "$68.00", imageUrl: "/assets/images/season-edit/product-1.jpg", href: "/products/whispering-petals-wrap-midi-dress" },
-  { id: 2, name: "Meadow Sweetheart Smocked Dress", price: "$74.50", imageUrl: "/assets/images/season-edit/product-2.jpg", href: "/products/meadow-sweetheart-smocked-dress" },
-  { id: 3, name: "Countryside Blossom Tiered Sundress", price: "$62.00", imageUrl: "/assets/images/season-edit/product-3.jpg", href: "/products/countryside-blossom-tiered-sundress" },
-  { id: 4, name: "Sun-Kissed Linen Tie-Front Mini", price: "$56.00", imageUrl: "/assets/images/season-edit/product-4.jpg", href: "/products/sun-kissed-linen-tie-front-mini" },
+  { id: 1, name: "Whispering Petals Wrap Midi Dress", price: "$68.00", imageUrl: "/assets/images/season-edit/product-1.webp", href: "/products/whispering-petals-wrap-midi-dress" },
+  { id: 2, name: "Meadow Sweetheart Smocked Dress", price: "$74.50", imageUrl: "/assets/images/season-edit/product-2.webp", href: "/products/meadow-sweetheart-smocked-dress" },
+  { id: 3, name: "Countryside Blossom Tiered Sundress", price: "$62.00", imageUrl: "/assets/images/season-edit/product-3.webp", href: "/products/countryside-blossom-tiered-sundress" },
+  { id: 4, name: "Sun-Kissed Linen Tie-Front Mini", price: "$56.00", imageUrl: "/assets/images/season-edit/product-4.webp", href: "/products/sun-kissed-linen-tie-front-mini" },
   // From SuggestedProducts (ids 5-8)
-  { id: 5, name: "Silk Cowl Neck Blouse", price: "$120.00", imageUrl: "/assets/images/season-edit/product-1.jpg" },
-  { id: 6, name: "Linen Blend Wide-Leg Trousers", price: "$89.00", imageUrl: "/assets/images/season-edit/product-2.jpg" },
-  { id: 7, name: "Structured Canvas Tote", price: "$145.00", imageUrl: "/assets/images/season-edit/product-3.jpg" },
-  { id: 8, name: "Leather Ankle Boots", price: "$210.00", imageUrl: "/assets/images/season-edit/product-4.jpg" },
+  { id: 5, name: "Silk Cowl Neck Blouse", price: "$120.00", imageUrl: "/assets/images/season-edit/product-1.webp" },
+  { id: 6, name: "Linen Blend Wide-Leg Trousers", price: "$89.00", imageUrl: "/assets/images/season-edit/product-2.webp" },
+  { id: 7, name: "Structured Canvas Tote", price: "$145.00", imageUrl: "/assets/images/season-edit/product-3.webp" },
+  { id: 8, name: "Leather Ankle Boots", price: "$210.00", imageUrl: "/assets/images/season-edit/product-4.webp" },
 ];
 
 export default function SavedPage() {

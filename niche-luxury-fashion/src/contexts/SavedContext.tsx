@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
+import React, { createContext, useContext, useState, useCallback, useMemo, useEffect } from "react";
 
 type SavedContextType = {
   savedIds: number[];
@@ -11,8 +11,27 @@ type SavedContextType = {
 
 const SavedContext = createContext<SavedContextType | undefined>(undefined);
 
+function loadSavedIds(): number[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem("niche-saved-ids");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+  } catch {
+    // ignore
+  }
+  return [];
+}
+
 export function SavedProvider({ children }: { children: React.ReactNode }) {
-  const [savedIds, setSavedIds] = useState<number[]>([]);
+  const [savedIds, setSavedIds] = useState<number[]>(loadSavedIds);
+
+  // Persist to localStorage whenever savedIds changes
+  useEffect(() => {
+    localStorage.setItem("niche-saved-ids", JSON.stringify(savedIds));
+  }, [savedIds]);
 
   const toggleSave = useCallback((id: number) => {
     setSavedIds((prev) =>

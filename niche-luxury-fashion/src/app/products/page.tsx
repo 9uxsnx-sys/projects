@@ -7,7 +7,7 @@ import Footer from "@/components/sections/home-page/Footer/Footer";
 import ProductListingDesktop from "@/components/sections/product-listing/ProductListingDesktop";
 import ProductListingMobile from "@/components/sections/product-listing/ProductListingMobile";
 
-export default function DevPage() {
+export default function ProductsPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isFilterOpen, setIsFilterOpen] = useState(false);

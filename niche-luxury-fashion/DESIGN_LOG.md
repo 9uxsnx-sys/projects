@@ -12,6 +12,25 @@
 - **Font cleanup**: Removed redundant `Synonym-Bold.ttf` (~100 KB) keeping only `.woff2`
 - **Mobile layout fixes**: Brand section full-screen (`min-h-[100dvh]`), About section edge-to-edge, removed gaps between image/video blocks, footer link sizes increased
 
+## 2026-07-30 — Product Detail: Save, Cart Toast, Cart Reset
+
+- **Desktop heart**: Added save heart button to ProductDetailDesktop next to the price row (inline-right)
+- **Mobile heart moved**: Removed from product image (top-right corner) and placed next to price row, matching desktop layout
+- **Cart toast (mobile)**: When product added to cart, subtle bottom toast slides up with "Added to cart" + "View Cart" link. Auto-dismisses after 5s. Uses `CartToast` component + `animate-slide-up` CSS keyframe
+- **Add to cart reset**: Both desktop and mobile now reset selected size (→ null) and color (→ first color) after adding to cart. Forces re-selection for next add
+- **Saved page persist**: `SavedContext` now persists `savedIds` to `localStorage` under `niche-saved-ids` so saved items survive page navigation and refresh
+- **Saved page image URLs**: Fixed product image URLs from `.jpg` → `.webp` to match actual files
+
+## 2026-07-30 — Desktop Mega Menu Refinements & Route Cleanup
+
+- **Mega menu height**: Removed `min-h-[300px]` so dropdown height fits tallest column content. Added `pt-3 pb-3` for equal spacing top/bottom
+- **Blur overlay on open**: When mega menu opens (past hero), page behind gets `backdrop-blur-[2px]` overlay to focus attention on the menu. No blur when navbar is transparent (hero section)
+- **Scroll lock**: Page scrolling locked while mega menu is open via `overflow:hidden` on both `<html>` and `<body>`
+- **Shadow removed**: Removed `shadow-lg` from menu card — blur overlay replaces need for shadow
+- **Route renamed**: `/dev` → `/products` for proper product listing page
+- **"SEE MORE" links**: Categories and Season Edit "SEE MORE" buttons now link to `/products` product listing page
+- **About Desktop edge-to-edge**: Removed `px-1` side padding and `pb-6` bottom gap to Footer, matching mobile layout
+
 ## 2026-07-25 — Purple Logo / Text around Logo (reverted)
 
 - added colour tag with purple on the logo and the container that wraps it, looked like a complete different brand. not suitable for VANTAGE. reverted back to original.

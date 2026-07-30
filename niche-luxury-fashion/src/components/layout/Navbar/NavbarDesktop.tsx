@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useCart } from "@/contexts/CartContext";
 import { useSaved } from "@/contexts/SavedContext";
 
@@ -196,9 +196,32 @@ export default function NavbarDesktop({
 
   const activeLink = navLinks.find((l) => l.label === activeMenu);
 
+  // Lock page scroll when mega menu is open
+  useEffect(() => {
+    if (activeMenu) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [activeMenu]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 h-10 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+    <>
+      {activeMenu && isPastHero && (
+        <div
+          className="fixed inset-0 top-10 z-40 bg-black/10 backdrop-blur-[2px]"
+          onClick={() => setActiveMenu(null)}
+          onMouseEnter={() => setActiveMenu(null)}
+        />
+      )}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 h-10 flex items-center ${bgColor} transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
     >
       <nav className="flex items-center justify-between px-12 max-w-[1920px] mx-auto w-full">
         {/* Logo - Left */}
@@ -259,8 +282,8 @@ export default function NavbarDesktop({
               onMouseEnter={() => setActiveMenu(activeLink.label)}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <div className="bg-white shadow-lg border-t border-neutral-100">
-                <div className="py-3 px-5 min-h-[300px]">
+              <div className="bg-white border-t border-neutral-100">
+                <div className="px-5 pt-3 pb-3">
                   {/* Columns */}
                   <div className="flex gap-16">
                     {activeLink.columns.map((col, ci) => (
@@ -306,5 +329,6 @@ export default function NavbarDesktop({
         </div>
       </nav>
     </header>
+    </>
   );
 }

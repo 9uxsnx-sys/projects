@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import type { ProductDetail } from "@/data/products";
 import { useCart } from "@/contexts/CartContext";
 import { useSaved } from "@/contexts/SavedContext";
 import { Heart } from "lucide-react";
+import CartToast from "@/components/ui/CartToast/CartToast";
 
 export default function ProductDetailMobile({
   product,
@@ -14,7 +15,8 @@ export default function ProductDetailMobile({
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string>("Ivory");
   const [quantity, setQuantity] = useState(1);
-  const { addItem, setCartOpen } = useCart();
+  const [showToast, setShowToast] = useState(false);
+  const { addItem } = useCart();
   const { toggleSave, isSaved } = useSaved();
   const saved = isSaved(product.id);
 
@@ -30,21 +32,6 @@ export default function ProductDetailMobile({
           alt={product.name}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Heart save */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleSave(product.id);
-          }}
-          className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center"
-        >
-          <Heart
-            size={18}
-            strokeWidth={1.2}
-            className={saved ? "fill-[#0d1b2a] stroke-[#0d1b2a]" : "text-white stroke-white"}
-          />
-        </button>
       </div>
 
       {/* ─── Product Info (padded) ─── */}
@@ -54,15 +41,27 @@ export default function ProductDetailMobile({
           {product.name}
         </h1>
 
-        {/* Price */}
-        <p className="mt-2 text-lg font-switzer font-medium text-neutral-600">
-          {product.price}
-        </p>
-
-        {/* Tax note */}
-        <p className="mt-1 text-xs font-switzer font-normal text-neutral-400">
-          + tax. Free shipping on all orders.
-        </p>
+        {/* Price + Save */}
+        <div className="flex items-center justify-between mt-2">
+          <div>
+            <p className="text-lg font-switzer font-medium text-neutral-600">
+              {product.price}
+            </p>
+            <p className="mt-1 text-xs font-switzer font-normal text-neutral-400">
+              + tax. Free shipping on all orders.
+            </p>
+          </div>
+          <button
+            onClick={() => toggleSave(product.id)}
+            className="w-9 h-9 flex items-center justify-center"
+          >
+            <Heart
+              size={18}
+              strokeWidth={1.2}
+              className={saved ? "fill-[#0d1b2a] stroke-[#0d1b2a]" : "text-neutral-600 stroke-neutral-600 hover:stroke-black transition-colors"}
+            />
+          </button>
+        </div>
 
         {/* Description — always visible */}
         <p className="mt-4 text-sm font-switzer font-normal text-neutral-600 leading-relaxed">
@@ -179,7 +178,10 @@ export default function ProductDetailMobile({
                 size: selectedSize,
                 color: selectedColor,
               });
-              setCartOpen(true);
+              setSelectedSize(null);
+              setSelectedColor(product.colors[0]?.name || "Ivory");
+              setShowToast(true);
+              setTimeout(() => setShowToast(false), 5000);
             }}
             className={`flex-1 py-2.5 text-sm font-switzer font-medium tracking-[0.1em] uppercase transition-all duration-300 ${
               selectedSize
@@ -267,6 +269,8 @@ export default function ProductDetailMobile({
           </details>
         </div>
       </div>
+
+      <CartToast show={showToast} />
     </section>
   );
 }

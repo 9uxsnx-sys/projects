@@ -4,7 +4,7 @@ import React from "react";
 
 export default function AboutDesktop() {
   return (
-    <section className="w-full bg-white pt-12 pb-6 px-1">
+    <section className="w-full bg-white pt-12">
       {/* Two blocks — no gap between them */}
       <div className="grid grid-cols-2">
         {/* Left: Image block with title */}

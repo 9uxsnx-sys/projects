@@ -41,7 +41,7 @@ Hover:    bg-white text-black
 ```
 Pages (routes):
 ├── /                    → Homepage (Intro → Hero → Sections → Footer)
-├── /dev                 → Dev/listing page
+├── /products            → Product listing with filters (replaces /dev)
 ├── /cart                → Full-page cart (mobile)
 ├── /checkout            → Responsive checkout (Mobile / Desktop)
 ├── /products/[slug]     → Responsive product detail (Mobile / Desktop)
@@ -49,7 +49,7 @@ Pages (routes):
 
 Components:
 ├── layout/
-│   ├── NavbarDesktop.tsx      ← Auto-hide on scroll, transparent→white bg
+│   ├── NavbarDesktop.tsx      ← Auto-hide on scroll, transparent→white bg, mega menu with blur overlay + scroll lock
 │   └── NavbarMobile.tsx       ← Fixed h-8, menu overlay, overlayOpen prop
 │
 ├── cart/
@@ -69,14 +69,19 @@ Components:
 │       ├── ProductListingDesktop.tsx  ← Drawer filters, 4-col grid
 │       └── ProductListingMobile.tsx   ← Overlay filters, 2-col/4-col grid
 │
-└── ui/
-    └── ProductCard/ProductCard.tsx    ← Shared card component
+├── ui/
+│   ├── ProductCard/ProductCard.tsx    ← Shared card component
+│   └── CartToast/CartToast.tsx        ← Mobile "Added to cart" bottom toast
 
 Context:
 ├── CartContext   ← items, addItem, removeItem, updateQuantity, setCartOpen
-└── SavedContext  ← savedIds, toggleSave, isSaved, savedCount
-```
+└── SavedContext  ← savedIds, toggleSave, isSaved, savedCount (persisted to localStorage)
 
+### UI Patterns
+
+- **Cart toast (mobile):** Bottom slide-up card with checkmark + "Added to cart" + "View Cart" link, auto-dismisses after 5s
+- **Product detail heart:** Save button on both desktop (next to price) and mobile (next to price row)
+- **Add to cart reset:** Selecting size/color and adding to cart resets selections to defaults, requiring re-selection for next add
 ### Mobile Features (Complete)
 | Feature | Implementation |
 |---------|---------------|
@@ -95,7 +100,7 @@ Context:
 
 2. **Smooth accordion animation:** `useRef<Record<string, HTMLDivElement | null>>` to measure `scrollHeight`, animate via `requestAnimationFrame`.
 
-3. **Body scroll lock:** `useEffect` sets `overflow = "hidden"` when overlay/menu opens, restores and cleans up on close.
+3. **Body scroll lock:** `useEffect` sets `overflow = "hidden"` on both `<html>` and `<body>` when overlay/menu opens, restores and cleans up on close.
 
 4. **Global scrollbar hidden:** CSS hides scrollbar on `html` while keeping scroll functionality (`overflow-y: scroll` + `scrollbar-width: none`).
 

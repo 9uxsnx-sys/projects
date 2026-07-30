@@ -69,9 +69,9 @@ export default function CategoriesDesktop() {
         <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
           CATEGORIES
         </h2>
-        <span className="text-black/60 text-[clamp(0.7rem,1.2vw,1rem)] font-switzer font-semibold tracking-[0.15em] uppercase select-none leading-none mr-8 underline underline-offset-4 decoration-[1px]">
+        <a href="/products" className="text-black/60 text-[clamp(0.7rem,1.2vw,1rem)] font-switzer font-semibold tracking-[0.15em] uppercase select-none leading-none mr-8 underline underline-offset-4 decoration-[1px]">
           SEE MORE
-        </span>
+        </a>
       </div>
 
       {/* Category Rows — alternating pattern */}
