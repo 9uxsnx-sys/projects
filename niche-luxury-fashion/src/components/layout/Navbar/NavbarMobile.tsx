@@ -298,7 +298,7 @@ export default function NavbarMobile({
                   style={{ height: "0px" }}
                 >
                   <div className="pb-4 border-b border-neutral-100">
-                      {link.columns.map((col) => (
+                      {link.columns?.map((col) => (
                         <div key={col.title} className="pt-4">
                           <h5 className="text-[10px] tracking-[1.5px] uppercase font-switzer font-medium text-black/50 mb-2.5">
                             {col.title}
