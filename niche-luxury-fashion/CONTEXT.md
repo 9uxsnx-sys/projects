@@ -9,6 +9,7 @@ A luxury fashion e-commerce website for the **VANTAGE** brand, built with Next.j
 - **Minimalist, editorial aesthetic** — heavily inspired by SSENSE, The Row, and luxury lookbook layouts
 - **Monochrome palette** — black, white, and deep navy (`#0d1b2a`) used sparingly
 - **Two fonts:** Switzer (body/UI) and Synonym (brand logotype "snow")
+- **Hero tagline**: "Frost & Lace" — sentence case, Switzer Semibold, responsive sizing (8vw desktop / 14vw mobile)
 
 ---
 

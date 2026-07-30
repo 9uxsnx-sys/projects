@@ -1,5 +1,13 @@
 # DESIGN LOG.md — VANTAGE / snow
 
+## 2026-07-30 — Hero Text: "Frost & Lace"
+
+- **Hero text changed**: From "Whispers of Ivory" (Switzer, uppercase, light, tracked) to "Frost & Lace" (sentence case)
+- **Font**: Switzer (switched from Synonym back to Switzer per user request)
+- **Weight**: Semibold
+- **Size increased**: Desktop 6vw → 8vw, Mobile 10vw → 14vw
+- **Case**: Sentence case ("Frost & Lace"), not all caps
+
 ## 2026-07-30 — Full Performance Optimization Pass
 
 - **Video compression**: All 4 background videos compressed from ~190 MB total to ~29 MB (85% reduction) using CRF 23-26, H.264, scaled to 1080p

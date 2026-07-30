@@ -24,8 +24,8 @@ export default function HeroDesktop() {
 
       {/* Brand Title - Bottom Left */}
       <div className="absolute bottom-6 left-6 z-20">
-        <h1 className="text-white text-[14vw] leading-[0.85] font-synonym font-bold tracking-[0px] select-none">
-          snow
+        <h1 className="text-white text-[8vw] leading-[0.95] font-switzer font-semibold select-none">
+          Frost & Lace
         </h1>
       </div>
     </section>
