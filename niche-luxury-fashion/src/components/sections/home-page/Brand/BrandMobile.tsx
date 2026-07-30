@@ -4,13 +4,15 @@ import React from "react";
 
 export default function BrandMobile() {
   return (
-    <section className="w-full aspect-[3/4] relative overflow-hidden bg-black">
+    <section className="relative min-h-[100dvh] w-full overflow-hidden bg-black">
       {/* Video Background */}
       <video
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/assets/images/video-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/assets/videos/brand-bg.mp4" type="video/mp4" />

@@ -4,15 +4,17 @@ import React from "react";
 
 export default function AboutMobile() {
   return (
-    <section className="w-full bg-white pt-8 pb-6 px-1">
+    <section className="w-full bg-white">
       {/* Stacked blocks — no gap between them */}
       <div className="flex flex-col">
         {/* Image block with title */}
         <div className="relative w-full pt-[133.33%] bg-neutral-900 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/images/about/about-us.jpg"
+            src="/assets/images/about/about-us.webp"
             alt="About VANTAGE"
+            width={800}
+            height={800}
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
           <div className="absolute top-0 left-0 w-full h-full bg-black/20" />
@@ -34,6 +36,8 @@ export default function AboutMobile() {
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="/assets/images/video-poster.jpg"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
           <div className="absolute top-0 left-0 w-full h-full bg-black/10" />

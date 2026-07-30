@@ -11,7 +11,7 @@ export default function AboutDesktop() {
         <div className="relative w-full pt-[133.33%] bg-neutral-900 overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/images/about/about-us.jpg"
+            src="/assets/images/about/about-us.webp"
             alt="About VANTAGE"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
@@ -36,6 +36,8 @@ export default function AboutDesktop() {
             muted
             loop
             playsInline
+            preload="metadata"
+            poster="/assets/images/video-poster.jpg"
             className="absolute top-0 left-0 w-full h-full object-cover"
           />
           {/* 10% black overlay */}

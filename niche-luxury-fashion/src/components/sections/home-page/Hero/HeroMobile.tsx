@@ -11,6 +11,8 @@ export default function HeroMobile() {
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/assets/images/video-poster.jpg"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src="/assets/videos/hero-bg.mp4" type="video/mp4" />

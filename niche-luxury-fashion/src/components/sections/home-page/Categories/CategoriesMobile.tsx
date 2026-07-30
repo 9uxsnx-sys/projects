@@ -8,55 +8,55 @@ const categories = [
   {
     id: "women-outerwear",
     name: "Women's Outerwear & Blazers",
-    bigImage: `${BASE}women-outerwear-big.png`,
+    bigImage: `${BASE}women-outerwear-big.webp`,
     smallImages: [
-      `${BASE}women-outerwear-small-1.png`,
-      `${BASE}women-outerwear-small-2.png`,
+      `${BASE}women-outerwear-small-1.webp`,
+      `${BASE}women-outerwear-small-2.webp`,
     ],
   },
   {
     id: "blouses-tops",
     name: "Blouses & Tops",
-    bigImage: `${BASE}blouses-tops-big.png`,
+    bigImage: `${BASE}blouses-tops-big.webp`,
     smallImages: [
-      `${BASE}blouses-tops-small-1.png`,
-      `${BASE}blouses-tops-small-2.png`,
+      `${BASE}blouses-tops-small-1.webp`,
+      `${BASE}blouses-tops-small-2.webp`,
     ],
   },
   {
     id: "skirts-matching",
     name: "Skirts & Matching Sets",
-    bigImage: `${BASE}skirts-matching-big.png`,
+    bigImage: `${BASE}skirts-matching-big.webp`,
     smallImages: [
-      `${BASE}skirts-matching-small-1.png`,
-      `${BASE}skirts-matching-small-2.png`,
+      `${BASE}skirts-matching-small-1.webp`,
+      `${BASE}skirts-matching-small-2.webp`,
     ],
   },
   {
     id: "dresses-gowns",
     name: "Dresses & Gowns",
-    bigImage: `${BASE}dresses-gowns-big.png`,
+    bigImage: `${BASE}dresses-gowns-big.webp`,
     smallImages: [
-      `${BASE}dresses-gowns-small-1.png`,
-      `${BASE}dresses-gowns-small-2.png`,
+      `${BASE}dresses-gowns-small-1.webp`,
+      `${BASE}dresses-gowns-small-2.webp`,
     ],
   },
   {
     id: "evening-leisure",
     name: "Evening & Leisure Wear",
-    bigImage: `${BASE}evening-leisure-big.png`,
+    bigImage: `${BASE}evening-leisure-big.webp`,
     smallImages: [
-      `${BASE}evening-leisure-small-1.png`,
-      `${BASE}evening-leisure-small-2.png`,
+      `${BASE}evening-leisure-small-1.webp`,
+      `${BASE}evening-leisure-small-2.webp`,
     ],
   },
   {
     id: "men-outerwear",
     name: "Men's Outerwear & Coats",
-    bigImage: `${BASE}men-outerwear-big.png`,
+    bigImage: `${BASE}men-outerwear-big.webp`,
     smallImages: [
-      `${BASE}men-outerwear-small-1.png`,
-      `${BASE}men-outerwear-small-2.png`,
+      `${BASE}men-outerwear-small-1.webp`,
+      `${BASE}men-outerwear-small-2.webp`,
     ],
   },
 ];
@@ -79,10 +79,12 @@ export default function CategoriesMobile() {
         {categories.map((category) => (
           <div key={category.id} className="flex flex-col">
             {/* Big image */}
-            <div className="relative aspect-square overflow-hidden bg-neutral-900">
+            <div className="relative aspect-square overflow-hidden bg-white">
               <img
                 src={category.bigImage}
                 alt={category.name}
+                width={800}
+                height={800}
                 className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
               />
             </div>
@@ -92,11 +94,13 @@ export default function CategoriesMobile() {
               {category.smallImages.map((url, i) => (
                 <div
                   key={i}
-                  className="relative aspect-square overflow-hidden bg-neutral-900"
+                  className="relative aspect-square overflow-hidden bg-white"
                 >
                   <img
                     src={url}
                     alt=""
+                    width={800}
+                    height={800}
                     className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
                   />
                 </div>

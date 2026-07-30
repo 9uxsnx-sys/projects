@@ -16,6 +16,9 @@ export default function CategoryCard({ category }: { category: Category }) {
       <img
         src={category.imageUrl}
         alt={category.name}
+        loading="lazy"
+        width={800}
+        height={800}
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
 

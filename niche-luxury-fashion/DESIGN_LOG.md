@@ -1,5 +1,17 @@
 # DESIGN LOG.md — VANTAGE / snow
 
+## 2026-07-30 — Full Performance Optimization Pass
+
+- **Video compression**: All 4 background videos compressed from ~190 MB total to ~29 MB (85% reduction) using CRF 23-26, H.264, scaled to 1080p
+- **Image conversion**: All PNG/JPEG images converted to WebP — 18 category images, 4 season-edit products, 2 collections, 1 about image — reducing ~70 MB to ~7 MB
+- **Code optimizations**: Added `preload="metadata"` + `poster` to all 8 video components
+- **Dynamic imports**: Wrapped Categories, Philosophy, About, Footer with `next/dynamic` + `Suspense` — below-fold sections no longer block initial render
+- **Layout shift fix**: Added `width`/`height` attributes to ProductCard and CategoryCard images
+- **Intro rework**: Added "Skip" button (appears after 1s), children render underneath intro (not hidden) for background resource loading
+- **Categories dark flash fix**: Removed `loading="lazy"` from dynamically-imported Categories, changed `bg-neutral-900` containers to `bg-white`
+- **Font cleanup**: Removed redundant `Synonym-Bold.ttf` (~100 KB) keeping only `.woff2`
+- **Mobile layout fixes**: Brand section full-screen (`min-h-[100dvh]`), About section edge-to-edge, removed gaps between image/video blocks, footer link sizes increased
+
 ## 2026-07-25 — Purple Logo / Text around Logo (reverted)
 
 - added colour tag with purple on the logo and the container that wraps it, looked like a complete different brand. not suitable for VANTAGE. reverted back to original.

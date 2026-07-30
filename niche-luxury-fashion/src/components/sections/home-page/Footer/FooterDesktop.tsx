@@ -49,7 +49,7 @@ export default function FooterDesktop() {
                 {["Accessories", "The Archive", "Women", "Men"].map((item) => (
                   <span
                     key={item}
-                    className="text-white/80 text-sm font-switzer font-light tracking-[0.05em] cursor-pointer hover:text-white transition-colors"
+                    className="text-white/80 text-base font-switzer font-light tracking-[0.05em] cursor-pointer hover:text-white transition-colors"
                   >
                     {item}
                   </span>

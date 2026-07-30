@@ -39,6 +39,8 @@ export default function IntroMobile({
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/assets/images/video-poster.jpg"
         className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/assets/videos/intro-bg.mp4" type="video/mp4" />

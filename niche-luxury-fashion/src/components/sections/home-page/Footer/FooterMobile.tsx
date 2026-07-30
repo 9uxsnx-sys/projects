@@ -45,7 +45,7 @@ export default function FooterMobile() {
             {["Accessories", "The Archive", "Women", "Men"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
+                className="text-white/80 text-[15px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
@@ -58,7 +58,7 @@ export default function FooterMobile() {
             {["Shipping", "Contact", "Returns", "FAQ"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
+                className="text-white/80 text-[15px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
@@ -72,7 +72,7 @@ export default function FooterMobile() {
             {["Instagram", "Pinterest", "YouTube", "TikTok"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
+                className="text-white/80 text-[15px] font-switzer font-light tracking-[0.05em] text-center"
                 >
                   {item}
                 </span>
@@ -85,7 +85,7 @@ export default function FooterMobile() {
             {["Terms of Service", "Privacy Policy", "Cookie Policy", "Warranty"].map((item) => (
               <span
                 key={item}
-                className="text-white/80 text-[13px] font-switzer font-light tracking-[0.05em] text-center"
+                className="text-white/80 text-[15px] font-switzer font-light tracking-[0.05em] text-center"
               >
                 {item}
               </span>

@@ -7,12 +7,12 @@ const categories = [
   {
     id: 1,
     name: "Men",
-    imageUrl: "/assets/images/categories/men.jpg",
+    imageUrl: "/assets/images/categories/men.webp",
   },
   {
     id: 2,
     name: "Women",
-    imageUrl: "/assets/images/categories/women.jpg",
+    imageUrl: "/assets/images/categories/women.webp",
   },
 ];
 

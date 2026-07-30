@@ -103,6 +103,21 @@ Context:
 
 6. **Navbar auto-hide:** Hides on scroll down past 80px, shows on scroll up. Uses `translate-y-0` / `-translate-y-full`.
 
+## Performance Optimizations (Completed 2026-07-30)
+
+| Optimization | Result |
+|-------------|--------|
+| Video compression (4 files) | 190 MB → **29 MB** (85% ↓) |
+| Image conversion PNG/JPEG → WebP | 70 MB → **7 MB** (90% ↓) |
+| `preload="metadata"` + `poster` on all videos | Metadata-only load, placeholder image |
+| Dynamic imports for below-fold sections | Categories, Philosophy, About, Footer deferred |
+| `width`/`height` on images | CLS eliminated |
+| Intro Skip button (1s delay) | Users can bypass 3.6s animation |
+| Font cleanup (removed TTF) | ~100 KB saved |
+| Categories dark flash fix | `bg-neutral-900` → `bg-white`, removed double-defer |
+
+**Total page data**: ~300 MB → **~38 MB** (87% reduction)
+
 ## Project Status
 
 | Area | Status |
@@ -117,3 +132,4 @@ Context:
 | Mobile product listing + filters | Complete |
 | Saved / wishlist page | Complete |
 | Button hover states (invert) | Complete |
+| Performance optimization | Complete |
