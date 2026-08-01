@@ -16,7 +16,7 @@ export default function TestCategoriesPage() {
             {/* Left: Big 1:1 image */}
             <div className="relative aspect-square overflow-hidden bg-neutral-900">
               <img
-                src="/assets/images/categories-new/women-outerwear-big.png"
+                src="/assets/images/categories-new/women-outerwear-big.webp"
                 alt=""
                 className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
               />
@@ -27,14 +27,14 @@ export default function TestCategoriesPage() {
               <div className="grid grid-cols-2">
                 <div className="relative aspect-square overflow-hidden bg-neutral-900">
                   <img
-                    src="/assets/images/categories-new/women-outerwear-small-1.png"
+                    src="/assets/images/categories-new/women-outerwear-small-1.webp"
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
                   />
                 </div>
                 <div className="relative aspect-square overflow-hidden bg-neutral-900">
                   <img
-                    src="/assets/images/categories-new/women-outerwear-small-2.png"
+                    src="/assets/images/categories-new/women-outerwear-small-2.webp"
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover outline-1 outline-white outline-offset-[-1px]"
                   />

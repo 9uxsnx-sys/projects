@@ -8,25 +8,25 @@ const suggestedProducts: Product[] = [
     id: 5,
     name: "Silk Cowl Neck Blouse",
     price: "$120.00",
-    imageUrl: "/assets/images/season-edit/product-1.jpg",
+    imageUrl: "/assets/images/season-edit/product-1.webp",
   },
   {
     id: 6,
     name: "Linen Blend Wide-Leg Trousers",
     price: "$89.00",
-    imageUrl: "/assets/images/season-edit/product-2.jpg",
+    imageUrl: "/assets/images/season-edit/product-2.webp",
   },
   {
     id: 7,
     name: "Structured Canvas Tote",
     price: "$145.00",
-    imageUrl: "/assets/images/season-edit/product-3.jpg",
+    imageUrl: "/assets/images/season-edit/product-3.webp",
   },
   {
     id: 8,
     name: "Leather Ankle Boots",
     price: "$210.00",
-    imageUrl: "/assets/images/season-edit/product-4.jpg",
+    imageUrl: "/assets/images/season-edit/product-4.webp",
   },
 ];
 

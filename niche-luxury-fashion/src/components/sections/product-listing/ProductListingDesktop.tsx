@@ -53,10 +53,10 @@ const collections: Collection[] = [
 type ListingProduct = Product & { categorySlug: string };
 
 const listingProducts: ListingProduct[] = [
-  { id: 1, name: "Whispering Petals Wrap Midi Dress", price: "$68.00", imageUrl: "/assets/images/season-edit/product-1.jpg", href: "/products/whispering-petals-wrap-midi-dress", categorySlug: "dresses" },
-  { id: 2, name: "Meadow Sweetheart Smocked Dress", price: "$74.50", imageUrl: "/assets/images/season-edit/product-2.jpg", href: "/products/meadow-sweetheart-smocked-dress", categorySlug: "dresses" },
-  { id: 3, name: "Countryside Blossom Tiered Sundress", price: "$62.00", imageUrl: "/assets/images/season-edit/product-3.jpg", href: "/products/countryside-blossom-tiered-sundress", categorySlug: "dresses" },
-  { id: 4, name: "Sun-Kissed Linen Tie-Front Mini", price: "$56.00", imageUrl: "/assets/images/season-edit/product-4.jpg", href: "/products/sun-kissed-linen-tie-front-mini", categorySlug: "dresses" },
+  { id: 1, name: "Whispering Petals Wrap Midi Dress", price: "$68.00", imageUrl: "/assets/images/season-edit/product-1.webp", href: "/products/whispering-petals-wrap-midi-dress", categorySlug: "dresses" },
+  { id: 2, name: "Meadow Sweetheart Smocked Dress", price: "$74.50", imageUrl: "/assets/images/season-edit/product-2.webp", href: "/products/meadow-sweetheart-smocked-dress", categorySlug: "dresses" },
+  { id: 3, name: "Countryside Blossom Tiered Sundress", price: "$62.00", imageUrl: "/assets/images/season-edit/product-3.webp", href: "/products/countryside-blossom-tiered-sundress", categorySlug: "dresses" },
+  { id: 4, name: "Sun-Kissed Linen Tie-Front Mini", price: "$56.00", imageUrl: "/assets/images/season-edit/product-4.webp", href: "/products/sun-kissed-linen-tie-front-mini", categorySlug: "dresses" },
 ];
 
 function getCategoryCount(slug: string) {

@@ -38,11 +38,11 @@ export const products: ProductDetail[] = [
     shipping:
       "Complimentary express shipping on all orders. Delivery within 3–5 business days. Free returns within 30 days of delivery.",
     images: [
-      "/assets/images/product-detail/product-1-cover.jpg",
-      "/assets/images/product-detail/product-1-2.jpeg",
-      "/assets/images/product-detail/product-1-3.jpeg",
-      "/assets/images/product-detail/product-1-4.jpeg",
-      "/assets/images/product-detail/product-1-5.jpeg",
+      "/assets/images/product-detail/product-1-cover.webp",
+      "/assets/images/product-detail/product-1-2.webp",
+      "/assets/images/product-detail/product-1-3.webp",
+      "/assets/images/product-detail/product-1-4.webp",
+      "/assets/images/product-detail/product-1-5.webp",
     ],
     colors: [
       { name: "Ivory", hex: "#F5F0E8" },
@@ -75,11 +75,11 @@ export const products: ProductDetail[] = [
     shipping:
       "Complimentary express shipping on all orders. Delivery within 3–5 business days. Free returns within 30 days of delivery.",
     images: [
-      "/assets/images/product-detail/product-2-cover.jpg",
-      "/assets/images/product-detail/product-2-2.jpeg",
-      "/assets/images/product-detail/product-2-3.jpeg",
-      "/assets/images/product-detail/product-2-4.jpeg",
-      "/assets/images/product-detail/product-2-5.jpeg",
+      "/assets/images/product-detail/product-2-cover.webp",
+      "/assets/images/product-detail/product-2-2.webp",
+      "/assets/images/product-detail/product-2-3.webp",
+      "/assets/images/product-detail/product-2-4.webp",
+      "/assets/images/product-detail/product-2-5.webp",
     ],
     colors: [
       { name: "Ivory", hex: "#F5F0E8" },
@@ -112,11 +112,11 @@ export const products: ProductDetail[] = [
     shipping:
       "Complimentary express shipping on all orders. Delivery within 3–5 business days. Free returns within 30 days of delivery.",
     images: [
-      "/assets/images/product-detail/product-3-cover.jpg",
-      "/assets/images/product-detail/product-3-2.jpeg",
-      "/assets/images/product-detail/product-3-3.jpeg",
-      "/assets/images/product-detail/product-3-4.jpeg",
-      "/assets/images/product-detail/product-3-5.jpeg",
+      "/assets/images/product-detail/product-3-cover.webp",
+      "/assets/images/product-detail/product-3-2.webp",
+      "/assets/images/product-detail/product-3-3.webp",
+      "/assets/images/product-detail/product-3-4.webp",
+      "/assets/images/product-detail/product-3-5.webp",
     ],
     colors: [
       { name: "Ivory", hex: "#F5F0E8" },
@@ -149,11 +149,11 @@ export const products: ProductDetail[] = [
     shipping:
       "Complimentary express shipping on all orders. Delivery within 3–5 business days. Free returns within 30 days of delivery.",
     images: [
-      "/assets/images/product-detail/product-4-cover.jpg",
-      "/assets/images/product-detail/product-4-2.jpeg",
-      "/assets/images/product-detail/product-4-3.jpeg",
-      "/assets/images/product-detail/product-4-4.jpeg",
-      "/assets/images/product-detail/product-4-5.jpeg",
+      "/assets/images/product-detail/product-4-cover.webp",
+      "/assets/images/product-detail/product-4-2.webp",
+      "/assets/images/product-detail/product-4-3.webp",
+      "/assets/images/product-detail/product-4-4.webp",
+      "/assets/images/product-detail/product-4-5.webp",
     ],
     colors: [
       { name: "Ivory", hex: "#F5F0E8" },
