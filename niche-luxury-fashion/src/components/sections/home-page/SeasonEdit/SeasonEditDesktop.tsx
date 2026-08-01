@@ -39,7 +39,7 @@ export default function SeasonEditDesktop() {
     <section className="w-full bg-white pt-24 pb-6 px-1">
       {/* Section Title */}
       <div className="mb-12 flex justify-between items-center">
-        <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+        <h2 className="text-[clamp(3.5rem,10vw,10rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
           Featured
         </h2>
         <a href="/products" className="text-black/60 text-[clamp(0.7rem,1.2vw,1rem)] font-switzer font-semibold tracking-[0.15em] uppercase select-none leading-none mr-8 underline underline-offset-4 decoration-[1px]">

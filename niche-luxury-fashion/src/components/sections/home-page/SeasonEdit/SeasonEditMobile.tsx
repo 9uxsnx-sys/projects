@@ -39,7 +39,7 @@ export default function SeasonEditMobile() {
     <section className="w-full bg-white pt-16 pb-6 px-1">
       {/* Section Title */}
       <div className="mb-8 flex justify-between items-center">
-        <h2 className="text-[clamp(2rem,10vw,3.5rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+        <h2 className="text-[clamp(2rem,10vw,3.5rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
           Featured
         </h2>
         <span className="text-black/60 text-[clamp(0.7rem,3vw,1rem)] font-switzer font-medium tracking-[0.15em] uppercase select-none leading-none underline underline-offset-4 decoration-[1px]">

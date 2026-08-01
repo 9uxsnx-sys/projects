@@ -17,9 +17,9 @@ export default function TestIntroPage() {
       {/* Subtle overlay for readability */}
       <div className="absolute inset-0 bg-black/20 z-10" />
 
-      {/* Centered babil — Synonym Bold */}
+      {/* Centered babil — Zodiak Regular */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
-        <h1 className="text-white text-[clamp(6rem,18vw,20rem)] leading-[0.85] font-synonym font-bold tracking-[0.02em] select-none">
+        <h1 className="text-white text-[clamp(6rem,18vw,20rem)] leading-[0.85] font-zodiak font-normal tracking-[0.02em] select-none">
           babil
         </h1>
       </div>

@@ -112,7 +112,7 @@ export default function FooterDesktop() {
 
         {/* Massive Half-Clipped BABIL */}
         <div className="relative -mb-[20vh] select-none pointer-events-none">
-          <h2 className="text-white text-[30vw] leading-[0.85] font-synonym font-bold tracking-[0.02em] text-center">
+          <h2 className="text-white text-[30vw] leading-[0.85] font-zodiak font-normal tracking-[0.02em] text-center">
             babil
           </h2>
         </div>

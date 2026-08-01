@@ -35,7 +35,7 @@ export default function SuggestedProducts() {
     <section className="w-full bg-white pt-12 pb-16 px-1">
       {/* Section Title */}
       <div className="mb-12 flex justify-between items-center">
-        <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+        <h2 className="text-[clamp(2.5rem,6vw,6rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
           You May Also Like
         </h2>
       </div>

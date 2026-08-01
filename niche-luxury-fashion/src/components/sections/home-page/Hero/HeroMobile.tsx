@@ -20,11 +20,11 @@ export default function HeroMobile() {
       </video>
 
       {/* Subtle Overlay for Luxury Aesthetic */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
+      <div className="absolute top-0 left-0 w-full h-full bg-black/35 z-10" />
 
       {/* Brand Title - Bottom Left */}
       <div className="absolute bottom-4 left-4 z-20">
-        <h1 className="text-white text-[14vw] leading-[0.95] font-switzer font-semibold select-none">
+        <h1 className="text-white text-[14vw] leading-[0.95] font-zodiak font-normal select-none">
           Frost & Lace
         </h1>
       </div>

@@ -227,7 +227,7 @@ export default function NavbarDesktop({
         {/* Logo - Left */}
         <a
           href="/"
-          className={`${textColor} text-[28px] font-synonym font-bold select-none transition-all duration-300 ${
+          className={`${textColor} text-[28px] font-zodiak font-normal select-none transition-all duration-300 ${
             !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >

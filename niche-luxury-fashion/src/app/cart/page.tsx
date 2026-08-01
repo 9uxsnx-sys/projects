@@ -52,7 +52,7 @@ export default function CartPage() {
       <div className="flex-1 pt-20 pb-12 px-6 max-w-2xl mx-auto w-full">
         {/* Header */}
         <div className="pb-6 border-b border-neutral-100">
-          <h1 className="text-xl font-switzer font-medium text-black tracking-[0.05em] uppercase">
+          <h1 className="text-xl font-zodiak font-medium text-black tracking-[0.05em] uppercase">
             Bag
             <span className="text-neutral-400 font-normal ml-1">
               ({itemCount})

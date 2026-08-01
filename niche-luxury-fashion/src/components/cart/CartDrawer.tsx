@@ -27,7 +27,7 @@ export default function CartDrawer() {
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 pt-14 pb-4 border-b border-neutral-100 flex-shrink-0">
-          <h2 className="text-base font-switzer font-medium text-black tracking-[0.05em] uppercase">
+          <h2 className="text-base font-zodiak font-medium text-black tracking-[0.05em] uppercase">
             Bag
             <span className="text-neutral-400 font-normal ml-1">
               ({itemCount})

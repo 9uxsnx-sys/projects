@@ -32,7 +32,7 @@ export default function CategoryCard({ category }: { category: Category }) {
 
       {/* Category name — bottom-left */}
       <div className="absolute bottom-4 left-4 z-10">
-        <h3 className="text-white text-[clamp(1.8rem,4vw,3.5rem)] font-switzer font-medium leading-none tracking-[0.01em] uppercase select-none">
+        <h3 className="text-white text-[clamp(1.8rem,4vw,3.5rem)] font-zodiak font-medium leading-none tracking-[0.01em] uppercase select-none">
           {category.name}
         </h3>
       </div>

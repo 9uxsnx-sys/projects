@@ -50,7 +50,7 @@ export default function IntroMobile({
 
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         <h1
-          className={`text-white text-[clamp(6rem,26vw,16rem)] leading-[0.85] font-synonym font-bold tracking-[0.02em] select-none transition-opacity duration-[600ms] ${
+          className={`text-white text-[clamp(6rem,26vw,16rem)] leading-[0.85] font-zodiak font-normal tracking-[0.02em] select-none transition-opacity duration-[600ms] ${
             logoVisible ? "opacity-100" : "opacity-0"
           }`}
         >

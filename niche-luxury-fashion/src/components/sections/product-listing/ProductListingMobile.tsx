@@ -140,7 +140,7 @@ export default function ProductListingMobile({
       <section className="w-full bg-white min-h-screen pt-24 pb-16 px-1">
         {/* Title */}
         <div className="mb-4 px-5">
-          <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+          <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
             Ready to Wear
           </h1>
         </div>

@@ -42,7 +42,7 @@ export default function CheckoutDesktop() {
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h1 className="text-3xl font-switzer font-medium text-black mb-3">
+          <h1 className="text-3xl font-zodiak font-medium text-black mb-3">
             Order placed
           </h1>
           <p className="text-sm font-switzer font-normal text-neutral-500 mb-8 leading-relaxed">
@@ -98,7 +98,7 @@ export default function CheckoutDesktop() {
           </button>
 
           <div className="max-w-lg">
-            <h1 className="text-[clamp(1.8rem,3.5vw,3rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] mb-16">
+            <h1 className="text-[clamp(1.8rem,3.5vw,3rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] mb-16">
               Checkout
             </h1>
 

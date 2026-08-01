@@ -231,7 +231,7 @@ export default function NavbarMobile({
           {/* Logo - Left — hidden over hero, visible past hero */}
           <a
             href="/"
-            className={`${textColor} text-lg font-synonym font-bold select-none transition-all duration-300 ${
+            className={`${textColor} text-lg font-zodiak font-normal select-none transition-all duration-300 ${
               forcedShow ? "opacity-100 pointer-events-auto" : !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >

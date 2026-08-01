@@ -95,7 +95,7 @@ export default function FooterMobile() {
 
         {/* Massive Half-Clipped BABIL — same effect as desktop */}
         <div className="relative -mb-[6vh] select-none pointer-events-none">
-          <h2 className="text-white text-[28vw] leading-[0.85] font-synonym font-bold tracking-[0.02em] text-center">
+          <h2 className="text-white text-[28vw] leading-[0.85] font-zodiak font-normal tracking-[0.02em] text-center">
             babil
           </h2>
         </div>

@@ -32,7 +32,7 @@ export default function CheckoutMobile() {
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <h1 className="text-lg font-switzer font-medium text-black mb-2 leading-tight">
+          <h1 className="text-lg font-zodiak font-medium text-black mb-2 leading-tight">
             Order placed
           </h1>
           <p className="text-sm font-switzer font-normal text-neutral-500 mb-8 leading-relaxed">
@@ -85,7 +85,7 @@ export default function CheckoutMobile() {
           </span>
         </div>
 
-        <h1 className="text-xl font-switzer font-medium text-black leading-none mb-10">
+        <h1 className="text-xl font-zodiak font-medium text-black leading-none mb-10">
           Checkout
         </h1>
 

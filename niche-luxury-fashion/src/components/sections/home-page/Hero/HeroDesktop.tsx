@@ -20,11 +20,11 @@ export default function HeroDesktop() {
       </video>
 
       {/* Subtle Overlay for Luxury Aesthetic */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/20 z-10" />
+      <div className="absolute top-0 left-0 w-full h-full bg-black/35 z-10" />
 
       {/* Brand Title - Bottom Left */}
       <div className="absolute bottom-6 left-6 z-20">
-        <h1 className="text-white text-[8vw] leading-[0.95] font-switzer font-semibold select-none">
+        <h1 className="text-white text-[10vw] leading-[0.95] font-zodiak font-normal italic select-none">
           Frost & Lace
         </h1>
       </div>

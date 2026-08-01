@@ -37,7 +37,7 @@ export default function ProductDetailMobile({
       {/* ─── Product Info (padded) ─── */}
       <div className="px-6 pt-6">
         {/* Name */}
-        <h1 className="text-xl font-switzer font-medium text-black leading-tight tracking-[0.01em]">
+        <h1 className="text-xl font-zodiak font-medium text-black leading-tight tracking-[0.01em]">
           {product.name}
         </h1>
 

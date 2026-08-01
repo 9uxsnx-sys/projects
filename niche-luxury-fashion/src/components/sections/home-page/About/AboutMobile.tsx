@@ -19,7 +19,7 @@ export default function AboutMobile() {
           />
           <div className="absolute top-0 left-0 w-full h-full bg-black/20" />
           <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between">
-            <h2 className="text-white text-[clamp(2rem,8vw,3.5rem)] font-switzer font-medium leading-none tracking-[0.01em] uppercase select-none">
+            <h2 className="text-white text-[clamp(2rem,8vw,3.5rem)] font-zodiak font-medium leading-none tracking-[0.01em] uppercase select-none">
               ABOUT US
             </h2>
             <span className="text-white text-[clamp(0.875rem,3vw,1.25rem)] font-switzer font-light tracking-[0.15em] uppercase select-none">

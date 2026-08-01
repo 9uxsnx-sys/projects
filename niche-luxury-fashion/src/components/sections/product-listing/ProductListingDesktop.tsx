@@ -136,7 +136,7 @@ export default function ProductListingDesktop() {
       <div className="px-1 pb-24">
         {/* ─── Top Bar ─── */}
         <div className="flex items-end justify-between pt-24 pb-0">
-          <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+          <h1 className="text-[clamp(3.5rem,10vw,10rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
             Ready to Wear
           </h1>
           <div className="flex items-center gap-6 pb-2 pr-8">
@@ -437,7 +437,7 @@ export default function ProductListingDesktop() {
               </button>
               <button
                 onClick={closeDrawer}
-                className="flex-1 py-3 text-sm font-switzer font-medium text-white bg-[#284468] hover:bg-[#1d3555] transition-colors"
+                className="flex-1 py-3 text-sm font-switzer font-medium text-white bg-black hover:bg-neutral-800 transition-colors"
               >
                 Apply
               </button>

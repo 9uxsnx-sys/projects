@@ -21,7 +21,7 @@ export default function CollectionsMobile() {
     <section className="w-full bg-white pt-12 pb-6 px-1">
       {/* Section Title */}
       <div className="mb-8">
-        <h2 className="text-[clamp(2rem,10vw,3.5rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+        <h2 className="text-[clamp(2rem,10vw,3.5rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
           COLLECTIONS
         </h2>
       </div>

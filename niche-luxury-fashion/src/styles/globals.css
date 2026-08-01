@@ -3,6 +3,7 @@
 @theme {
   --font-switzer: "Switzer", sans-serif;
   --font-synonym: "Synonym", sans-serif;
+  --font-zodiak: "Zodiak", serif;
   --animate-slide-up: slide-up 0.3s ease-out;
 }
 
@@ -73,6 +74,22 @@
   src: url("/assets/fonts/synonym/Synonym-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zodiak";
+  src: url("/assets/fonts/zodiak/Zodiak-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Zodiak";
+  src: url("/assets/fonts/zodiak/Zodiak-VariableItalic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
   font-display: swap;
 }
 

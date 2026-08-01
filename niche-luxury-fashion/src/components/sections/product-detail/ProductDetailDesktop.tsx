@@ -55,7 +55,7 @@ export default function ProductDetailDesktop({
             {/* Top section — product identity (fixed, never shrinks) */}
             <div className="flex-shrink-0">
               {/* Product name */}
-              <h1 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-switzer font-medium text-black leading-[1.1] tracking-[0.01em]">
+              <h1 className="text-[clamp(1.5rem,2.5vw,2.5rem)] font-zodiak font-medium text-black leading-[1.1] tracking-[0.01em]">
                 {product.name}
               </h1>
 

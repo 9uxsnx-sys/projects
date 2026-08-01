@@ -61,7 +61,7 @@ export default function SavedPage() {
       <section className="w-full bg-white min-h-screen pt-24 pb-16 px-1">
         {/* Title */}
         <div className="mb-4 px-5">
-          <h1 className="text-[clamp(2.8rem,8vw,8rem)] font-switzer font-medium text-black leading-none tracking-[0.01em] select-none">
+          <h1 className="text-[clamp(2.8rem,8vw,8rem)] font-zodiak font-medium text-black leading-none tracking-[0.01em] select-none">
             Saved Pieces
           </h1>
         </div>
