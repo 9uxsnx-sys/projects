@@ -54,7 +54,7 @@ export default function IntroMobile({
             logoVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          snow
+          babil
         </h1>
       </div>
     </div>

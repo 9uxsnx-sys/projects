@@ -231,7 +231,7 @@ export default function NavbarDesktop({
             !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}
         >
-          snow
+          babil
         </a>
 
         {/* Links block container */}

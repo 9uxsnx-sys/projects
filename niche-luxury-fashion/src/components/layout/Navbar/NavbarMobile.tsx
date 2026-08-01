@@ -235,7 +235,7 @@ export default function NavbarMobile({
               forcedShow ? "opacity-100 pointer-events-auto" : !isPastHero ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
-            snow
+            babil
           </a>
 
           {/* Right: Menu + Saved + Cart */}

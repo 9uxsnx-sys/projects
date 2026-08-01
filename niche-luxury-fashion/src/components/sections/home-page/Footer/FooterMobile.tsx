@@ -93,10 +93,10 @@ export default function FooterMobile() {
           </div>
         </div>
 
-        {/* Massive Half-Clipped SNOW — same effect as desktop */}
+        {/* Massive Half-Clipped BABIL — same effect as desktop */}
         <div className="relative -mb-[6vh] select-none pointer-events-none">
           <h2 className="text-white text-[28vw] leading-[0.85] font-synonym font-bold tracking-[0.02em] text-center">
-            SNOW
+            babil
           </h2>
         </div>
       </div>

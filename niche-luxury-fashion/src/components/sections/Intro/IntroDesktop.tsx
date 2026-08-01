@@ -55,14 +55,14 @@ export default function IntroDesktop({
       {/* Subtle overlay for readability */}
       <div className="absolute inset-0 bg-black/20 z-10" />
 
-      {/* Centered SNOW logo — Plein Bold, same as Footer */}
+      {/* Centered BABIL logo — Plein Bold, same as Footer */}
       <div className="absolute inset-0 z-20 flex items-center justify-center">
         <h1
           className={`text-white text-[clamp(6rem,22vw,20rem)] leading-[0.85] font-synonym font-bold tracking-[0.02em] select-none transition-opacity duration-[600ms] ${
             logoVisible ? "opacity-100" : "opacity-0"
           }`}
         >
-          snow
+          babil
         </h1>
       </div>
     </div>
