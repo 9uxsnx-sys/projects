@@ -20,9 +20,9 @@ These niches are selected based on high market value and frequent agency service
 | 3 | **🏗️ Construction Company** | Strong corporate websites with massive project portfolios. |
 | 4 | **⚖️ Law Firm** | Demonstrates extreme professionalism, credibility, and security. |
 | 5 | **💰 Financial / Investment Company** | Premium corporate aesthetic with clean, authoritative layouts. |
-| 6 | **🌸 Luxury Perfume Brand (E-comm)** | Beautiful product storytelling and immersive shopping experience. |
+| 6 | **🌸 Luxury Perfume Brand (E-comm)** | **(IN PROGRESS)** Beautiful product storytelling and immersive shopping experience. |
 | 7 | **🎧 Premium Electronics Brand (E-comm)** | Modern product pages and high-tech premium branding. |
-| 8 | **👕 Luxury Fashion Brand (E-comm)** | **(STARTING HERE)** Catalog, collections, and editorial design. |
+| 8 | **👕 Luxury Fashion Brand (E-comm)** | Catalog, collections, and editorial design. |
 | 9 | **💎 Jewelry / Watch Brand (E-comm)** | Elegant visuals and high-end, detailed product presentation. |
 | 10 | **🤖 AI Startup / SaaS Company** | Modern landing page with pricing, features, and technical UI. |
 
